@@ -1,17 +1,28 @@
-import { RouterContext } from 'next/dist/next-server/lib/router-context'
-import GlobalStyles from '../src/styles/global'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from 'styles/global'
+import theme from 'styles/theme'
 
 export const parameters = {
-  nextRouter: {
-    Provider: RouterContext.Provider
+  backgrounds: {
+    default: 'doe-light',
+    values: [
+      {
+        name: 'doe-light',
+        value: theme.colors.white
+      },
+      {
+        name: 'doe-extraLight',
+        value: theme.colors.lightGray
+      }
+    ]
   }
 }
 
 export const decorators = [
   (Story) => (
-    <>
-      <GlobalStyles />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles removeBg />
       <Story />
-    </>
+    </ThemeProvider>
   )
 ]
