@@ -15,27 +15,24 @@ const GlobalStyles: GlobalStyleComponent<
 > = createGlobalStyle`
 
   @font-face {
-    font-family: 'Poppins';
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 300;
-    font-display: swap;
-    src: local(''), url('/fonts/poppins-v15-latin-300.woff2') format('woff2');
+    src: local(''), url('../fonts/lato-v20-latin-300.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'Poppins';
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
-    font-display: swap;
-    src: local(''), url('/fonts/poppins-v15-latin-regular.woff2') format('woff2');
+    src: local(''), url('../fonts/lato-v20-latin-regular.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'Poppins';
+    font-family: 'Lato';
     font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: local(''), url('/fonts/poppins-v15-latin-600.woff2') format('woff2');
+    font-weight: 700;
+    src: local(''), url('../fonts/lato-v20-latin-700.woff2') format('woff2');
   }
 
   * {

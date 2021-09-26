@@ -1,4 +1,4 @@
-import { useState, InputHTMLAttributes } from 'react'
+import { forwardRef, useState, InputHTMLAttributes } from 'react'
 
 import * as S from './styles'
 
@@ -12,7 +12,7 @@ export type InputProps = {
   error?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
-const Input = ({
+const Input: React.ForwardRefRenderFunction<S.WrapperProps, InputProps> = ({
   icon,
   iconPosition = 'left',
   label,
@@ -25,12 +25,12 @@ const Input = ({
 }: InputProps) => {
   const [value, setValue] = useState(initialValue)
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.currentTarget.value
-    setValue(newValue)
+  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newValue = e.currentTarget.value
+  //   setValue(newValue)
 
-    !!onInput && onInput(newValue)
-  }
+  //   !!onInput && onInput(newValue)
+  // }
 
   return (
     <S.Wrapper disabled={disabled} error={!!error}>
@@ -39,8 +39,8 @@ const Input = ({
         {!!icon && <S.Icon iconPosition={iconPosition}>{icon}</S.Icon>}
         <S.Input
           type="text"
-          onChange={onChange}
-          value={value}
+          // onChange={onChange}
+          // value={value}
           iconPosition={iconPosition}
           disabled={disabled}
           name={name}
@@ -53,4 +53,4 @@ const Input = ({
   )
 }
 
-export default Input
+export default forwardRef(Input)
