@@ -1,3 +1,4 @@
+import NextNprogress from 'nextjs-progressbar'
 import { ThemeProvider } from 'styled-components'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -16,6 +17,13 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="The best Game Stores in the world!" />
       </Head>
       <GlobalStyles />
+      <NextNprogress
+        color="#04D361'"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={5}
+        showOnShallow={true}
+      />
       <Component {...pageProps} />
     </ThemeProvider>
   )
