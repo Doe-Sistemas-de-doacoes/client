@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should render correctly 1`] = `
+.c0 {
+  color: #394338;
+}
+
+.c1 {
+  font-size: 1.2rem;
+}
+
+<footer
+  class="c0"
+>
+  <p
+    class="c1"
+  >
+    Doe © 2021, Nenhum direito reservado.
+  </p>
+</footer>
+`
