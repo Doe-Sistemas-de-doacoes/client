@@ -8,7 +8,7 @@ export default function SignIn() {
       redirectText="Ainda não possui uma conta ?"
       redirectLinkText="Criar conta"
       redirectLink="/signup"
-      formHeight={50}
+      maxHeight={'50rem'}
     >
       <FormSignIn />
     </Auth>
