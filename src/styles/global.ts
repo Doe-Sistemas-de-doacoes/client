@@ -47,6 +47,8 @@ const GlobalStyles: GlobalStyleComponent<
     }
   }
 
+ 
+
   ${({ theme, removeBg }) => css`
     html {
       font-size: 62.5%;
@@ -57,8 +59,27 @@ const GlobalStyles: GlobalStyleComponent<
       font-size: ${theme.font.sizes.medium};
       ${!removeBg &&
       css`
-        background-color: ${theme.colors.mainBg};
+        background-color: ${theme.colors.white};
       `}
+    }
+
+    h1 {
+      font-size: ${theme.font.sizes.huge};
+    }
+    h2 {
+      font-size: ${theme.font.sizes.xxlarge};
+    }
+    h3 {
+      font-size: ${theme.font.sizes.xlarge};
+    }
+    h4 {
+      font-size: ${theme.font.sizes.large};
+    }
+    h5 {
+      font-size: ${theme.font.sizes.medium};
+    }
+    h6 {
+      font-size: ${theme.font.sizes.small};
     }
   `}
 `
