@@ -31,6 +31,12 @@ export const Input = styled.input<IconPositionProps>`
     border: 0;
     outline: none;
     width: 100%;
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 ${theme.spacings.small}
+        ${theme.colors.lightGray} inset;
+      filter: none
+    }
   `}
 `
 
@@ -38,6 +44,7 @@ export const Label = styled.label`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
     color: ${theme.colors.text};
+    margin-bottom: ${theme.spacings.xxxsmall};
     cursor: pointer;
   `}
 `
@@ -87,6 +94,9 @@ const wrapperModifiers = {
 
 export const Wrapper = styled.div<WrapperProps>`
   ${({ theme, error, disabled }) => css`
+    display: flex;
+    flex-direction: column;
+
     ${error && wrapperModifiers.error(theme)}
     ${disabled && wrapperModifiers.disabled(theme)}
   `}

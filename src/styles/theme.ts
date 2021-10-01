@@ -39,6 +39,7 @@ export default {
     // black: '#030517',
   },
   spacings: {
+    xxxsmall: '0.4rem',
     xxsmall: '0.8rem',
     xsmall: '1.6rem',
     small: '2.4rem',
