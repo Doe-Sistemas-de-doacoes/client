@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react'
+import { ShoppingCart } from 'react-feather'
+import theme from 'styles/theme'
 import { renderWithTheme } from 'utils/tests/helpers'
-import { AddShoppingCart } from '@styled-icons/material-outlined/AddShoppingCart'
 
 import Button from '.'
 
@@ -46,7 +47,7 @@ describe('<Button />', () => {
 
   it('should render an icon version', () => {
     renderWithTheme(
-      <Button icon={<AddShoppingCart data-testid="icon" />}>Buy now</Button>
+      <Button icon={<ShoppingCart data-testid="icon" />}>Buy now</Button>
     )
 
     expect(screen.getByText(/buy now/i)).toBeInTheDocument()
@@ -55,14 +56,14 @@ describe('<Button />', () => {
 
   it('should render a minimal version', () => {
     renderWithTheme(
-      <Button icon={<AddShoppingCart data-testid="icon" />} minimal>
+      <Button icon={<ShoppingCart data-testid="icon" />} minimal>
         Buy now
       </Button>
     )
 
     expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyle({
       background: 'none',
-      color: '#F231A5'
+      color: theme.colors.primary
     })
 
     expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyleRule(
