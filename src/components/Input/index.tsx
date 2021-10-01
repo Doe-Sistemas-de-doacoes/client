@@ -1,9 +1,9 @@
-import { forwardRef, useState, InputHTMLAttributes } from 'react'
+import { useState, InputHTMLAttributes } from 'react'
 
 import * as S from './styles'
 
 export type InputProps = {
-  onInput?: (value: string) => void
+  onInputChange?: (value: string) => void
   label?: string
   initialValue?: string
   icon?: React.ReactNode
@@ -12,7 +12,7 @@ export type InputProps = {
   error?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
-const Input: React.ForwardRefRenderFunction<S.WrapperProps, InputProps> = ({
+const Input = ({
   icon,
   iconPosition = 'left',
   label,
@@ -20,17 +20,17 @@ const Input: React.ForwardRefRenderFunction<S.WrapperProps, InputProps> = ({
   initialValue = '',
   error,
   disabled = false,
-  onInput,
+  onInputChange,
   ...props
 }: InputProps) => {
   const [value, setValue] = useState(initialValue)
 
-  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newValue = e.currentTarget.value
-  //   setValue(newValue)
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.currentTarget.value
+    setValue(newValue)
 
-  //   !!onInput && onInput(newValue)
-  // }
+    !!onInputChange && onInputChange(newValue)
+  }
 
   return (
     <S.Wrapper disabled={disabled} error={!!error}>
@@ -39,8 +39,8 @@ const Input: React.ForwardRefRenderFunction<S.WrapperProps, InputProps> = ({
         {!!icon && <S.Icon iconPosition={iconPosition}>{icon}</S.Icon>}
         <S.Input
           type="text"
-          // onChange={onChange}
-          // value={value}
+          onChange={onChange}
+          value={value}
           iconPosition={iconPosition}
           disabled={disabled}
           name={name}
@@ -53,4 +53,4 @@ const Input: React.ForwardRefRenderFunction<S.WrapperProps, InputProps> = ({
   )
 }
 
-export default forwardRef(Input)
+export default Input

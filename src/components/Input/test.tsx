@@ -41,7 +41,9 @@ describe('<Input />', () => {
 
   it('Changes its value when typing', async () => {
     const onInput = jest.fn()
-    renderWithTheme(<Input onInput={onInput} label="Input" name="Input" />)
+    renderWithTheme(
+      <Input onInputChange={onInput} label="Input" name="Input" />
+    )
 
     const input = screen.getByRole('textbox')
     const text = 'This is my new text'
@@ -57,7 +59,7 @@ describe('<Input />', () => {
   it('Does not changes its value when disabled', async () => {
     const onInput = jest.fn()
     renderWithTheme(
-      <Input onInput={onInput} label="Input" name="Input" disabled />
+      <Input onInputChange={onInput} label="Input" name="Input" disabled />
     )
 
     const input = screen.getByRole('textbox')
