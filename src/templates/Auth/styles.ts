@@ -1,222 +1,121 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-import { Footer } from 'components/Footer/styles'
 import { FormLink } from 'components/Form'
+import { Footer } from 'components/Footer/styles'
 
 import { AuthProps } from '.'
 
-type FormWrapperProps = Pick<AuthProps, 'formHeight'>
+type MainProps = Pick<AuthProps, 'maxHeight'>
 
-export const Content = styled.section`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: ${theme.spacings.small};
-    gap: ${theme.spacings.xxsmall};
-
-    ${FormLink} {
-      width: fit-content;
-    }
-
-    ${media.lessThan('medium')`
-      ${FormLink} {
-          display: flex;
-          flex-direction: column;
-          align-items: center
-      }
-    `}
-  `}
+export const Wrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 `
 
 export const Decoration = styled.section`
   ${({ theme }) => css`
-    display: flex;
+    flex: 1;
+    display: none;
     align-items: center;
     justify-content: center;
     background-color: ${theme.colors.lightGray};
+    max-width: 60vw;
     padding: 10vh 10vw;
-    grid-row: span 2;
+
+    @media screen and (min-width: 1000px) {
+      display: flex;
+    }
   `}
 `
 
-export const HeaderSection = styled.header`
+export const Content = styled.section`
   ${({ theme }) => css`
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: ${theme.spacings.xxsmall};
-    align-items: center;
-    width: fit-content;
-  `}
-`
-
-export const Heading = styled.h1`
-  max-width: 200px;
-  text-align: center;
-`
-
-export const FormWrapper = styled.div<FormWrapperProps>`
-  ${({ theme, formHeight }) => css`
-    display: flex;
-    flex-direction: column;
-    gap: ${theme.spacings.small};
-    justify-content: space-between;
-    align-items: center;
-    max-width: 36rem;
-    max-height: ${formHeight}vh;
-    width: 100%;
-    height: 100%;
-  `}
-`
-
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
     display: grid;
-    grid-template-rows: 1fr auto;
-    height: 100vh;
-    width: 100vw;
+    gap: ${theme.spacings.xsmall};
+    grid-template-rows: auto auto ${theme.font.sizes.medium};
+    padding: ${theme.spacings.small} ${theme.spacings.large};
+    overflow: auto;
 
     ${Footer} {
+      margin: auto 0;
+    }
+
+    ${media.greaterThan('large')`
+      ${FormLink} {
+        font-size: ${theme.font.sizes.medium};
+      }
+    `}
+
+    @media screen and (max-width: 1169px) {
       padding: ${theme.spacings.small};
+
+      ${Footer} {
+        margin: 0 auto;
+      }
+
+      ${FormLink} {
+        display: flex;
+        flex-direction: column;
+        gap: ${theme.spacings.xxsmall};
+        align-items: center;
+        margin: auto;
+      }
+    }
+  `}
+`
+
+export const Header = styled.header`
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: min(100%, 24rem);
+
+  ${media.greaterThan('large')`
+    align-items: flex-start;
+  `}
+`
+
+export const Heading = styled.h2`
+  ${({ theme }) => css`
+    max-width: 200px;
+    text-align: center;
+    margin: ${theme.spacings.xxsmall} 0 0;
+
+    p {
       text-align: center;
     }
 
-    @media (min-width: 1000px) {
-      grid-template-columns: 1fr 1fr;
-
-      ${HeaderSection} {
-        align-items: flex-start;
-        justify-content: flex-end;
-        gap: ${theme.spacings.small};
-      }
-      ${Heading} {
-        text-align: start;
-      }
-      ${Content} {
-        justify-items: flex-start;
-        align-items: flex-start;
-        padding: ${theme.spacings.small} ${theme.spacings.medium};
-        grid-template-rows: 4fr 6fr;
-        gap: 6vh;
-      }
-      ${FormWrapper} {
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 5vh;
-      }
-      ${Footer} {
-        padding: ${theme.spacings.small} ${theme.spacings.medium};
-        text-align: left;
-      }
-    }
+    ${media.greaterThan('large')`
+      text-align: start;
+    `}
   `}
 `
 
-// export const Content = styled.section`
-//   ${({ theme }) => css`
-//     display: grid;
-//     justify-items: center;
-//     grid-template-rows: 1fr 1fr;
-//     padding: ${theme.spacings.small};
-//     gap: ${theme.spacings.xxsmall};
-//     height: 100%;
-//     width: 100%;
+export const Main = styled.main<MainProps>`
+  ${({ theme, maxHeight }) => css`
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: ${theme.spacings.xsmall};
+    justify-content: space-between;
+    height: min(100%, ${maxHeight});
+    align-items: center;
+    max-width: 36rem;
+    width: 100%;
 
-//     ${FormLink} {
-//       width: fit-content;
-//     }
+    ${FormLink} {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
 
-//     ${media.lessThan('medium')`
-//       ${FormLink} {
-//           display: flex;
-//           flex-direction: column;
-//           align-items: center
-//       }
-//     `}
-//   `}
-// `
-
-// export const Decoration = styled.section`
-//   ${({ theme }) => css`
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     background-color: ${theme.colors.lightGray};
-//     padding: 10vh 10vw;
-//     grid-row: span 2;
-//   `}
-// `
-
-// export const HeaderSection = styled.header`
-//   ${({ theme }) => css`
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     gap: ${theme.spacings.xxsmall};
-//     align-items: center;
-//     width: fit-content;
-//   `}
-// `
-
-// export const Heading = styled.h1`
-//   max-width: 200px;
-//   text-align: center;
-// `
-
-// export const FormWrapper = styled.div`
-//   ${({ theme }) => css`
-//     display: flex;
-//     flex-direction: column;
-//     gap: ${theme.spacings.small};
-//     justify-content: space-between;
-//     align-items: center;
-//     max-width: 36rem;
-//     width: 100%;
-//     height: 100%;
-//   `}
-// `
-
-// export const Wrapper = styled.div`
-//   ${({ theme }) => css`
-//     display: grid;
-//     grid-template-rows: 1fr auto;
-//     height: 100vh;
-//     width: 100vw;
-
-//     ${Footer} {
-//       padding: ${theme.spacings.small};
-//       text-align: center;
-//     }
-
-//     @media (min-width: 1000px) {
-//       grid-template-columns: 1fr 1fr;
-
-//       ${HeaderSection} {
-//         align-items: flex-start;
-//         gap: ${theme.spacings.small};
-//         margin-top: auto;
-//       }
-//       ${Heading} {
-//         text-align: start;
-//       }
-//       ${Content} {
-//         justify-items: flex-start;
-//         padding: ${theme.spacings.small} ${theme.spacings.medium};
-//         grid-template-rows: 4fr 6fr;
-//         gap: 6vh;
-//       }
-//       ${FormWrapper} {
-//         align-items: flex-start;
-//         justify-content: flex-start;
-//         gap: 5vh;
-//       }
-//       ${Footer} {
-//         padding: ${theme.spacings.small} ${theme.spacings.medium};
-//         text-align: left;
-//       }
-//     }
-//   `}
-// `
+    ${media.greaterThan('large')`
+      align-items: flex-start;
+      margin: 0 auto 0 0;
+    `}
+  `}
+`
