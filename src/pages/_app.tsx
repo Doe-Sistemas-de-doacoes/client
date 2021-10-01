@@ -18,11 +18,10 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <NextNprogress
-        color="#04D361'"
+        color="#04D361"
         startPosition={0.3}
         stopDelayMs={200}
         height={5}
-        showOnShallow={true}
       />
       <Component {...pageProps} />
     </ThemeProvider>
