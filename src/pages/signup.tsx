@@ -9,7 +9,7 @@ export default function SignUp() {
       redirectText="Já possui uma conta?"
       redirectLinkText="Entrar"
       redirectLink="/signin"
-      formHeight={56}
+      maxHeight={'48rem'}
     >
       <FormSignUp />
     </Auth>
