@@ -17,6 +17,7 @@ const Page = ({ children, header, showDecoration = true }: PageProps) => (
           viewBox="0 0 1024 700"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          aria-label="Mulher com um coração"
         >
           <path
             d="M6.77399 0H1024V700C1024 700 871.539 615.572 754.124 607.199C570.83 594.128 549.058 460.513 381.968 345.26C230.452 240.75 301.872 156.124 179.434 119.244C-52.4673 49.3942 6.77399 0 6.77399 0Z"
