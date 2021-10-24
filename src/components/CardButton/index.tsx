@@ -1,17 +1,25 @@
 import * as S from './styles'
 
 export type CardButtonProps = {
-  img: React.ReactNode
-  title: string
-  message: string
+  src?: string
+  alt?: string
+  title?: string
+  message?: string
+  size?: 'small' | 'medium'
 }
 
-const CardButton = ({ img, title, message }: CardButtonProps) => (
+const CardButton = ({
+  src,
+  alt,
+  title,
+  message,
+  size = 'medium'
+}: CardButtonProps) => (
   <S.Wrapper>
-    {img}
+    {src && <S.Image src={src} alt={alt} size={size} />}
     <S.Content>
-      <S.Heading>{title}</S.Heading>
-      <S.Message>{message}</S.Message>
+      {title && (size === 'medium' ? <h3>{title}</h3> : <h4>{title}</h4>)}
+      {message && <S.Message>{message}</S.Message>}
     </S.Content>
   </S.Wrapper>
 )

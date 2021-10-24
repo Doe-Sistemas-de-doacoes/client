@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
+import { CardButtonProps } from '.'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
-    padding: ${theme.spacings.small};
+    padding: ${theme.spacings.xsmall};
     gap: ${theme.spacings.xsmall};
     border-radius: 0.5rem;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
@@ -12,22 +13,41 @@ export const Wrapper = styled.div`
   `}
 `
 
+export type ImageProps = Pick<CardButtonProps, 'size'>
+
+const imageModifiers = {
+  small: () => css`
+    width: 4rem;
+    height: 4rem;
+  `,
+  medium: () => css`
+    width: 10rem;
+    height: 8rem;
+  `
+}
+
+export const Image = styled.img<ImageProps>`
+  ${({ size = 'medium' }) => css`
+    ${imageModifiers[size]()}
+  `}
+`
+
 export const Content = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
     gap: ${theme.spacings.xxsmall};
-  `}
-`
 
-export const Heading = styled.h4`
-  ${({ theme }) => css`
-    color: ${theme.colors.textEmphasis};
+    h3,
+    h4 {
+      color: ${theme.colors.textEmphasis};
+    }
   `}
 `
 
 export const Message = styled.p`
   ${({ theme }) => css`
     color: ${theme.colors.text};
+    font-size: ${theme.font.sizes.small};
   `}
 `
