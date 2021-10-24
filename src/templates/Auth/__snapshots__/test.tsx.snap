@@ -1,0 +1,458 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Auth /> should render correctly 1`] = `
+.c8 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.4rem;
+  color: #394338;
+  text-align: center;
+}
+
+.c8 a {
+  color: #04D361;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  text-transform: uppercase;
+  border-bottom: 0.1rem solid #04D361;
+  -webkit-transition: color,border,0.1s ease-in-out;
+  transition: color,border,0.1s ease-in-out;
+}
+
+.c8 a:hover {
+  color: #037938;
+  border-bottom: 0.1rem solid #037938;
+}
+
+.c4 {
+  width: 8rem;
+  height: 7rem;
+}
+
+.c10 {
+  color: #394338;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
+  font-size: 1.2rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.c1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #F2F3F5;
+  max-width: 60vw;
+  padding: 10vh 10vw;
+}
+
+.c2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: grid;
+  gap: 1.6rem;
+  grid-template-rows: auto auto 1.6rem;
+  padding: 2.4rem 4.0rem;
+  overflow: auto;
+}
+
+.c2 .c9 {
+  margin: auto 0;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: min(100%,24rem);
+}
+
+.c5 {
+  max-width: 200px;
+  text-align: center;
+  margin: 0.8rem 0 0;
+}
+
+.c5 p {
+  text-align: center;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1.6rem;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  height: min(100%,50vh);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-width: 36rem;
+  width: 100%;
+}
+
+.c6 .c7 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@media screen and (min-width:1000px) {
+  .c1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:1170px) {
+  .c2 .c7 {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width:1169px) {
+  .c2 {
+    padding: 2.4rem;
+  }
+
+  .c2 .c9 {
+    margin: 0 auto;
+  }
+
+  .c2 .c7 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 0.8rem;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: auto;
+  }
+}
+
+@media (min-width:1170px) {
+  .c3 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width:1170px) {
+  .c5 {
+    text-align: start;
+  }
+}
+
+@media (min-width:1170px) {
+  .c6 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    margin: 0 auto 0 0;
+  }
+}
+
+<div
+  class="c0"
+>
+  <section
+    class="c1"
+  >
+    <svg
+      aria-label="Duas mãos segurando um coração"
+      fill="none"
+      viewBox="0 0 302 282"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        clip-path="url(#authDecor)"
+      >
+        <path
+          d="M193.067.009c-16.04-.401-34.458 12.994-75 48-72.5 7-120.109 33.016-118 81 2 45.5 68.5 58 112.5 89 28 25.5 43.354 57.867 80.5 52.5 131.5-19 128-252.5 0-270.5Z"
+          fill="#E9F2FF"
+        />
+        <path
+          d="M111.567 1.509c26.5.5 30.125 18 13.5 28.5-9.5 6-16.735 7.905-30.5 11-28 1-32-18-10.5-31 9.55-5.107 15.468-7.124 27.5-8.5Z"
+          fill="#E9F2FF"
+        />
+        <path
+          d="M114.067 63.509c16-2.872 57 8.5 57 8.5-.166 10.48-13.445 11.719-54 8l16 60h-54s-31.5-2.5-32.5-33.5c-1-31.02 43.578-38.707 67.5-43ZM259.067 157.009l-43.5-25.5-15.5 1c-16.614 18.819-29.254 23.377-56.5 23-8 0-6.5 12 0 12h21.5l-3.5 1c-9 0-8 12.5 0 12.5l71.5 1c14.686-3.999 20.763-8.985 26-25Z"
+          fill="#2E78D3"
+        />
+        <path
+          d="M189.067 75.508c-17-.966-26.5 15-26.5 15s-9.5-15-28-15c-15.486 0-26 14.014-26 29.5 0 37.001 54 64 54 64s53-25.499 53-64c0-15.486-9.5-28.533-26.5-29.5Z"
+          fill="#04D361"
+          stroke="#04D361"
+        />
+        <path
+          d="M139.067 104.009c-15.341-23.295-26-35.5-50-35.5-22.233 0-42.5 18-42.5 39 0 32 48 19.5 46-18.5 12.229.975 17.064 3.267 22 10.5 7.5 9.5 17.725 10.872 24.5 4.5ZM221.067 112.009c-24.449-3.069-42.281 14.122-54.5 33.5 4.481 5.941 8.485 6.964 20 2 8.407-11.191 13.892-16.01 28.5-15.5-6.5 29.5 40 52 45.5 18-2.502-21.891-17.3-35.214-39.5-38Z"
+          fill="#6492F2"
+        />
+      </g>
+      <defs>
+        <clippath
+          id="authDecor"
+        >
+          <path
+            d="M0 0h290v271H0z"
+            fill="#fff"
+          />
+        </clippath>
+      </defs>
+    </svg>
+  </section>
+  <section
+    class="c2"
+  >
+    <header
+      class="c3"
+    >
+      <div
+        class="c4"
+      >
+        <svg
+          aria-label="Doe"
+          fill="none"
+          height="100%"
+          viewBox="0 0 107 107"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            filter="url(#logo1)"
+          >
+            <g
+              filter="url(#logo2)"
+            >
+              <path
+                d="M109.972 35.685c-1.875-27.12-31.403-37.407-50.619-21.509L70.602 24.93c9.373 13.56-2.813 24.314-16.873 16.833L30.763 65.142c-4.218 5.143.469 12.624 7.499 8.884l26.247-25.25 2.812 2.339-25.778 26.651c-3.281 5.611 2.343 11.222 8.905 7.482l25.31-25.25 3.28 2.338L53.26 88.521c-4.218 5.61 2.812 12.624 8.437 7.948l40.307-39.743c8.905-11.69 7.968-21.041 7.968-21.041Z"
+                fill="#04D361"
+              />
+              <path
+                d="m50.917 38.958-7.968-8.884-23.435 23.378c-5.624 5.144 1.875 15.43 8.905 8.417l22.498-22.911Z"
+                fill="#04D361"
+              />
+              <path
+                d="M54.666 13.709C49.511 9.5 34.981-.786 16.234 12.773-3.576 27.1 7.327 52.985 14.826 58.596c-.937-2.806 1.875-7.014 3.281-8.417l22.497-22.91-7.499-7.014 2.344-1.87 19.685 19.637C65.446 48.31 75.757 34.75 67.32 26.334c0 0-7.345-8.29-12.655-12.624Z"
+                fill="#04D361"
+              />
+              <path
+                d="M109.972 35.685c-1.875-27.12-31.403-37.407-50.619-21.509L70.602 24.93c9.373 13.56-2.813 24.314-16.873 16.833L30.763 65.142c-4.218 5.143.469 12.624 7.499 8.884l26.247-25.25 2.812 2.339-25.778 26.651c-3.281 5.611 2.343 11.222 8.905 7.482l25.31-25.25 3.28 2.338L53.26 88.521c-4.218 5.61 2.812 12.624 8.437 7.948l40.307-39.743c8.905-11.69 7.968-21.041 7.968-21.041Z"
+                stroke="#000"
+                stroke-width=".5"
+              />
+              <path
+                d="m50.917 38.958-7.968-8.884-23.435 23.378c-5.624 5.144 1.875 15.43 8.905 8.417l22.498-22.911Z"
+                stroke="#000"
+                stroke-width=".5"
+              />
+              <path
+                d="M54.666 13.709C49.511 9.5 34.981-.786 16.234 12.773-3.576 27.1 7.327 52.985 14.826 58.596c-.937-2.806 1.875-7.014 3.281-8.417l22.497-22.91-7.499-7.014 2.344-1.87 19.685 19.637C65.446 48.31 75.757 34.75 67.32 26.334c0 0-7.345-8.29-12.655-12.624Z"
+                stroke="#000"
+                stroke-width=".5"
+              />
+            </g>
+          </g>
+          <defs>
+            <filter
+              color-interpolation-filters="sRGB"
+              filterUnits="userSpaceOnUse"
+              height="100.5"
+              id="logo1"
+              width="254.17"
+              x=".75"
+              y="5.75"
+            >
+              <feflood
+                flood-opacity="0"
+                result="BackgroundImageFix"
+              />
+              <fecolormatrix
+                in="SourceAlpha"
+                result="hardAlpha"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              />
+              <feoffset
+                dy="4"
+              />
+              <fegaussianblur
+                stdDeviation="2"
+              />
+              <fecolormatrix
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+              />
+              <feblend
+                in2="BackgroundImageFix"
+                result="effect1_dropShadow"
+              />
+              <feblend
+                in="SourceGraphic"
+                in2="effect1_dropShadow"
+                result="shape"
+              />
+            </filter>
+            <filter
+              color-interpolation-filters="sRGB"
+              filterUnits="userSpaceOnUse"
+              height="96.5"
+              id="logo2"
+              width="105.5"
+              x="4.75"
+              y="5.75"
+            >
+              <feflood
+                flood-opacity="0"
+                result="BackgroundImageFix"
+              />
+              <feblend
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <fecolormatrix
+                in="SourceAlpha"
+                result="hardAlpha"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              />
+              <feoffset
+                dy="4"
+              />
+              <fegaussianblur
+                stdDeviation="2"
+              />
+              <fecomposite
+                in2="hardAlpha"
+                k2="-1"
+                k3="1"
+                operator="arithmetic"
+              />
+              <fecolormatrix
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+              />
+              <feblend
+                in2="shape"
+                result="effect1_innerShadow"
+              />
+              <fecolormatrix
+                in="SourceAlpha"
+                result="hardAlpha"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              />
+              <feoffset />
+              <fegaussianblur
+                stdDeviation="5"
+              />
+              <fecomposite
+                in2="hardAlpha"
+                k2="-1"
+                k3="1"
+                operator="arithmetic"
+              />
+              <fecolormatrix
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+              />
+              <feblend
+                in2="effect1_innerShadow"
+                result="effect2_innerShadow"
+              />
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <h2
+        class="c5"
+      >
+        Auth simple title
+      </h2>
+    </header>
+    <main
+      class="c6"
+    >
+      <p
+        data-testid="authChildren"
+      >
+        Children
+      </p>
+      <div
+        class="c7 c8"
+      >
+        <p>
+          Redirect text
+        </p>
+        <a
+          href="/link"
+        >
+          Redirect link text
+        </a>
+      </div>
+    </main>
+    <footer
+      class="c9 c10"
+    >
+      <p
+        class="c11"
+      >
+        Doe © 2021, Nenhum direito reservado.
+      </p>
+    </footer>
+  </section>
+</div>
+`
