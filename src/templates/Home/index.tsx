@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import CardButton from 'components/CardButton'
 import Footer from 'components/Footer'
 import Logo from 'components/Logo'
@@ -23,24 +25,36 @@ const Home = ({ connections }: HomeProps) => (
       </S.Hello>
 
       <S.Main>
-        <CardButton
-          src="/img/avatar.svg"
-          alt="Avatar do usuário"
-          title="Minha conta"
-          size="small"
-        />
-        <CardButton
-          src="/img/donation.svg"
-          alt="Duas mãos enviando um coração vende para cima"
-          message="Ajude pessoas ou causas"
-          title="Doar"
-        />
-        <CardButton
-          src="/img/receive.svg"
-          alt="Duas mãos segurando um coração vende"
-          message="Procure algo que você precisa"
-          title="Encontrar"
-        />
+        <Link href="myaccount">
+          <CardButton
+            src="/img/avatar.svg"
+            alt="Avatar do usuário"
+            title="Minha conta"
+            size="small"
+            as="a"
+          />
+        </Link>
+
+        <Link href="donation">
+          <CardButton
+            src="/img/donation.svg"
+            alt="Duas mãos enviando um coração vende para cima"
+            message="Ajude pessoas ou causas"
+            title="Doar"
+            as="a"
+          />
+        </Link>
+
+        <Link href="find">
+          <CardButton
+            src="/img/receive.svg"
+            alt="Duas mãos segurando um coração vende"
+            message="Procure algo que você precisa"
+            title="Encontrar"
+            as="a"
+          />
+        </Link>
+
         <S.Connections>{connections} pessoas conectadas</S.Connections>
       </S.Main>
 
