@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react'
 import { ShoppingCart } from 'react-feather'
-import theme from 'styles/theme'
 import { renderWithTheme } from 'utils/tests/helpers'
 
 import Button from '.'
@@ -52,27 +51,6 @@ describe('<Button />', () => {
 
     expect(screen.getByText(/buy now/i)).toBeInTheDocument()
     expect(screen.getByTestId('icon')).toBeInTheDocument()
-  })
-
-  it('should render a minimal version', () => {
-    renderWithTheme(
-      <Button icon={<ShoppingCart data-testid="icon" />} minimal>
-        Buy now
-      </Button>
-    )
-
-    expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyle({
-      background: 'none',
-      color: theme.colors.primary
-    })
-
-    expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyleRule(
-      'background',
-      'none',
-      {
-        modifier: ':hover'
-      }
-    )
   })
 
   it('should render Button as a link', () => {
