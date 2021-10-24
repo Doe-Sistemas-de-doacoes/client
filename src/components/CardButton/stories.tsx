@@ -1,5 +1,4 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import Logo from 'components/Logo'
 
 import CardButton, { CardButtonProps } from '.'
 
@@ -13,7 +12,8 @@ export const Default: Story<CardButtonProps> = (args) => (
 )
 
 Default.args = {
-  img: <Logo />,
+  src: '/img/donation.svg',
+  alt: 'Duas mãos enviando um coração vende para cima',
   title: 'Card title',
   message: 'A simple and short message to show in card button.'
 }
