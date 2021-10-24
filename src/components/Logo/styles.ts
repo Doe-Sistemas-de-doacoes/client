@@ -3,6 +3,10 @@ import styled, { css } from 'styled-components'
 import { LogoProps } from '.'
 
 const wrapperModifiersWithTitle = {
+  xsmall: () => css`
+    width: 4.6rem;
+    height: 3.9rem;
+  `,
   small: () => css`
     width: 5.6rem;
     height: 4.9rem;
@@ -38,8 +42,8 @@ const wrapperModifiersWithoutTitle = {
 
 export const Wrapper = styled.div<LogoProps>`
   ${({ size = 'normal', withTitle }) => css`
-    ${withTitle
+    ${(withTitle
       ? wrapperModifiersWithTitle[size]
-      : wrapperModifiersWithoutTitle[size]}
+      : wrapperModifiersWithoutTitle[size])()}
   `}
 `
