@@ -9,6 +9,8 @@ export default {
   font: {
     family:
       "Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+    family_pacifico:
+      "'Pacifico', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
     bold: 700,
@@ -19,7 +21,8 @@ export default {
       large: '1.8rem',
       xlarge: '2.0rem',
       xxlarge: '2.8rem',
-      huge: '4.0rem'
+      huge: '4.0rem',
+      xhuge: '8.0rem'
     }
   },
   colors: {

@@ -35,6 +35,13 @@ const GlobalStyles: GlobalStyleComponent<
     src: local(''), url('../fonts/lato-v20-latin-700.woff2') format('woff2');
   }
 
+  @font-face {
+    font-family: 'Pacifico';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('../fonts/pacifico-v17-latin-regular.woff2') format('woff2'); 
+  }
+
   * {
     margin: 0;
     padding: 0;
