@@ -5,9 +5,25 @@ import { ButtonProps } from '.'
 
 export type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal'>
+} & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal' | 'appearance'>
 
 const wrapperModifiers = {
+  solid: (theme: DefaultTheme) => css`
+    color: ${theme.colors.white};
+    background: ${theme.colors.primary};
+
+    &:hover {
+      background: ${theme.colors.primaryDark};
+    }
+  `,
+  outline: (theme: DefaultTheme) => css`
+    color: ${theme.colors.primary};
+    border: 2px solid currentColor;
+    background: transparent;
+    &:hover {
+      color: ${theme.colors.primaryDark};
+    }
+  `,
   small: (theme: DefaultTheme) => css`
     height: 3rem;
     font-size: ${theme.font.sizes.xsmall};
@@ -51,12 +67,10 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullWidth, hasIcon, minimal, disabled }) => css`
+  ${({ theme, size, fullWidth, hasIcon, minimal, disabled, appearance }) => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: ${theme.colors.primary};
-    color: ${theme.colors.white};
     font-family: ${theme.font.family};
     border: 0;
     cursor: pointer;
@@ -64,9 +78,8 @@ export const Wrapper = styled.button<WrapperProps>`
     padding: ${theme.spacings.xxsmall};
     text-decoration: none;
 
-    &:hover {
-      background: ${minimal ? 'none' : theme.colors.primaryDark};
-    }
+    ${appearance === 'solid' && wrapperModifiers.solid(theme)}
+    ${appearance === 'outline' && wrapperModifiers.outline(theme)}
 
     ${!!size && wrapperModifiers[size](theme)};
     ${!!fullWidth && wrapperModifiers.fullWidth()};
