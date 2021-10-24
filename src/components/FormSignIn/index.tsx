@@ -4,7 +4,7 @@ import { AlertOctagon, Lock, Mail } from 'react-feather'
 
 import { login } from 'services/AuthService'
 import { FieldErrors, signInValidate } from 'utils/validations'
-import { Form, FormError, FormLoading } from 'components/Form'
+import { FormError, FormLoading } from 'components/Form'
 import Button from 'components/Button'
 import Input from 'components/Input'
 
@@ -46,7 +46,7 @@ const FormSignIn = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <S.Wrapper onSubmit={handleSubmit}>
       <Input
         name="user"
         type="email"
@@ -68,7 +68,7 @@ const FormSignIn = () => {
         icon={<Lock />}
       />
 
-      <S.ForgotPassword>Esqueceu sua senha?</S.ForgotPassword>
+      <S.ForgotPassword href="#">Esqueceu a sua senha?</S.ForgotPassword>
 
       {!!formError && (
         <FormError>
@@ -79,7 +79,7 @@ const FormSignIn = () => {
       <Button type="submit" fullWidth disabled={loading}>
         {loading ? <FormLoading /> : <span>ENTRAR</span>}
       </Button>
-    </Form>
+    </S.Wrapper>
   )
 }
 
