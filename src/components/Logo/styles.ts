@@ -8,8 +8,8 @@ const wrapperModifiersWithTitle = {
     height: 4.9rem;
   `,
   normal: () => css`
-    width: 14rem;
-    height: 5.6rem;
+    width: 10rem;
+    height: 4rem;
   `,
   large: () => css`
     width: 14rem;
@@ -18,6 +18,10 @@ const wrapperModifiersWithTitle = {
 }
 
 const wrapperModifiersWithoutTitle = {
+  xsmall: () => css`
+    width: 4.6rem;
+    height: 3.9rem;
+  `,
   small: () => css`
     width: 5.6rem;
     height: 4.9rem;

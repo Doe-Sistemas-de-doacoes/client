@@ -2,7 +2,7 @@ import * as S from './styles'
 
 export type LogoProps = {
   withTitle?: boolean
-  size?: 'small' | 'normal' | 'large'
+  size?: 'xsmall' | 'small' | 'normal' | 'large'
 }
 
 const Logo = ({ withTitle = false, size = 'normal' }: LogoProps) => (
