@@ -1,4 +1,10 @@
 import styled, { css } from 'styled-components'
+import { Form } from 'components/Form'
+
+export const Wrapper = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`
 
 export const FieldsWrapper = styled.div`
   ${({ theme }) => css`
@@ -12,10 +18,11 @@ export const FieldsWrapper = styled.div`
   `}
 `
 
-export const ForgotPassword = styled.p`
+export const ForgotPassword = styled.a`
   ${({ theme }) => css`
     margin-top: ${theme.spacings.xxsmall};
     font-size: ${theme.font.sizes.xsmall};
+    color: ${theme.colors.textEmphasis};
     text-decoration: underline;
     text-align: end;
   `}

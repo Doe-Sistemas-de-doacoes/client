@@ -35,6 +35,7 @@ const Auth = ({
           viewBox="0 0 302 282"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          aria-label="Duas mãos segurando um coração"
         >
           <g clipPath="url(#authDecor)">
             <path
@@ -71,13 +72,13 @@ const Auth = ({
         <S.Header>
           <Logo withTitle={lessThenMedium} />
           <S.Heading>{title}</S.Heading>
-          {!!subtitle && <p>{subtitle}</p>}
+          {!!subtitle && <S.SubTitle>{subtitle}</S.SubTitle>}
         </S.Header>
 
         <S.Main maxHeight={maxHeight}>
           {children}
           <FormLink>
-            {redirectText}{' '}
+            <p>{redirectText}</p>
             <Link href={redirectLink}>
               <a>{redirectLinkText}</a>
             </Link>

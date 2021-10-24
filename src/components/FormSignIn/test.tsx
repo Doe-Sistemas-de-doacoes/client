@@ -1,13 +1,25 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithTheme } from 'utils/tests/helpers'
 
-import SignIn from '.'
+import FormSignIn from '.'
 
-describe('<SignIn />', () => {
-  it('should render the heading', () => {
-    const { container } = render(<SignIn />)
+describe('<FormSignIn />', () => {
+  it('should render the form', () => {
+    const { container } = renderWithTheme(<FormSignIn />)
 
-    expect(screen.getByRole('heading', { name: /SignIn/i })).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/\*\*\*\*/i)).toBeInTheDocument()
 
-    expect(container.firstChild).toMatchSnapshot()
+    expect(screen.getByRole('button', { name: /entrar/i })).toBeInTheDocument()
+
+    expect(container.parentElement).toMatchSnapshot()
+  })
+
+  it('should render the forgot password link', () => {
+    renderWithTheme(<FormSignIn />)
+
+    expect(
+      screen.getByRole('link', { name: /Esqueceu a sua senha\?/i })
+    ).toBeInTheDocument()
   })
 })

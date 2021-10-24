@@ -96,6 +96,12 @@ export const Heading = styled.h2`
   `}
 `
 
+export const SubTitle = styled.h5`
+  ${({ theme }) => css`
+    font-weight: ${theme.font.normal};
+  `}
+`
+
 export const Main = styled.main<MainProps>`
   ${({ theme, maxHeight }) => css`
     display: flex;

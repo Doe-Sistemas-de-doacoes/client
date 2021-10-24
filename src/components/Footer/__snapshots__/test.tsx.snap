@@ -3,6 +3,9 @@
 exports[`<Footer /> should render correctly 1`] = `
 .c0 {
   color: #394338;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c1 {

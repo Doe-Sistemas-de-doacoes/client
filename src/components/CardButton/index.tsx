@@ -1,4 +1,10 @@
+import { forwardRef, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
+
 import * as S from './styles'
+
+type CardButtonTypes =
+  | AnchorHTMLAttributes<HTMLAnchorElement>
+  | ButtonHTMLAttributes<HTMLButtonElement>
 
 export type CardButtonProps = {
   src?: string
@@ -6,16 +12,14 @@ export type CardButtonProps = {
   title?: string
   message?: string
   size?: 'small' | 'medium'
-}
+  as?: React.ElementType
+} & CardButtonTypes
 
-const CardButton = ({
-  src,
-  alt,
-  title,
-  message,
-  size = 'medium'
-}: CardButtonProps) => (
-  <S.Wrapper>
+const CardButton: React.ForwardRefRenderFunction<
+  CardButtonProps,
+  CardButtonProps
+> = ({ src, alt, title, message, size = 'medium', ...props }, ref) => (
+  <S.Wrapper {...props} ref={ref}>
     {src && <S.Image src={src} alt={alt} size={size} />}
     <S.Content>
       {title && (size === 'medium' ? <h3>{title}</h3> : <h4>{title}</h4>)}
@@ -24,4 +28,4 @@ const CardButton = ({
   </S.Wrapper>
 )
 
-export default CardButton
+export default forwardRef(CardButton)

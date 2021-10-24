@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
 import { CardButtonProps } from '.'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.button`
   ${({ theme }) => css`
     display: flex;
+    cursor: pointer;
     padding: ${theme.spacings.xsmall};
     gap: ${theme.spacings.xsmall};
     border-radius: 0.5rem;
@@ -27,8 +28,8 @@ const imageModifiers = {
 }
 
 export const Image = styled.img<ImageProps>`
-  ${({ size = 'medium' }) => css`
-    ${imageModifiers[size]()}
+  ${({ size }) => css`
+    ${imageModifiers[size!]()}
   `}
 `
 
