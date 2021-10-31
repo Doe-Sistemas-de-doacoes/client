@@ -13,6 +13,7 @@ const Logo = ({ withTitle = false, size = 'normal' }: LogoProps) => (
       viewBox={`0 0 ${withTitle ? '265' : '107'} 107`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
       aria-label="Doe"
     >
       <g filter="url(#logo1)">
