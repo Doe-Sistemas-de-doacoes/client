@@ -1,9 +1,15 @@
 import styled, { css } from 'styled-components'
-import { Form } from 'components/Form'
+import { Form, FormError } from 'components/Form'
 
 export const Wrapper = styled(Form)`
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+
+    ${FormError} {
+      margin-top: ${theme.spacings.xxsmall};
+    }
+  `}
 `
 
 export const FieldsWrapper = styled.div`
