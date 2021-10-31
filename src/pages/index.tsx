@@ -4,9 +4,8 @@ export default function Index(props: HomeProps) {
   return <Home {...props} />
 }
 
-export function getStaticProps() {
+export async function getServerSideProps() {
   return {
-    revalidate: 10,
     props: {
       connections: 200
     }
