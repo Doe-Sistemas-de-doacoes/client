@@ -1,12 +1,11 @@
 import Joi from 'joi'
-import { LoginProps } from 'services/AuthService'
 
 const fieldsValidations = {
   name: Joi.string().min(5).required().messages({
     'string.empty': 'Digite o seu nome.',
     'string.min': 'O nome precisa ter no mínimo 5 caracteres.'
   }),
-  user: Joi.string()
+  email: Joi.string()
     .email({ tlds: { allow: false } })
     .required()
     .messages({
@@ -42,15 +41,28 @@ function getFieldErrors(objError: Joi.ValidationResult) {
   return errors
 }
 
-export function signUpValidate(values: LoginProps) {
-  const schema = Joi.object(fieldsValidations)
+type SignInProps = {
+  username?: string
+  password?: string
+}
+
+type SignUpProps = {
+  name?: string
+  username?: string
+  password?: string
+  confirm_password?: string
+}
+
+export function signUpValidate(values: SignUpProps) {
+  const { email: user, ...validations } = fieldsValidations
+  const schema = Joi.object({ user, ...validations })
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
 
-export function signInValidate(values: LoginProps) {
-  const { user, password } = fieldsValidations
-  const schema = Joi.object({ user, password })
+export function signInValidate(values: SignInProps) {
+  const { email: username, password } = fieldsValidations
+  const schema = Joi.object({ username, password })
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }

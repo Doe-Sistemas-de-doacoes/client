@@ -1,27 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios'
-import { parseCookies } from 'nookies'
+import { getSession } from 'next-auth/client'
 
-export const COOKIE_TOKEN = 'doe.token'
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL
+})
 
-export const api = getAPIClient()
+api.interceptors.request.use(async (config) => {
+  const session = await getSession()
 
-function getAPIClient(ctx?: any) {
-  const { COOKIE_TOKEN: token } = parseCookies(ctx)
+  config.headers.Authorization = `Bearer ${session?.acessToken}`
 
-  const api = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL
-  })
+  return config
+})
 
-  api.interceptors.request.use((config) => {
-    console.log(config)
-
-    return config
-  })
-
-  if (token) {
-    api.defaults.headers['Authorization'] = `Bearer ${token}`
-  }
-
-  return api
-}
+export default api

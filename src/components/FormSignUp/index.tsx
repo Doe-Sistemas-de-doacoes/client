@@ -1,24 +1,53 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/client'
 import { AlertOctagon, Lock, Mail, User } from 'react-feather'
 
-import { createUser, UserCreateProps } from 'services/UserService'
 import { FieldErrors, signUpValidate } from 'utils/validations'
 import { Form, FormError, FormLoading } from 'components/Form'
 import Button from 'components/Button'
 import Input from 'components/Input'
+import axios from 'axios'
+
+export type UserCreateProps = {
+  user: string
+  confirm_password: string
+  password: string
+  name: string
+}
 
 const FormSignUp = () => {
+  const [loading, setLoading] = useState(false)
   const [formError, setFormError] = useState('')
   const [fieldError, setFieldError] = useState<FieldErrors>({})
-  const [loading, setLoading] = useState(false)
   const [values, setValues] = useState<UserCreateProps>({
-    name: '',
     user: '',
-    password: ''
+    password: '',
+    confirm_password: '',
+    name: ''
   })
 
-  const router = useRouter()
+  const createUser = async () => {
+    setLoading(true)
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+        name: values.name,
+        user: values.user,
+        password: values.password
+      })
+
+      signIn('credentials', {
+        username: values.user,
+        password: values.password,
+        callbackUrl: '/'
+      }).catch((error) => {
+        setFormError(`${error}`)
+      })
+    } catch (error) {
+      setFormError(`${error}`)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleInput = (field: string, value: string) => {
     setValues((s) => ({ ...s, [field]: value }))
@@ -27,6 +56,7 @@ const FormSignUp = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     setFormError('')
+
     const errors = signUpValidate(values)
 
     if (Object.keys(errors).length) {
@@ -34,16 +64,8 @@ const FormSignUp = () => {
       return
     }
 
-    setLoading(true)
     setFieldError({})
-
-    try {
-      await createUser(values)
-      router.push('/')
-    } catch (error) {
-      setFormError('Não foi possivel criar o usuario')
-      setLoading(false)
-    }
+    createUser()
   }
 
   return (

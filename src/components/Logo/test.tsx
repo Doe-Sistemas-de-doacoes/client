@@ -1,11 +1,10 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, screen } from 'utils/test-utils'
 
 import Logo from '.'
 
 describe('<Logo />', () => {
   it('should render the logo', () => {
-    const { container } = renderWithTheme(<Logo />)
+    const { container } = render(<Logo />)
 
     expect(container)
     expect(screen.getByLabelText(/Doe/i)).toBeInTheDocument()
@@ -15,13 +14,13 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo with title', () => {
-    const { container } = renderWithTheme(<Logo withTitle />)
+    const { container } = render(<Logo withTitle />)
 
     expect(container.querySelector('#logoText')).toBeInTheDocument()
   })
 
   it('should render the logo when size is xsmall', () => {
-    renderWithTheme(<Logo size={'xsmall'} />)
+    render(<Logo size={'xsmall'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -30,7 +29,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is small', () => {
-    renderWithTheme(<Logo size={'small'} />)
+    render(<Logo size={'small'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -39,7 +38,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is normal', () => {
-    renderWithTheme(<Logo size={'normal'} />)
+    render(<Logo size={'normal'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -48,7 +47,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is large', () => {
-    renderWithTheme(<Logo size={'large'} />)
+    render(<Logo size={'large'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -57,7 +56,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is xsmall and has title', () => {
-    renderWithTheme(<Logo withTitle size={'xsmall'} />)
+    render(<Logo withTitle size={'xsmall'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -66,7 +65,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is small and has title', () => {
-    renderWithTheme(<Logo withTitle size={'small'} />)
+    render(<Logo withTitle size={'small'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -75,7 +74,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is normal and has title', () => {
-    renderWithTheme(<Logo withTitle size={'normal'} />)
+    render(<Logo withTitle size={'normal'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
@@ -84,7 +83,7 @@ describe('<Logo />', () => {
   })
 
   it('should render the logo when size is larg and has title', () => {
-    renderWithTheme(<Logo withTitle size={'large'} />)
+    render(<Logo withTitle size={'large'} />)
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',

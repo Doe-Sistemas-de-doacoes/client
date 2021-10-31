@@ -1,6 +1,9 @@
 export default {
   grid: {
-    container: '110rem',
+    container: {
+      small: '88rem',
+      medium: '110rem'
+    },
     gutter: '3.2rem'
   },
   border: {
@@ -13,6 +16,7 @@ export default {
       "'Pacifico', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
+    semiBold: 600,
     bold: 700,
     sizes: {
       xsmall: '1.2rem',
@@ -49,7 +53,8 @@ export default {
     medium: '3.2rem',
     large: '4.0rem',
     xlarge: '4.8rem',
-    xxlarge: '5.6rem'
+    xxlarge: '5.6rem',
+    huge: '6.2rem'
   },
   layers: {
     base: 10,
