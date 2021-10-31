@@ -272,6 +272,7 @@ exports[`<Auth /> should render correctly 1`] = `
           aria-label="Doe"
           fill="none"
           height="100%"
+          role="img"
           viewBox="0 0 107 107"
           width="100%"
           xmlns="http://www.w3.org/2000/svg"
