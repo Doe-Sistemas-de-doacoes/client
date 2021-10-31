@@ -6,6 +6,7 @@ exports[`<Home /> should render correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  cursor: pointer;
   padding: 1.6rem;
   gap: 1.6rem;
   border-radius: 0.5rem;
@@ -270,6 +271,7 @@ exports[`<Home /> should render correctly 1`] = `
           aria-label="Doe"
           fill="none"
           height="100%"
+          role="img"
           viewBox="0 0 107 107"
           width="100%"
           xmlns="http://www.w3.org/2000/svg"

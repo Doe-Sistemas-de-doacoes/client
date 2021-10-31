@@ -36,6 +36,7 @@ export const Wrapper = styled.div`
 
     ${media.greaterThan('medium')`
       align-items: flex-start;
+      gap: ${theme.spacings.large};
       padding: ${theme.spacings.xsmall} ${theme.spacings.xlarge};
       justify-content: flex-end;
 
@@ -59,7 +60,7 @@ export const Wrapper = styled.div`
     `}
 
     ${media.greaterThan('huge')`
-      max-width: 88rem;
+      max-width: ${theme.grid.container.small};
       margin: 0 auto;
     `}
   `}
