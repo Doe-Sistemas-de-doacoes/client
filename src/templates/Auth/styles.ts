@@ -43,12 +43,6 @@ export const Content = styled.section`
       margin: auto 0;
     }
 
-    ${media.greaterThan('large')`
-      ${FormLink} {
-        font-size: ${theme.font.sizes.medium};
-      }
-    `}
-
     @media screen and (max-width: 1169px) {
       padding: ${theme.spacings.small};
 
@@ -57,10 +51,7 @@ export const Content = styled.section`
       }
 
       ${FormLink} {
-        display: flex;
         flex-direction: column;
-        gap: ${theme.spacings.xxsmall};
-        align-items: center;
         margin: auto;
       }
     }
