@@ -35,7 +35,7 @@ const FormSignUp = () => {
         password: values.password
       })
 
-      signIn('credentials', {
+      await signIn('credentials', {
         username: values.user,
         password: values.password,
         callbackUrl: '/'
