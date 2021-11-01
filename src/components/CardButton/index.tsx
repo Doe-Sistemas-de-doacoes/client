@@ -11,6 +11,7 @@ export type CardButtonProps = {
   alt?: string
   title?: string
   message?: string
+  children?: React.ReactNode
   size?: 'small' | 'medium'
   as?: React.ElementType
 } & CardButtonTypes
@@ -18,13 +19,17 @@ export type CardButtonProps = {
 const CardButton: React.ForwardRefRenderFunction<
   CardButtonProps,
   CardButtonProps
-> = ({ src, alt, title, message, size = 'medium', ...props }, ref) => (
+> = (
+  { src, alt, title, message, size = 'medium', children, ...props },
+  ref
+) => (
   <S.Wrapper {...props} ref={ref}>
     {src && <S.Image src={src} alt={alt} size={size} />}
     <S.Content>
       {title && (size === 'medium' ? <h3>{title}</h3> : <h4>{title}</h4>)}
       {message && <S.Message>{message}</S.Message>}
     </S.Content>
+    {children}
   </S.Wrapper>
 )
 
