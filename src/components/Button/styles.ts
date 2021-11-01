@@ -66,7 +66,7 @@ export const Wrapper = styled.button<WrapperProps>`
     font-family: ${theme.font.family};
     border: 0;
     cursor: pointer;
-    border-radius: ${theme.border.radius};
+    border-radius: ${theme.border.radius.medium};
     padding: ${theme.spacings.xxsmall};
     text-decoration: none;
 
