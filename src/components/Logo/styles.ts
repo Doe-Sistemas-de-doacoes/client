@@ -17,7 +17,7 @@ const wrapperModifiersWithTitle = {
   `,
   large: () => css`
     width: 14rem;
-    height: 12rem;
+    height: 6rem;
   `
 }
 

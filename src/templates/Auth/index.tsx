@@ -26,7 +26,7 @@ const Auth = ({
   redirectLinkText,
   maxHeight
 }: AuthProps) => {
-  const lessThenMedium = useMedia('(min-width: 1170px)')
+  const greaterLarge = useMedia('(min-width: 1170px)')
 
   return (
     <S.Wrapper>
@@ -70,7 +70,10 @@ const Auth = ({
 
       <S.Content>
         <S.Header>
-          <Logo withTitle={lessThenMedium} />
+          <Logo
+            size={greaterLarge ? 'large' : 'normal'}
+            withTitle={greaterLarge}
+          />
           <S.Heading>{title}</S.Heading>
           {!!subtitle && <S.SubTitle>{subtitle}</S.SubTitle>}
         </S.Header>

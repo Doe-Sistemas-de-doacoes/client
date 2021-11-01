@@ -41,17 +41,18 @@ export const FormError = styled.div`
 
 export const FormLink = styled.div`
   ${({ theme }) => css`
-    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: ${theme.spacings.xxsmall};
     font-size: ${theme.font.sizes.small};
     color: ${theme.colors.text};
-    text-align: center;
+    width: fit-content;
 
     a {
-      color: ${theme.colors.primary};
       text-decoration: none;
-      margin: 0 ${theme.spacings.xxsmall};
       text-transform: uppercase;
-      border-bottom: 0.1rem solid ${theme.colors.primary};
+      color: ${theme.colors.primary};
+      border-bottom: 0.2rem solid ${theme.colors.primary};
       transition: color, border, ${theme.transition.fast};
 
       &:hover {

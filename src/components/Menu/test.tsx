@@ -40,9 +40,10 @@ describe('<Menu />', () => {
   })
 
   it('should show my account when logged in', () => {
-    render(<Menu username="allan" loading={false} />)
+    render(<Menu username="Allan" />)
 
-    expect(screen.getAllByText(/minha Conta/i)).toHaveLength(2)
+    expect(screen.getByText(/minha conta/i)).toBeInTheDocument()
+    expect(screen.getByText(/allan/i)).toBeInTheDocument()
     expect(screen.queryByText(/entrar/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/criar conta/i)).not.toBeInTheDocument()
   })

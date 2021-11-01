@@ -146,7 +146,7 @@ exports[`<FormSignIn /> should render the form 1`] = `
       >
         <label
           class="c4"
-          for="user"
+          for="username"
         >
           Email
         </label>
@@ -177,8 +177,8 @@ exports[`<FormSignIn /> should render the form 1`] = `
           </div>
           <input
             class="c7"
-            id="user"
-            name="user"
+            id="username"
+            name="username"
             placeholder="Ex: joao.silva@email.com"
             type="email"
             value=""
