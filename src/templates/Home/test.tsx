@@ -1,11 +1,23 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, screen } from 'utils/test-utils'
 
 import Home from '.'
 
+jest.mock('next-auth/client', () => ({
+  useSession: jest.fn(() => {
+    return [{ user: { name: 'Allan' } }]
+  })
+}))
+
+jest.mock('templates/Page', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Page">{children}</div>
+  }
+}))
+
 describe('<Home />', () => {
   it('should render correctly', () => {
-    const { container } = renderWithTheme(<Home connections={200} />)
+    const { container } = render(<Home connections={200} />)
 
     expect(screen.getByRole('heading', { name: /Doe/i })).toBeInTheDocument()
 
@@ -18,6 +30,8 @@ describe('<Home />', () => {
     ).toBeInTheDocument()
 
     expect(screen.getByText(/200 pessoas conectadas/i)).toBeInTheDocument()
+
+    expect(screen.getByTestId('Mock Page')).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
