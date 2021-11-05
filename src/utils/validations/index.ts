@@ -22,7 +22,22 @@ const fieldsValidations = {
     .messages({
       'any.required': 'Digite a senha novamente.',
       'any.only': 'As senhas não são iguais.'
-    })
+    }),
+  city: Joi.string().required().messages({
+    'string.empty': 'Digite a cidade.'
+  }),
+  neighborhood: Joi.string().required().messages({
+    'string.empty': 'Digite o bairro.'
+  }),
+  number: Joi.string().required().messages({
+    'string.empty': 'Digite o número.'
+  }),
+  state: Joi.string().required().messages({
+    'string.empty': 'Digite o estado.'
+  }),
+  street: Joi.string().required().messages({
+    'string.empty': 'Digite a rua.'
+  })
 }
 
 export type FieldErrors = {
@@ -41,11 +56,6 @@ function getFieldErrors(objError: Joi.ValidationResult) {
   return errors
 }
 
-type SignInProps = {
-  username?: string
-  password?: string
-}
-
 type SignUpProps = {
   name?: string
   username?: string
@@ -60,9 +70,59 @@ export function signUpValidate(values: SignUpProps) {
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
 
+type SignInProps = {
+  username?: string
+  password?: string
+}
+
 export function signInValidate(values: SignInProps) {
   const { email: username, password } = fieldsValidations
   const schema = Joi.object({ username, password })
+
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}
+
+type EditUserProps = {
+  name?: string
+  password?: string
+  confirm_password?: string
+}
+
+export function editUserValidate(values: EditUserProps) {
+  const { name, password, confirm_password } = fieldsValidations
+
+  const schema = Joi.object({
+    name,
+    ...(values?.password?.trim().length ? { password, confirm_password } : {})
+  })
+
+  return getFieldErrors(
+    schema.validate(
+      {
+        name: values.name,
+        ...(values.password
+          ? {
+              password: values.password,
+              confirm_password: values.confirm_password
+            }
+          : {})
+      },
+      { abortEarly: false }
+    )
+  )
+}
+
+type AddressProps = {
+  city: string
+  neighborhood: string
+  number: number
+  state: string
+  street: string
+}
+
+export function addressValidate(values: AddressProps) {
+  const { city, neighborhood, number, state, street } = fieldsValidations
+  const schema = Joi.object({ city, neighborhood, number, state, street })
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
