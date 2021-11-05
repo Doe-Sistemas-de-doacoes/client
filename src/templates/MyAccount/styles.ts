@@ -1,15 +1,26 @@
+import { Form } from 'components/Form'
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
+    flex: 1;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    margin-top: ${theme.spacings.xsmall};
-    gap: ${theme.spacings.xxsmall};
-    max-width: 32rem;
+    align-items: stretch;
+    gap: ${theme.spacings.small};
+    max-width: 40rem;
+    margin-right: auto;
+    width: 100%;
 
-    input {
-      width: 100%;
+    ${Form} {
+      display: flex;
+      flex-direction: column;
+      gap: ${theme.spacings.small};
+
+      & > button {
+        margin: 0 0 0 auto;
+      }
     }
   `}
 `
@@ -20,11 +31,7 @@ export const Title = styled.h3`
   `}
 `
 
-export const Heading = styled.h5`
-  ${({ theme }) => css`
-    margin-bottom: ${theme.spacings.xxsmall};
-  `}
-`
+export const Heading = styled.h6``
 
 export const Main = styled.main`
   ${({ theme }) => css`

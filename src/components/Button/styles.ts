@@ -1,31 +1,40 @@
 import styled, { css, DefaultTheme } from 'styled-components'
+import { darken } from 'polished'
 
 import { ButtonProps } from '.'
 
 export type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size' | 'fullWidth' | 'appearance'>
+} & Pick<ButtonProps, 'size' | 'color' | 'fullWidth' | 'appearance'>
 
 const wrapperModifiers = {
-  solid: (theme: DefaultTheme) => css`
+  solid: (theme: DefaultTheme, color: string) => css`
     color: ${theme.colors.white};
-    background: ${theme.colors.primary};
+    background: ${color};
 
     &:hover {
-      background: ${theme.colors.primaryDark};
+      background: ${darken(0.1, color)};
     }
   `,
-  outline: (theme: DefaultTheme) => css`
-    color: ${theme.colors.primary};
+  outline: (color: string) => css`
+    color: ${color};
     border: 2px solid currentColor;
     background: transparent;
+
     &:hover {
-      color: ${theme.colors.primaryDark};
+      color: ${darken(0.1, color)};
     }
   `,
   small: (theme: DefaultTheme) => css`
-    height: 3rem;
+    height: 3.2rem;
     font-size: ${theme.font.sizes.xsmall};
+    font-weight: ${theme.font.bold};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
+
+    svg {
+      height: ${theme.font.sizes.small};
+      width: 1rem;
+    }
   `,
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
@@ -59,19 +68,27 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullWidth, hasIcon, disabled, appearance }) => css`
+  ${({
+    theme,
+    color = 'primary',
+    size,
+    fullWidth,
+    hasIcon,
+    disabled,
+    appearance
+  }) => css`
+    border: 0;
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-family: ${theme.font.family};
-    border: 0;
-    cursor: pointer;
-    border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.xxsmall};
+    border-radius: ${theme.border.radius.medium};
     text-decoration: none;
 
-    ${appearance === 'solid' && wrapperModifiers.solid(theme)}
-    ${appearance === 'outline' && wrapperModifiers.outline(theme)}
+    ${appearance === 'solid' &&
+    wrapperModifiers.solid(theme, theme.colors[color])}
+    ${appearance === 'outline' && wrapperModifiers.outline(theme.colors[color])}
 
     ${!!size && wrapperModifiers[size](theme)};
     ${!!fullWidth && wrapperModifiers.fullWidth()};

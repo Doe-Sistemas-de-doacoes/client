@@ -1,12 +1,24 @@
+import { Footer } from 'components/Footer/styles'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    padding: 0 ${theme.spacings.small};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 ${theme.spacings.small} ${theme.spacings.small};
+    max-width: ${theme.grid.container.medium};
+    gap: ${theme.spacings.small};
     margin: 0 auto;
-    max-width: 124rem;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
   `}
+
+  ${Footer} {
+    margin-top: auto;
+  }
 `
 
 export const Decoration = styled.div`

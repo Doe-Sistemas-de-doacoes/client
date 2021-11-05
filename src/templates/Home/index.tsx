@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { useSession } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
+import { LogOut } from 'react-feather'
 
 import CardButton from 'components/CardButton'
 import Footer from 'components/Footer'
@@ -31,17 +32,41 @@ const Home = ({ connections = 0 }: HomeProps) => {
         )}
 
         <S.Main>
-          <Link href="myaccount">
+          {session?.user?.name ? (
+            <Link href="/myaccount">
+              <CardButton
+                src="/img/avatar.svg"
+                alt="Avatar do usuário"
+                title="Minha conta"
+                size="small"
+                as="a"
+              >
+                <S.SignOut role="button" onClick={() => signOut()}>
+                  <LogOut size={20} />
+                </S.SignOut>
+              </CardButton>
+            </Link>
+          ) : loading ? (
             <CardButton
               src="/img/avatar.svg"
               alt="Avatar do usuário"
-              title="Minha conta"
+              title="Carregando...."
               size="small"
               as="a"
             />
-          </Link>
+          ) : (
+            <Link href="/signin">
+              <CardButton
+                src="/img/avatar.svg"
+                alt="Avatar do usuário"
+                title="Entrar"
+                size="small"
+                as="a"
+              />
+            </Link>
+          )}
 
-          <Link href="donation">
+          <Link href="/donation">
             <CardButton
               src="/img/donation.svg"
               alt="Duas mãos enviando um coração vende para cima"
@@ -51,7 +76,7 @@ const Home = ({ connections = 0 }: HomeProps) => {
             />
           </Link>
 
-          <Link href="find">
+          <Link href="/find">
             <CardButton
               src="/img/receive.svg"
               alt="Duas mãos segurando um coração vende"

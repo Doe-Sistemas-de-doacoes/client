@@ -53,4 +53,14 @@ describe('<CardButton />', () => {
 
     expect(screen.getByTestId('Card Button')).toHaveAttribute('href', '/link')
   })
+
+  it('should render the CardButton children', () => {
+    renderWithTheme(
+      <CardButton as="a" href="/link">
+        <p data-testid="Children"></p>
+      </CardButton>
+    )
+
+    expect(screen.getByTestId('Children')).toBeInTheDocument()
+  })
 })

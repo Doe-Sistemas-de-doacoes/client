@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import { AlertOctagon, Lock, Mail } from 'react-feather'
+import { Lock, Mail } from 'react-feather'
 
 import { FieldErrors, signInValidate } from 'utils/validations'
 import { FormError, FormLoading } from 'components/Form'
@@ -24,6 +24,7 @@ const FormSignIn = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
+    setFormError('')
     setLoading(true)
 
     const errors = signInValidate(values)
@@ -43,8 +44,8 @@ const FormSignIn = () => {
       callbackUrl: `${window.location.origin}${query?.callbackUrl || ''}`
     })
 
-    setLoading(false)
     if (result?.error) {
+      setLoading(false)
       setFormError(result?.error)
       return
     }
@@ -53,6 +54,7 @@ const FormSignIn = () => {
       return push(result?.url)
     }
 
+    setLoading(false)
     setFormError('Erro ao fazer login')
   }
 
@@ -81,11 +83,7 @@ const FormSignIn = () => {
 
       <S.ForgotPassword href="#">Esqueceu a sua senha?</S.ForgotPassword>
 
-      {!!formError && (
-        <FormError>
-          <AlertOctagon /> <p>{formError}</p>
-        </FormError>
-      )}
+      {!!formError && <FormError>{formError}</FormError>}
 
       <Button type="submit" fullWidth disabled={loading}>
         {loading ? <FormLoading /> : <span>ENTRAR</span>}

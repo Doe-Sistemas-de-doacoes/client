@@ -1,13 +1,23 @@
+export type Colors =
+  | 'primary'
+  | 'primaryDark'
+  | 'darkGray'
+  | 'secondary'
+  | 'gray'
+
 export default {
   grid: {
     container: {
       small: '88rem',
-      medium: '110rem'
+      medium: '124rem'
     },
     gutter: '3.2rem'
   },
   border: {
-    radius: '0.6rem'
+    radius: {
+      small: '0.4rem',
+      medium: '0.6rem'
+    }
   },
   font: {
     family:
@@ -19,6 +29,7 @@ export default {
     semiBold: 600,
     bold: 700,
     sizes: {
+      xxsmall: '1.0rem',
       xsmall: '1.2rem',
       small: '1.4rem',
       medium: '1.6rem',
@@ -66,5 +77,9 @@ export default {
   transition: {
     default: '0.3s ease-in-out',
     fast: '0.1s ease-in-out'
+  },
+  boxShadow: {
+    small: '0px 0px 4px rgba(0, 0, 0, 0.08)',
+    medium: 'box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15)'
   }
 } as const

@@ -1,10 +1,18 @@
 import { GetServerSidePropsContext } from 'next'
+import { DefaultSession, Session } from 'next-auth'
 import { getSession } from 'next-auth/client'
 
-async function protectedRoutes(context: GetServerSidePropsContext) {
-  const session = await getSession(context)
+export type MySession = {
+  id: number
+} & Pick<DefaultSession, 'expires' | 'user'>
 
-  if (!session) {
+async function protectedRoutes(
+  context: GetServerSidePropsContext,
+  session?: Session | null
+) {
+  if (!session) session = await getSession(context)
+
+  if (!session?.user?.id) {
     context.res.writeHead(302, {
       Location: `/signin?callbackUrl=${context.resolvedUrl}`
     })

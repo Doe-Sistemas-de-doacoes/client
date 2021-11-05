@@ -129,3 +129,14 @@ export const Connections = styled.p`
     grid-area: connections;
   `}
 `
+
+export const SignOut = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    border-radius: ${theme.border.radius.small};
+    padding: ${theme.spacings.xxsmall};
+    margin-left: auto;
+    cursor: pointer;
+  `}
+`
