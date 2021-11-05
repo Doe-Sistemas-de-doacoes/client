@@ -14,7 +14,6 @@ export type InputProps = {
 
 const Input = ({
   icon,
-  iconPosition = 'left',
   label,
   name,
   initialValue = '',
@@ -36,13 +35,13 @@ const Input = ({
     <S.Wrapper disabled={disabled} error={!!error}>
       {!!label && <S.Label htmlFor={name}>{label}</S.Label>}
       <S.InputWrapper>
-        {!!icon && <S.Icon iconPosition={iconPosition}>{icon}</S.Icon>}
+        {!!icon && <S.Icon>{icon}</S.Icon>}
         <S.Input
           type="text"
           onChange={onChange}
           value={value}
-          iconPosition={iconPosition}
           disabled={disabled}
+          hasIcon={!!icon}
           name={name}
           {...(label ? { id: name } : {})}
           {...props}
