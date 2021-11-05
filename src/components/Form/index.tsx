@@ -3,6 +3,7 @@ import { darken } from 'polished'
 
 import * as InputStyles from 'components/Input/styles'
 import * as ButtonStyles from 'components/Button/styles'
+import { AlertOctagon } from 'react-feather'
 
 export const Form = styled.form`
   ${({ theme }) => css`
@@ -17,6 +18,16 @@ export const Form = styled.form`
   `}
 `
 
+type FormErrorProps = {
+  children: React.ReactNode
+}
+
+export const FormError = ({ children }: FormErrorProps) => (
+  <FormErrorWrapper>
+    <AlertOctagon /> <p>{children}</p>
+  </FormErrorWrapper>
+)
+
 export const FormLoading = styled.img.attrs(() => ({
   src: '/img/dots.svg',
   alt: 'Waiting...'
@@ -24,7 +35,7 @@ export const FormLoading = styled.img.attrs(() => ({
   width: 4rem;
 `
 
-export const FormError = styled.div`
+const FormErrorWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
