@@ -6,6 +6,7 @@ export const Wrapper = styled.button`
     display: flex;
     cursor: pointer;
     padding: ${theme.spacings.xsmall};
+    border: none;
     gap: ${theme.spacings.xsmall};
     border-radius: 0.5rem;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
@@ -41,6 +42,7 @@ export const Content = styled.div`
 
     h3,
     h4 {
+      text-align: left;
       color: ${theme.colors.textEmphasis};
     }
   `}
