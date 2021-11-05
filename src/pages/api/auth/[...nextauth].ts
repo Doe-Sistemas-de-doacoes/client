@@ -1,9 +1,16 @@
 import axios, { AxiosError } from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
-import NextAuth, { NextAuthOptions, Session, User } from 'next-auth'
-import { JWT } from 'next-auth/jwt'
+import NextAuth, {
+  NextAuthOptions,
+  Session,
+  JWT,
+  DefaultJWT,
+  Account
+} from 'next-auth'
 import Providers from 'next-auth/providers'
+
 import handlerError from 'utils/handle-error'
+import api from 'services/api'
 
 type SignInResponse = {
   id: number
@@ -12,23 +19,49 @@ type SignInResponse = {
   token: string
 }
 
+type AuthProps = {
+  username: string
+  password: string
+}
+
+type AuthorizedProps = {
+  id: number
+  email: string
+  name: string
+  token: string
+  expiresAt: number
+}
+
+async function refreshToken({ user, token, expiresAt }: JWT) {
+  try {
+    const response = await api.post<string>('/login/refreshToken')
+
+    return {
+      user,
+      token: response.data,
+      expiresAt: Date.now() * 600000
+    }
+  } catch (error) {
+    return {
+      token,
+      user,
+      expiresAt,
+      error: 'REFRESH_TOKEN_ERROR'
+    }
+  }
+}
+
 const options: NextAuthOptions = {
   pages: {
+    error: '/signin',
     signIn: '/signin'
   },
   providers: [
     Providers.Credentials({
       id: 'credentials',
       name: 'Credentials',
-      credentials: {
-        username: { label: 'Username', type: 'text ', placeholder: 'username' },
-        password: {
-          label: 'Password',
-          type: 'password',
-          placeholder: 'a-really-long-password'
-        }
-      },
-      authorize: async ({ username, password }) => {
+      credentials: {},
+      authorize: async ({ username, password }: AuthProps) => {
         try {
           const { data } = await axios.post<SignInResponse>(
             `${process.env.NEXT_PUBLIC_API_URL}/login`,
@@ -43,8 +76,9 @@ const options: NextAuthOptions = {
               id: data.id,
               email: data.user,
               name: data.name,
-              jwt: data.token
-            }
+              token: data.token,
+              expiresAt: Date.now() * 600000
+            } as AuthorizedProps
           }
 
           return null
@@ -54,24 +88,34 @@ const options: NextAuthOptions = {
       }
     })
   ],
-  session: {
-    jwt: true
-  },
   callbacks: {
-    session: async (session: Session, user: User) => {
-      session.jwt = user.jwt
-      session.id = user.id
+    session: async (session: Session, token: DefaultJWT) => {
+      session.user = token.user
+      session.token = token.token
+      session.error = token.error
 
       return Promise.resolve(session)
     },
-    jwt: async (token: JWT, user: User) => {
-      if (user) {
-        token.id = user.id
-        token.email = user.email
-        token.name = user.name
-        token.jwt = user.jwt
+    jwt: async (
+      token: DefaultJWT,
+      props?: AuthorizedProps,
+      account?: Account
+    ) => {
+      if (account && props) {
+        return Promise.resolve({
+          token: props.token,
+          expiresAt: props.expiresAt,
+          user: {
+            id: props.id,
+            email: props.email,
+            name: props.name
+          }
+        })
       }
-      return Promise.resolve(token)
+
+      if (Date.now() < token.expiresAt!) return Promise.resolve(token)
+
+      return await refreshToken(token)
     }
   }
 }
