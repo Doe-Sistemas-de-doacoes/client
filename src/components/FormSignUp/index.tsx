@@ -1,19 +1,14 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/client'
-import { AlertOctagon, Lock, Mail, User } from 'react-feather'
+import { Lock, Mail, User } from 'react-feather'
+import axios, { AxiosError } from 'axios'
 
+import { UserCreateProps } from 'services/user'
 import { FieldErrors, signUpValidate } from 'utils/validations'
 import { Form, FormError, FormLoading } from 'components/Form'
 import Button from 'components/Button'
 import Input from 'components/Input'
-import axios from 'axios'
-
-export type UserCreateProps = {
-  user: string
-  confirm_password: string
-  password: string
-  name: string
-}
+import handlerError from 'utils/handle-error'
 
 const FormSignUp = () => {
   const [loading, setLoading] = useState(false)
@@ -43,9 +38,8 @@ const FormSignUp = () => {
         setFormError(`${error}`)
       })
     } catch (error) {
-      setFormError(`${error}`)
-    } finally {
       setLoading(false)
+      setFormError(handlerError(error as AxiosError))
     }
   }
 
@@ -114,11 +108,7 @@ const FormSignUp = () => {
         icon={<Lock />}
       />
 
-      {!!formError && (
-        <FormError>
-          <AlertOctagon /> <p>{formError}</p>
-        </FormError>
-      )}
+      {!!formError && <FormError>{formError}</FormError>}
 
       <Button type="submit" fullWidth disabled={loading}>
         {loading ? <FormLoading /> : <span>CRIAR CONTA</span>}
