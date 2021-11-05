@@ -58,7 +58,9 @@ const Menu = ({ username, loading }: MenuProps) => {
                   </S.MyAccount>
                 </Link>
 
-                <LogOut size={20} role="button" onClick={() => signOut()} />
+                <S.IconWrapper>
+                  <LogOut size={20} role="button" onClick={() => signOut()} />
+                </S.IconWrapper>
               </>
             ) : (
               <Link href="/signin" passHref>
@@ -83,14 +85,15 @@ const Menu = ({ username, loading }: MenuProps) => {
                 <S.MenuLink>Encontrar</S.MenuLink>
               </Link>
 
-              {username ? (
-                <Link href="/myaccount" passHref>
-                  <S.MenuLink>Minha Conta</S.MenuLink>
-                </Link>
-              ) : (
-                <S.MenuLink role="button" onClick={() => signOut()}>
-                  Sair
-                </S.MenuLink>
+              {username && (
+                <>
+                  <Link href="/myaccount" passHref>
+                    <S.MenuLink>Minha Conta</S.MenuLink>
+                  </Link>
+                  <S.MenuLink role="button" onClick={() => signOut()}>
+                    Sair
+                  </S.MenuLink>
+                </>
               )}
             </S.MenuNav>
 

@@ -6,8 +6,9 @@ export const Wrapper = styled.menu`
     display: flex;
     align-items: center;
     padding: ${theme.spacings.small} 0;
-    position: relative;
     z-index: ${theme.layers.menu};
+    position: relative;
+    width: 100%;
   `}
 `
 
@@ -55,6 +56,7 @@ export const MenuNav = styled.div`
 export const MenuLink = styled.a`
   ${({ theme }) => css`
     position: relative;
+    cursor: pointer;
     color: ${theme.colors.text};
     font-size: ${theme.font.sizes.medium};
     font-weight: ${theme.font.semiBold};
@@ -92,7 +94,8 @@ export const MyAccount = styled.a`
     display: flex;
     align-items: center;
     gap: ${theme.spacings.xxsmall};
-    color: ${theme.colors.white};
+    color: ${theme.colors.textEmphasis};
+    cursor: pointer;
     text-decoration: none;
 
     img {
