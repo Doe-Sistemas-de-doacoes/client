@@ -1,4 +1,5 @@
 import { forwardRef, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
+import { Colors } from 'styles/theme'
 
 import * as S from './styles'
 
@@ -10,6 +11,7 @@ export type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
   appearance?: 'solid' | 'outline'
   fullWidth?: boolean
+  color?: Colors
   minimal?: boolean
   icon?: JSX.Element
   as?: React.ElementType
@@ -19,6 +21,7 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
   {
     children,
     icon,
+    color = 'primary',
     size = 'medium',
     appearance = 'solid',
     fullWidth = false,
@@ -31,6 +34,7 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     fullWidth={fullWidth}
     hasIcon={!!icon}
     appearance={appearance}
+    color={color}
     ref={ref}
     {...props}
   >
