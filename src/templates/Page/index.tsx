@@ -1,22 +1,32 @@
-import { useSession } from 'next-auth/client'
+import { useEffect } from 'react'
+import { signIn, useSession } from 'next-auth/client'
+
 import Menu from 'components/Menu'
+import Footer from 'components/Footer'
 
 import * as S from './styles'
 
 export type PageProps = {
   children: React.ReactNode
-  showDecoration?: boolean
+  decoration?: boolean
   header?: boolean
+  footer?: boolean
 }
 
-const Page = ({ children, header, showDecoration = true }: PageProps) => {
+const Page = ({ children, header, footer, decoration = true }: PageProps) => {
   const [session, loading] = useSession()
+
+  useEffect(() => {
+    if (session?.error === 'REFRESH_TOKEN_ERROR') {
+      signIn()
+    }
+  }, [session])
 
   return (
     <S.Wrapper>
-      {header && <Menu username={session?.user?.name} loading={loading} />}
+      {!!header && <Menu username={session?.user?.name} loading={loading} />}
       {children}
-      {showDecoration && (
+      {decoration && (
         <S.Decoration>
           <svg
             viewBox="0 0 1024 700"
@@ -87,6 +97,7 @@ const Page = ({ children, header, showDecoration = true }: PageProps) => {
           </svg>
         </S.Decoration>
       )}
+      {!!footer && <Footer />}
     </S.Wrapper>
   )
 }
