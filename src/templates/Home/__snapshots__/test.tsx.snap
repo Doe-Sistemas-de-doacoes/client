@@ -8,6 +8,7 @@ exports[`<Home /> should render correctly 1`] = `
   display: flex;
   cursor: pointer;
   padding: 1.6rem;
+  border: none;
   gap: 1.6rem;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.15);
@@ -23,7 +24,7 @@ exports[`<Home /> should render correctly 1`] = `
   height: 4rem;
 }
 
-.c13 {
+.c14 {
   width: 10rem;
   height: 8rem;
 }
@@ -41,22 +42,23 @@ exports[`<Home /> should render correctly 1`] = `
 
 .c12 h3,
 .c12 h4 {
+  text-align: left;
   color: #212D22;
 }
 
-.c14 {
+.c15 {
   color: #394338;
   font-size: 1.4rem;
 }
 
-.c17 {
+.c18 {
   color: #394338;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.c18 {
+.c19 {
   font-size: 1.2rem;
 }
 
@@ -82,7 +84,7 @@ exports[`<Home /> should render correctly 1`] = `
   height: 100vh;
 }
 
-.c0 .c16 {
+.c0 .c17 {
   margin-top: min(2vh,3.2rem);
 }
 
@@ -148,11 +150,26 @@ exports[`<Home /> should render correctly 1`] = `
   font-size: 8.0rem;
 }
 
-.c15 {
+.c16 {
   color: #394338;
   font-size: 1.2rem;
   font-weight: 300;
   grid-area: connections;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
+  margin-left: auto;
+  cursor: pointer;
 }
 
 @media (max-width:767px) {
@@ -170,7 +187,7 @@ exports[`<Home /> should render correctly 1`] = `
     padding: 2.4rem;
   }
 
-  .c0 .c16 {
+  .c0 .c17 {
     margin-top: min(6vh,4.0rem);
   }
 }
@@ -413,13 +430,42 @@ exports[`<Home /> should render correctly 1`] = `
             Minha conta
           </h4>
         </div>
+        <div
+          class="c13"
+          role="button"
+        >
+          <svg
+            fill="none"
+            height="20"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+            />
+            <polyline
+              points="16 17 21 12 16 7"
+            />
+            <line
+              x1="21"
+              x2="9"
+              y1="12"
+              y2="12"
+            />
+          </svg>
+        </div>
       </a>
       <a
         class="c9 c10"
       >
         <img
           alt="Duas mãos enviando um coração vende para cima"
-          class="c13"
+          class="c14"
           src="/img/donation.svg"
         />
         <div
@@ -429,7 +475,7 @@ exports[`<Home /> should render correctly 1`] = `
             Doar
           </h3>
           <p
-            class="c14"
+            class="c15"
           >
             Ajude pessoas ou causas
           </p>
@@ -440,7 +486,7 @@ exports[`<Home /> should render correctly 1`] = `
       >
         <img
           alt="Duas mãos segurando um coração vende"
-          class="c13"
+          class="c14"
           src="/img/receive.svg"
         />
         <div
@@ -450,24 +496,24 @@ exports[`<Home /> should render correctly 1`] = `
             Encontrar
           </h3>
           <p
-            class="c14"
+            class="c15"
           >
             Procure algo que você precisa
           </p>
         </div>
       </a>
       <p
-        class="c15"
+        class="c16"
       >
         200
          pessoas conectadas
       </p>
     </main>
     <footer
-      class="c16 c17"
+      class="c17 c18"
     >
       <p
-        class="c18"
+        class="c19"
       >
         Doe © 2021, Nenhum direito reservado.
       </p>
