@@ -141,7 +141,7 @@ const MyAccount = (user: UserProps) => {
 
           <S.Section>
             <S.Heading>Endereço</S.Heading>
-            <Address items={user.address} />
+            <Address addresses={user.address} />
           </S.Section>
         </S.Main>
       </S.Wrapper>

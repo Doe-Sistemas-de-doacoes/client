@@ -4,6 +4,7 @@ import { AxiosError } from 'axios'
 
 import api from 'services/api'
 import { useToast } from 'hooks/use-toast'
+import { AddressProps } from 'services/user'
 import handlerError from 'utils/handle-error'
 import { addressValidate, FieldErrors } from 'utils/validations'
 import AddressItem, { AddressItemProps } from 'components/AddressItem'
@@ -12,10 +13,9 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 
 import * as S from './styles'
-import { AddressProps } from 'services/user'
 
 export type AddressComponentProps = {
-  items: AddressProps[]
+  addresses?: AddressProps[]
 }
 
 type ValuesProps = {
@@ -26,10 +26,13 @@ type ValuesProps = {
   street: string
 }
 
-const Address = ({ items }: AddressComponentProps) => {
+const Address = ({
+  addresses: initialAdresses = []
+}: AddressComponentProps) => {
   const [session] = useSession()
   const [inserting, setInserting] = useState(false)
-  const [addresses, setAddresses] = useState<AddressItemProps[]>(items)
+  const [addresses, setAddresses] =
+    useState<AddressItemProps[]>(initialAdresses)
 
   const [loading, setLoading] = useState(false)
   const [formError, setFormError] = useState('')

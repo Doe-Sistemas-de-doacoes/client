@@ -40,7 +40,7 @@ const Donation = () => (
 
         <S.Section>
           <S.Heading>Endereços</S.Heading>
-          <Address items={[]} />
+          <Address addresses={[]} />
         </S.Section>
 
         <S.Action>
