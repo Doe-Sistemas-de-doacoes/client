@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components'
-import { Form, FormError } from 'components/Form'
+import { Form, FormErrorWrapper } from 'components/Form'
 
 export const Wrapper = styled(Form)`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
 
-    ${FormError} {
+    ${FormErrorWrapper} {
       margin-top: ${theme.spacings.xxsmall};
     }
   `}
