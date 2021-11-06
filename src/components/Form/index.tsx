@@ -35,7 +35,7 @@ export const FormLoading = styled.img.attrs(() => ({
   width: 4rem;
 `
 
-const FormErrorWrapper = styled.div`
+export const FormErrorWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;

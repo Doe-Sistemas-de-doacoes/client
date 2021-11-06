@@ -1,46 +1,13 @@
+import { UserProps } from 'services/user'
 import * as S from './styles'
 
-// "datetimeOfCollection": "2021-10-30T03:03:41.248Z",
-//  "datetimeOfDelivery": "2021-10-30T03:03:41.248Z",
-//     "donor": {
-//       "address": [
-//         {
-//           "city": "string",
-//           "id": 0,
-//           "neighborhood": "string",
-//           "number": 0,
-//           "region": "LESTE",
-//           "state": "string",
-//           "street": "string",
-//           "userId": 0
-//         }
-//       ],
-//       "id": 0,
-//       "name": "string",
-//       "profile": "string",
-//       "user": "string"
-//     },
-//     "id": 0,
-//     "receiver": {
-//       "address": [
-//         {
-//           "city": "string",
-//           "id": 0,
-//           "neighborhood": "string",
-//           "number": 0,
-//           "region": "LESTE",
-//           "state": "string",
-//           "street": "string",
-//           "userId": 0
-//         }
-//       ],
-//       "id": 0,
-//       "name": "string",
-//       "profile": "string",
-//       "user": "string"
-//     },
 export type DonationItemProps = {
+  datetimeOfCollection: string
+  datetimeOfDelivery: string
   description: string
+  donor: UserProps
+  id: number
+  receiver: UserProps
   typeOfDonation: string
 }
 

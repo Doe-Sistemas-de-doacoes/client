@@ -3,7 +3,7 @@ export type UserProps = {
   name: string
   profile: string
   user: string
-  address?: Address[]
+  address?: AddressProps[]
 }
 
 export type AddressProps = {
