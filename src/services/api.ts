@@ -10,7 +10,7 @@ const api = axios.create({
 api.interceptors.request.use(async (config) => {
   const session = await getSession()
 
-  config.headers.Authorization = `Bearer ${session?.token}`
+  if (config?.headers) config.headers.Authorization = `Bearer ${session?.token}`
 
   return config
 })
@@ -23,7 +23,8 @@ export function apiSSR(context: GetServerSidePropsContext) {
   apiSSR.interceptors.request.use(async (config) => {
     const session = await getSession(context)
 
-    config.headers.Authorization = `Bearer ${session?.token}`
+    if (config?.headers)
+      config.headers.Authorization = `Bearer ${session?.token}`
 
     return config
   })
