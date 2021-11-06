@@ -7,7 +7,7 @@ export type DonationListProps = {
 
 const DonationList = ({ donations }: DonationListProps) => (
   <S.Wrapper>
-    {donations.map((donation, key) => (
+    {donations?.map((donation, key) => (
       <Donation key={key} {...donation} />
     ))}
   </S.Wrapper>
