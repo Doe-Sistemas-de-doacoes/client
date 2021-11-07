@@ -41,7 +41,9 @@ const FormSignIn = () => {
     const result = await signIn('credentials', {
       ...values,
       redirect: false,
-      callbackUrl: `${window.location.origin}${query?.callbackUrl || ''}`
+      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}${
+        query?.callbackUrl || ''
+      }`
     })
 
     if (result?.error) {
