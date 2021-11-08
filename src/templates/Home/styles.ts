@@ -1,47 +1,40 @@
 import media from 'styled-media-query'
 import styled, { css } from 'styled-components'
 
-import { Footer } from 'components/Footer/styles'
 import { Wrapper as CardButton } from 'components/CardButton/styles'
+import { Footer } from 'components/Footer/styles'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
+    flex: 1;
     display: flex;
     flex-direction: column;
+    gap: ${theme.spacings.large};
     align-items: center;
-    gap: ${theme.spacings.small};
-    overflow-y: auto;
-    /* padding: ${theme.spacings.xsmall}; */
-    height: 100vh;
-
-    ${Footer} {
-      margin-top: min(2vh, ${theme.spacings.medium});
-    }
+    width: 100%;
 
     @media (max-width: 767px) {
       ${CardButton}:not(:first-child) {
         text-align: center;
         flex-direction: column;
+
+        h3 {
+          text-align: center;
+        }
       }
     }
 
-    ${media.greaterThan('small')`
-      gap: ${theme.spacings.small};
-      padding: ${theme.spacings.small};
-
-      ${Footer} {
-        margin-top: min(6vh, ${theme.spacings.large});
-      }
-    `}
+    @media (min-height: 768px) {
+      gap: ${theme.spacings.huge};
+    }
 
     ${media.greaterThan('medium')`
       align-items: flex-start;
       gap: ${theme.spacings.large};
-      padding: ${theme.spacings.xsmall} ${theme.spacings.xlarge};
       justify-content: flex-end;
 
       ${Header} {
-        flex: initial;
+        justify-content: flex-end;
         align-items: flex-start;
       }
 
@@ -62,13 +55,17 @@ export const Wrapper = styled.div`
     ${media.greaterThan('huge')`
       max-width: ${theme.grid.container.small};
       margin: 0 auto;
+
+      ${Footer} {
+        margin-top: ${theme.spacings.medium};
+      }
     `}
   `}
 `
 
 export const Header = styled.header`
   ${({ theme }) => css`
-    flex: 2;
+    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -76,6 +73,10 @@ export const Header = styled.header`
     font-family: ${theme.font.family_pacifico};
     color: ${theme.colors.text};
     line-height: 1.4;
+
+    @media (min-height: 900px) {
+      justify-content: flex-end;
+    }
   `}
 `
 

@@ -16,11 +16,6 @@ export type HomeProps = {
 const Home = ({ connections = 0 }: HomeProps) => {
   const [session, loading] = useSession()
 
-  function handleSignOut(event: PointerEvent) {
-    event.stopPropagation()
-    signOut()
-  }
-
   return (
     <Page>
       <S.Wrapper>
@@ -46,7 +41,13 @@ const Home = ({ connections = 0 }: HomeProps) => {
                 size="small"
                 as="a"
               >
-                <S.SignOut role="button" onClick={handleSignOut}>
+                <S.SignOut
+                  role="button"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    signOut()
+                  }}
+                >
                   <LogOut size={20} />
                 </S.SignOut>
               </CardButton>
