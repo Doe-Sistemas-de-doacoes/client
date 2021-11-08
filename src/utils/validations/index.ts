@@ -92,7 +92,7 @@ type EditUserProps = {
 }
 
 export function editUserValidate(values: EditUserProps) {
-  const { name, password, confirm_password } = fieldsValidations
+  const { name, password, confirm_password } = userFieldsValidations
 
   const schema = Joi.object({
     name,
