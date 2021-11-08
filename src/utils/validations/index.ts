@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-const fieldsValidations = {
+const userFieldsValidations = {
   name: Joi.string().min(5).required().messages({
     'string.empty': 'Digite o seu nome.',
     'string.min': 'O nome precisa ter no mínimo 5 caracteres.'
@@ -22,7 +22,10 @@ const fieldsValidations = {
     .messages({
       'any.required': 'Digite a senha novamente.',
       'any.only': 'As senhas não são iguais.'
-    }),
+    })
+}
+
+const addressFieldsValidations = {
   city: Joi.string().required().messages({
     'string.empty': 'Digite a cidade.'
   }),
@@ -64,7 +67,7 @@ type SignUpProps = {
 }
 
 export function signUpValidate(values: SignUpProps) {
-  const { email: user, ...validations } = fieldsValidations
+  const { email: user, ...validations } = userFieldsValidations
   const schema = Joi.object({ user, ...validations })
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
@@ -76,7 +79,7 @@ type SignInProps = {
 }
 
 export function signInValidate(values: SignInProps) {
-  const { email: username, password } = fieldsValidations
+  const { email: username, password } = userFieldsValidations
   const schema = Joi.object({ username, password })
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
@@ -121,8 +124,7 @@ type AddressProps = {
 }
 
 export function addressValidate(values: AddressProps) {
-  const { city, neighborhood, number, state, street } = fieldsValidations
-  const schema = Joi.object({ city, neighborhood, number, state, street })
+  const schema = Joi.object(addressFieldsValidations)
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
