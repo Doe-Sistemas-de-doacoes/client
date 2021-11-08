@@ -38,9 +38,6 @@ export const Wrapper = styled.div`
         align-items: flex-start;
       }
 
-      ${Hello} {
-        margin-top: ${theme.spacings.small};
-      }
 
       ${Main} {
         max-width: unset;
