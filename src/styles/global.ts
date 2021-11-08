@@ -61,6 +61,11 @@ const GlobalStyles: GlobalStyleComponent<
       font-size: 62.5%;
     }
 
+    #__next {
+      display: flex;
+      height: 100vh;
+    }
+
     body {
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
