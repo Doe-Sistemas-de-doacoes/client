@@ -5,15 +5,18 @@ import media from 'styled-media-query'
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 0 ${theme.spacings.small} ${theme.spacings.small};
+    flex-direction: column;
+    padding: ${theme.spacings.small};
     max-width: ${theme.grid.container.medium};
     gap: ${theme.spacings.small};
+    overflow: auto;
     margin: 0 auto;
-    overflow-x: hidden;
-    min-height: 100vh;
     width: 100%;
+
+    ${media.greaterThan('medium')`
+      padding: ${theme.spacings.medium} ${theme.spacings.xlarge};
+    `}
   `}
 
   ${Footer} {
