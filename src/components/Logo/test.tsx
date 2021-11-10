@@ -78,7 +78,7 @@ describe('<Logo />', () => {
 
     expect(screen.getByLabelText(/Doe/i).parentElement).toHaveStyleRule(
       'width',
-      '10rem'
+      '12rem'
     )
   })
 
