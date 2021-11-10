@@ -64,6 +64,7 @@ const GlobalStyles: GlobalStyleComponent<
     #__next {
       display: flex;
       height: 100vh;
+      overflow: auto;
     }
 
     body {
