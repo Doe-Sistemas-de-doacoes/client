@@ -12,8 +12,10 @@ const iconWrapperModifiers = {
       color: ${theme.colors.red};
     }
   `,
-  hiding: () => css`
-    animation: leftToRight 0.25s linear forwards ! !important;
+  informative: (theme: DefaultTheme) => css`
+    svg {
+      color: ${theme.colors.lightGray};
+    }
   `
 }
 
@@ -54,22 +56,32 @@ export const ToastWrapper = styled.div`
   `}
 `
 
-export const Wrapper = styled.div`
-  display: flex;
-  min-height: 6.4rem;
-  width: 100%;
-  min-width: min(30rem, 100vw);
-  animation: leftToRight 0.25s linear forwards;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.15);
+export type WrapperProps = {
+  hiding?: boolean
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ hiding }) => css`
+    display: flex;
+    min-height: 6.4rem;
+    width: 100%;
+    min-width: min(30rem, 100vw);
+    animation: leftToRight 0.25s linear forwards;
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.15);
+
+    ${!!hiding &&
+    css`
+      animation: leftToRight 0.25s linear forwards !important;
+    `}
+  `}
 `
 
 export type IconWrapperProps = {
   type: ToastTypes
-  hiding?: boolean
 }
 
 export const IconWrapper = styled.div<IconWrapperProps>`
-  ${({ theme, type, hiding }) => css`
+  ${({ theme, type }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +96,6 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     }
 
     ${iconWrapperModifiers[type!](theme)}
-    ${!!hiding && iconWrapperModifiers.hiding()}
   `}
 `
 

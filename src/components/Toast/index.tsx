@@ -1,7 +1,8 @@
-import { Check, X } from 'react-feather'
+import { Check, Info, X } from 'react-feather'
+
 import * as S from './styles'
 
-export type ToastTypes = 'success' | 'error'
+export type ToastTypes = 'success' | 'error' | 'informative'
 
 export type ToastProps = {
   type?: ToastTypes
@@ -9,18 +10,20 @@ export type ToastProps = {
   hiding?: boolean
 }
 
-const Toast = ({ type = 'success', message }: ToastProps) => {
+const Toast = ({ type = 'success', message, hiding }: ToastProps) => {
   const getIcon = (type: ToastTypes): React.ReactNode => {
     switch (type) {
       case 'success':
-        return <Check />
+        return <Check role="img" aria-label="Icone de sucesso" />
       case 'error':
-        return <X />
+        return <X role="img" aria-label="Icone de error" />
+      case 'informative':
+        return <Info role="img" aria-label="Icone de informação" />
     }
   }
 
   return (
-    <S.Wrapper>
+    <S.Wrapper hiding={hiding}>
       <S.IconWrapper type={type}>{getIcon(type)}</S.IconWrapper>
       <S.Content>
         <S.Message>{message}</S.Message>
