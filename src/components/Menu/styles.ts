@@ -5,7 +5,6 @@ export const Wrapper = styled.menu`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    padding: ${theme.spacings.small} 0;
     z-index: ${theme.layers.menu};
     position: relative;
     width: 100%;
@@ -23,6 +22,9 @@ export const LogoWrapper = styled.div`
 export const IconWrapper = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.text};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     width: 2.4rem;
     height: 2.4rem;
@@ -34,7 +36,7 @@ export const MenuGroup = styled.div`
     display: none;
     flex-grow: 1;
     justify-content: flex-end;
-    color: ${theme.colors.white};
+    color: ${theme.colors.text};
     align-items: center;
     gap: ${theme.spacings.medium};
 
@@ -48,7 +50,6 @@ export const MenuNav = styled.div`
   ${({ theme }) => css`
     ${media.greaterThan('medium')`
 			margin-left: ${theme.spacings.xlarge};
-      transform: translateY(0.45rem);
 		`}
   `}
 `
@@ -109,9 +110,9 @@ export const MyAccount = styled.a`
 export const SignIn = styled.a`
   ${({ theme }) => css`
     display: flex;
-    color: ${theme.colors.white};
+    color: ${theme.colors.text};
     padding: ${theme.spacings.xxxsmall};
-    border-bottom: 0.2rem solid ${theme.colors.white};
+    border-bottom: 0.2rem solid ${theme.colors.text};
     font-size: ${theme.font.sizes.xsmall};
     font-weight: ${theme.font.semiBold};
     text-transform: uppercase;
