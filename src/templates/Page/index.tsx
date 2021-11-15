@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import { signIn, useSession } from 'next-auth/client'
+import { signIn } from 'next-auth/client'
 
 import Menu from 'components/Menu'
 import Footer from 'components/Footer'
+import { Corners, Love, TopRightHuge } from 'components/Decoration'
+import Error, { ErrorProps } from 'components/Error'
+import { useSession } from 'hooks/use-session'
 
 import * as S from './styles'
-import { Corners, Love } from 'components/Decoration'
-import { TopRightCorner } from 'components/Decoration/styles'
-import Error, { ErrorProps } from 'components/Error'
 
 export type DecorationsTypes = 'corners' | 'none' | 'love' | 'topRightCorner'
 
@@ -28,7 +28,7 @@ const Page = ({
   children,
   decoration = 'love'
 }: PageProps) => {
-  const [session, loading] = useSession()
+  const { session, loading } = useSession()
 
   useEffect(() => {
     if (session?.error === 'REFRESH_TOKEN_ERROR') signIn()
@@ -45,7 +45,7 @@ const Page = ({
           {title && <S.Title>{title}</S.Title>}
           {children}
           {decoration === 'love' && <Love />}
-          {decoration === 'topRightCorner' && <TopRightCorner />}
+          {decoration === 'topRightCorner' && <TopRightHuge />}
           {decoration === 'corners' && <Corners />}
         </>
       )}
