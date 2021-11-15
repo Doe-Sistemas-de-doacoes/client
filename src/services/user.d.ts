@@ -1,7 +1,6 @@
 export type UserProps = {
   id: number
   name: string
-  profile: string
   user: string
   address?: AddressProps[]
 }
