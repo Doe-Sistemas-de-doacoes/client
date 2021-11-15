@@ -58,12 +58,13 @@ const FormSignIn = () => {
 
     if (result?.error) {
       setLoading(false)
-      setFormError(result?.error)
+      setFormError(result.error)
       return
     }
 
     if (result?.url) {
-      return push(result?.url)
+      push(result?.url)
+      return
     }
 
     setLoading(false)
