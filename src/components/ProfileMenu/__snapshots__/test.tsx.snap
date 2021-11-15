@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileMenu /> should render the menu 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.15);
+  border-bottom: 0.1rem solid #F2F3F5;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #FAFAFA;
+  color: #394338;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.6rem 2.4rem;
+  -webkit-transition: background,color,0.3s ease-in-out;
+  transition: background,color,0.3s ease-in-out;
+  background: #FAFAFA;
+  color: #394338;
+}
+
+.c1:hover {
+  background: #04D361;
+  color: #FAFAFA;
+}
+
+.c1 > span {
+  display: none;
+  margin-left: 1.6rem;
+}
+
+@media screen and (min-width:960px) {
+  .c0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border: 0;
+  }
+
+  .c0 a:not(:last-child) {
+    border-bottom: 0.1rem solid #F2F3F5;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    -webkit-box-pack: initial;
+    -webkit-justify-content: initial;
+    -ms-flex-pack: initial;
+    justify-content: initial;
+  }
+
+  .c1 > span {
+    display: initial;
+  }
+}
+
+<nav
+  class="c0"
+>
+  <a
+    class="c1"
+    href="/profile/me"
+    title="Meus dados"
+  >
+    <svg
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+      />
+      <circle
+        cx="12"
+        cy="7"
+        r="4"
+      />
+    </svg>
+    <span>
+      Meus dados
+    </span>
+  </a>
+  <a
+    class="c1"
+    href="/profile/address"
+    title="Meus endereços"
+  >
+    <svg
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+      />
+      <circle
+        cx="12"
+        cy="10"
+        r="3"
+      />
+    </svg>
+    <span>
+      Meus endereços
+    </span>
+  </a>
+  <a
+    class="c1"
+    href="/profile/donations"
+    title="Minhas Doações"
+  >
+    <svg
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+      />
+    </svg>
+    <span>
+      Minhas Doações
+    </span>
+  </a>
+  <a
+    class="c1"
+    role="button"
+  >
+    <svg
+      aria-label="Sair"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+      />
+      <polyline
+        points="16 17 21 12 16 7"
+      />
+      <line
+        x1="21"
+        x2="9"
+        y1="12"
+        y2="12"
+      />
+    </svg>
+    <span>
+      Sair
+    </span>
+  </a>
+</nav>
+`
+
+exports[`<ProfileMenu /> should render the menu 2`] = `
+<nav
+  class="sc-bdvvtL dckMoB"
+>
+  <a
+    class="sc-gsDKAQ QdZjM"
+    href="/profile/me"
+    title="Meus dados"
+  >
+    <svg
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+      />
+      <circle
+        cx="12"
+        cy="7"
+        r="4"
+      />
+    </svg>
+    <span>
+      Meus dados
+    </span>
+  </a>
+  <a
+    class="sc-gsDKAQ QdZjM"
+    href="/profile/address"
+    title="Meus endereços"
+  >
+    <svg
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+      />
+      <circle
+        cx="12"
+        cy="10"
+        r="3"
+      />
+    </svg>
+    <span>
+      Meus endereços
+    </span>
+  </a>
+  <a
+    class="sc-gsDKAQ QdZjM"
+    href="/profile/donations"
+    title="Minhas Doações"
+  >
+    <svg
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+      />
+    </svg>
+    <span>
+      Minhas Doações
+    </span>
+  </a>
+  <a
+    class="sc-gsDKAQ QdZjM"
+    role="button"
+  >
+    <svg
+      aria-label="Sair"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+      />
+      <polyline
+        points="16 17 21 12 16 7"
+      />
+      <line
+        x1="21"
+        x2="9"
+        y1="12"
+        y2="12"
+      />
+    </svg>
+    <span>
+      Sair
+    </span>
+  </a>
+</nav>
+`

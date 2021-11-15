@@ -1,52 +1,58 @@
 import Link from 'next/link'
 import { Heart, LogOut, MapPin, User } from 'react-feather'
+import { signOut } from 'next-auth/client'
+import { useRouter } from 'next/router'
 
 import * as S from './styles'
 
 export type ProfileMenuProps = {
-  activeLink?:
-    | '/profile/me'
-    | '/profile/addresses'
-    | '/profile/donations'
-    | string
+  activeLink?: '/profile/me' | '/profile/address' | '/profile/donation' | string
 }
 
-const ProfileMenu = ({ activeLink }: ProfileMenuProps) => (
-  <S.Nav>
-    <Link href="/profile/me" passHref>
-      <S.Link isActive={activeLink === '/profile/me'} title="Meus dados">
-        <User size={24} />
-        <span>Meus dados</span>
-      </S.Link>
-    </Link>
+const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
+  const router = useRouter()
 
-    <Link href="/profile/address" passHref>
+  return (
+    <S.Nav>
+      <Link href="/profile/me" passHref>
+        <S.Link isActive={activeLink === '/profile/me'} title="Meus dados">
+          <User size={24} />
+          <span>Meus dados</span>
+        </S.Link>
+      </Link>
+
+      <Link href="/profile/address" passHref>
+        <S.Link
+          isActive={activeLink === '/profile/address'}
+          title="Meus endereços"
+        >
+          <MapPin size={24} />
+          <span>Meus endereços</span>
+        </S.Link>
+      </Link>
+
+      <Link href="/profile/donations" passHref>
+        <S.Link
+          isActive={activeLink === '/profile/donation'}
+          title="Minhas Doações"
+        >
+          <Heart size={24} />
+          <span>Minhas Doações</span>
+        </S.Link>
+      </Link>
+
       <S.Link
-        isActive={activeLink === '/profile/addresses'}
-        title="Meus endereços"
+        role="button"
+        onClick={async () => {
+          const data = await signOut({ redirect: false, callbackUrl: '/' })
+          router.push(data.url)
+        }}
       >
-        <MapPin size={24} />
-        <span>Meus endereços</span>
-      </S.Link>
-    </Link>
-
-    <Link href="/profile/donations" passHref>
-      <S.Link
-        isActive={activeLink === '/profile/donations'}
-        title="Minhas Doações"
-      >
-        <Heart size={24} />
-        <span>Minhas Doações</span>
-      </S.Link>
-    </Link>
-
-    <Link href="/logout" passHref>
-      <S.Link>
-        <LogOut size={24} />
+        <LogOut size={24} aria-label="Sair" />
         <span>Sair</span>
       </S.Link>
-    </Link>
-  </S.Nav>
-)
+    </S.Nav>
+  )
+}
 
 export default ProfileMenu
