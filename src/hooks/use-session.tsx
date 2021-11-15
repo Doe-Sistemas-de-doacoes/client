@@ -1,11 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  createContext,
-  Dispatch,
-  SetStateAction
-} from 'react'
+import React, { useContext, useEffect, useState, createContext } from 'react'
 import { Session as NextSession } from 'next-auth'
 import { useSession as nextUseSession } from 'next-auth/client'
 
@@ -14,13 +7,13 @@ type Session = NextSession | null
 type ContextProps = {
   session: Session
   loading: boolean
-  setSession: Dispatch<SetStateAction<Session>> | undefined
+  setSession: (session: Session) => void
 }
 
 const SessionContext = createContext<ContextProps>({
   session: null,
   loading: false,
-  setSession: undefined
+  setSession: () => undefined
 })
 
 type ProviderProps = {
@@ -28,21 +21,36 @@ type ProviderProps = {
 }
 
 function SessionProvider({ children }: ProviderProps) {
-  const [_session, _loading] = nextUseSession()
+  // eslint-disable-next-line prefer-const
+  let [_session, _loading] = nextUseSession()
   const [session, setSession] = useState<Session>(_session)
   const [loading, setLoading] = useState<boolean>(_loading)
+  let defined: Session = _session
 
   useEffect(() => {
-    setSession(_session)
+    setSession({
+      ..._session,
+      ...(defined ?? {})
+    })
     setLoading(_loading)
-  }, [_session, _loading])
+  }, [_session, _loading, defined])
+
+  function handleSetSession(props: Session) {
+    defined = props
+
+    _session = {
+      ...session,
+      ...props
+    }
+    setSession(_session)
+  }
 
   return (
     <SessionContext.Provider
       value={{
         session,
         loading,
-        setSession
+        setSession: handleSetSession
       }}
     >
       {children}
