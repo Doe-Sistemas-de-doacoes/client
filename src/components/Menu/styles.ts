@@ -8,21 +8,27 @@ export const Wrapper = styled.menu`
     z-index: ${theme.layers.menu};
     position: relative;
     width: 100%;
+
+    @media screen and (max-width: 767px) {
+      ${LogoWrapper} {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      ${IconWrapper} {
+        display: flex;
+      }
+    }
   `}
 `
 
-export const LogoWrapper = styled.div`
-  ${media.lessThan('medium')`
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  `}
-`
+export const LogoWrapper = styled.div``
 
 export const IconWrapper = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.text};
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     cursor: pointer;

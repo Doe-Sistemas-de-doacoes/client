@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { signOut } from 'next-auth/client'
 import { LogOut, Menu as MenuIcon, User, X as CloseIcon } from 'react-feather'
+import { signOut } from 'next-auth/client'
 
 import Button from 'components/Button'
 import Logo from 'components/Logo'
@@ -19,11 +19,9 @@ const Menu = ({ username, loading }: MenuProps) => {
 
   return (
     <S.Wrapper>
-      <MediaMatch lessThan="medium">
-        <S.IconWrapper onClick={() => setIsOpen(true)}>
-          <MenuIcon aria-label="Abrir Menu" />
-        </S.IconWrapper>
-      </MediaMatch>
+      <S.IconWrapper onClick={() => setIsOpen(true)}>
+        <MenuIcon aria-label="Abrir Menu" />
+      </S.IconWrapper>
 
       <S.LogoWrapper>
         <Link href="/" passHref>
