@@ -9,6 +9,10 @@ export const Wrapper = styled.menu`
     position: relative;
     width: 100%;
 
+    & > ${IconWrapper} {
+      display: none;
+    }
+
     @media screen and (max-width: 767px) {
       ${LogoWrapper} {
         position: absolute;
@@ -16,7 +20,7 @@ export const Wrapper = styled.menu`
         transform: translateX(-50%);
       }
 
-      ${IconWrapper} {
+      & > ${IconWrapper} {
         display: flex;
       }
     }
@@ -28,7 +32,7 @@ export const LogoWrapper = styled.div``
 export const IconWrapper = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.text};
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
