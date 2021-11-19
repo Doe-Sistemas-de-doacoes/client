@@ -118,7 +118,7 @@ export function editUserValidate(values: EditUserProps) {
 type AddressProps = {
   city: string
   neighborhood: string
-  number: number
+  number: string
   state: string
   street: string
 }

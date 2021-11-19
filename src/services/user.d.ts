@@ -6,14 +6,13 @@ export type UserProps = {
 }
 
 export type AddressProps = {
-  city: string
   id: number
+  city: string
   neighborhood: string
-  number: number
+  number: string
   region: string
   state: string
   street: string
-  userId: number
 }
 
 export type UserCreateProps = {
