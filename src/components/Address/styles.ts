@@ -1,11 +1,46 @@
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
+import { AddressComponentProps } from '.'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
+type WrapperProps = Pick<AddressComponentProps, 'appearance'>
+
+const wrapperModifiers = {
+  full: (theme: DefaultTheme) => css`
+    flex: 1;
+    min-height: 26rem;
+
+    ${ItemsWrapper} {
+      flex: 1;
+    }
+
+    ${NotFound} {
+      margin: auto;
+    }
+
+    & > button {
+      margin-top: ${theme.spacings.small};
+    }
+  `,
+  compact: (theme: DefaultTheme) => css`
+    ${ItemsWrapper} {
+      flex: 1;
+    }
+
+    ${NotFound} {
+      background: #fff;
+      padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
+      border-radius: ${theme.border.radius.medium};
+      box-shadow: ${theme.boxShadow.small};
+    }
+  `
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ theme, appearance }) => css`
     display: flex;
     flex-direction: column;
-    gap: ${theme.spacings.xxsmall};
     align-items: flex-end;
+
+    ${wrapperModifiers[appearance!](theme)}
   `}
 `
 
@@ -13,21 +48,15 @@ export const ItemsWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
-    gap: ${theme.spacings.xxsmall};
+    gap: ${theme.spacings.xsmall};
     width: 100%;
   `}
 `
 
 export const NotFound = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
-    border-radius: ${theme.border.radius.medium};
-    box-shadow: ${theme.boxShadow.small};
-  `}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Heading = styled.h5`
@@ -42,10 +71,7 @@ export const Form = styled.form`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
-    padding: ${theme.spacings.xsmall};
     gap: ${theme.spacings.xsmall};
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
-    background: #fff;
   `}
 `
 
