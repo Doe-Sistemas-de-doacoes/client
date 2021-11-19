@@ -3,20 +3,32 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    position: relative;
     justify-content: space-between;
-    font-size: ${theme.font.sizes.small};
-    padding: ${theme.spacings.xsmall};
-    box-shadow: ${theme.boxShadow.small};
-    border-radius: ${theme.border.radius.medium}
+    position: relative;
     gap: ${theme.spacings.xsmall};
-    background: #fff;
+    padding: ${theme.spacings.small};
+    font-size: ${theme.font.sizes.small};
+    border-radius: ${theme.border.radius.medium};
+    box-shadow: ${theme.boxShadow.medium};
+    background: ${theme.colors.white};
+  `}
+`
 
-    svg {
-      color: ${theme.colors.red};
-    }
+export const Content = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: ${theme.spacings.xxsmall};
+  `}
+`
+
+export const Actions = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    gap: ${theme.spacings.xxsmall};
+    align-items: center;
   `}
 `
 
@@ -24,11 +36,13 @@ export const LoaderWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
+    gap: ${theme.spacings.xxsmall};
     justify-content: center;
+    cursor: wait;
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.4);
-    z-index: ${theme.layers.overlay};
+    z-index: 1;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -37,34 +51,29 @@ export const LoaderWrapper = styled.div`
   `}
 `
 
-export const Delete = styled.div`
+export const Icon = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
-    color: ${theme.colors.red};
-    position: absolute;
-    top: ${theme.spacings.xsmall};
-    right: ${theme.spacings.xsmall};
+    color: ${theme.colors.gray};
+    padding: ${theme.spacings.xxxsmall};
+    background: ${theme.colors.extraLightGray};
+    transition: color ${theme.transition.default};
+    border-radius: 0.2rem;
+
+    &:hover {
+      color: ${theme.colors.primaryDark};
+    }
   `}
 `
 
-export const Label = styled.label`
+export const Delete = styled(Icon)`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.xxsmall};
-  `}
-`
+    color: ${theme.colors.red} !important;
+    transition: opacity ${theme.transition.default};
+    opacity: 0.75;
 
-export const Value = styled.span`
-  ${({ theme }) => css`
-    color: ${theme.colors.text};
-    font-size: ${theme.font.sizes.medium};
-  `}
-`
-
-export const Content = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    gap: ${theme.spacings.xxxsmall};
-    min-width: 14rem;
+    &:hover {
+      opacity: 1;
+    }
   `}
 `

@@ -1,43 +1,41 @@
-import { useState } from 'react'
-import { Trash2 } from 'react-feather'
+import { Edit2, Trash2 } from 'react-feather'
 
+import Loader from 'components/Loader'
+import { useModal } from 'hooks/use-modal'
 import { AddressProps } from 'services/user'
-import { useToast } from 'hooks/use-toast'
-import api from 'services/api'
 
 import * as S from './styles'
 
 export type AddressItemProps = {
-  onDeleted?: () => void
+  editable?: boolean
+  onDelete?: () => void
+  onEdit?: () => void
+  isDeleting?: boolean
 } & AddressProps
 
 const AddressItem = ({
-  id,
-  city,
-  state,
-  neighborhood,
-  street,
-  number,
-  onDeleted
+  editable = true,
+  isDeleting = false,
+  onDelete,
+  onEdit,
+  ...address
 }: AddressItemProps) => {
-  const [loading, setLoading] = useState(false)
+  const showModal = useModal()
 
-  const showToast = useToast()
-
-  const handleDelete = async () => {
-    setLoading(true)
-    try {
-      await api.delete(`/address/${id}`)
-      showToast({
-        type: 'success',
-        message: `Endereço removido com sucesso!`
-      })
-      if (onDeleted) onDeleted()
-    } catch {
-      setLoading(false)
-      showToast({
-        type: 'error',
-        message: `Não foi possivel deletar o endereço!`
+  function handleDelete() {
+    if (onDelete) {
+      showModal({
+        type: 'informative',
+        title: 'Deletar endereço?',
+        message:
+          'Deseja realmente deletar este endereço? não será possivel recuperá-lo depois.',
+        action: {
+          type: 'confirm',
+          primary: {
+            color: 'red'
+          }
+        },
+        onConfirm: onDelete
       })
     }
   }
@@ -45,35 +43,33 @@ const AddressItem = ({
   return (
     <S.Wrapper>
       <S.Content>
-        <S.Label>Cidade</S.Label>
-        <S.Value>{city}</S.Value>
+        <p>
+          {address.street}, Nº {address.number}
+        </p>
+        <p>
+          {address.neighborhood}, {address.city} - {address.state}
+        </p>
       </S.Content>
 
-      <S.Content>
-        <S.Label>Estado</S.Label>
-        <S.Value>{state}</S.Value>
-      </S.Content>
+      {editable && (
+        <S.Actions>
+          {!!onDelete && (
+            <S.Delete onClick={handleDelete}>
+              <Trash2 size={18} />
+            </S.Delete>
+          )}
+          {!!onEdit && (
+            <S.Icon onClick={onEdit}>
+              <Edit2 size={18} />
+            </S.Icon>
+          )}
+        </S.Actions>
+      )}
 
-      <S.Content>
-        <S.Label>Bairro</S.Label>
-        <S.Value>{neighborhood}</S.Value>
-      </S.Content>
-      <S.Content>
-        <S.Label>Rua</S.Label>
-        <S.Value>{street}</S.Value>
-      </S.Content>
-      <S.Content>
-        <S.Label>Número</S.Label>
-        <S.Value>{number}</S.Value>
-      </S.Content>
-
-      <S.Delete onClick={() => handleDelete()}>
-        <Trash2 size={18} />
-      </S.Delete>
-
-      {loading && (
+      {!!isDeleting && (
         <S.LoaderWrapper>
-          <h5>Deletando...</h5>
+          <Loader size="small" />
+          <p>Deletando...</p>
         </S.LoaderWrapper>
       )}
     </S.Wrapper>
