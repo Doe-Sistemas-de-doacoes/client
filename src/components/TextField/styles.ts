@@ -27,11 +27,13 @@ export const Input = styled.input<IconPositionProps>`
     font-family: ${theme.font.family};
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} 0;
-    padding-${iconPosition}: ${theme.spacings.xsmall};
-    background: transparent;
-    border: 0;
-    outline: none;
     width: ${iconPosition === 'right' ? `calc(100% - 2.2rem)` : `100%`};
+    background: transparent;
+    outline: none;
+    border: 0;
+
+    ${!!iconPosition && `padding-${iconPosition}: ${theme.spacings.xsmall};`}
+
     &:-webkit-autofill {
       -webkit-box-shadow: 0 0 0 ${theme.spacings.small}
         ${theme.colors.lightGray} inset;

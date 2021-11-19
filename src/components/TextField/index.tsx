@@ -14,7 +14,7 @@ export type TextFieldProps = {
 
 const TextField = ({
   icon,
-  iconPosition = 'left',
+  iconPosition,
   label,
   name,
   initialValue = '',
@@ -41,7 +41,7 @@ const TextField = ({
           type="text"
           onChange={onChange}
           value={value}
-          iconPosition={iconPosition}
+          iconPosition={iconPosition || (icon ? 'left' : undefined)}
           disabled={disabled}
           name={name}
           {...(label ? { id: name } : {})}
