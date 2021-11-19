@@ -14,7 +14,7 @@ export const HeadingSection = styled.h6`
     &::after {
       content: '';
       height: 2px;
-      background: #e9e9e9;
+      background: ${theme.colors.divider};
       width: 100%;
     }
   `}

@@ -44,6 +44,7 @@ const theme = {
     lightGray: '#F2F3F5',
     gray: '#8F8F8F',
     darkGray: '#2E2F42',
+    divider: '#e9e9e9',
     red: '#E33D3D'
     // background: ''
     // mainBg: '#06092B',
@@ -80,6 +81,6 @@ const theme = {
 
 export type Spacings = keyof typeof theme.spacings
 
-export type Colors = typeof theme.colors
+export type Colors = keyof typeof theme.colors
 
 export default theme
