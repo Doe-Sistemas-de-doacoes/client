@@ -1,16 +1,35 @@
+import Button, { ButtonProps } from 'components/Button'
 import { Check, Info, X } from 'react-feather'
 
 import * as S from './styles'
 
 export type ToastTypes = 'success' | 'error' | 'informative'
 
+export type ToastAction = 'confirm'
+
 export type ToastProps = {
   type?: ToastTypes
+  title?: string
   message: string
   hiding?: boolean
+  action?: {
+    type: ToastAction
+    primary?: ButtonProps
+    cancel?: ButtonProps
+  }
+  onConfirm?: () => void
+  onCancel?: () => void
 }
 
-const Toast = ({ type = 'success', message, hiding }: ToastProps) => {
+const Toast = ({
+  type = 'success',
+  title,
+  message,
+  hiding,
+  action,
+  onConfirm,
+  onCancel
+}: ToastProps) => {
   const getIcon = (type: ToastTypes): React.ReactNode => {
     switch (type) {
       case 'success':
@@ -24,9 +43,31 @@ const Toast = ({ type = 'success', message, hiding }: ToastProps) => {
 
   return (
     <S.Wrapper hiding={hiding}>
-      <S.IconWrapper type={type}>{getIcon(type)}</S.IconWrapper>
+      <S.IconWrapper
+        size={!!title || !!action ? 'large' : 'normal'}
+        type={type}
+      >
+        {getIcon(type)}
+      </S.IconWrapper>
       <S.Content>
+        {title && <S.Title>{title}</S.Title>}
         <S.Message>{message}</S.Message>
+
+        {action?.type === 'confirm' && (
+          <S.Action>
+            <Button
+              size="small"
+              color="gray"
+              {...action?.cancel}
+              onClick={onCancel}
+            >
+              CANCELAR
+            </Button>
+            <Button size="small" {...action?.primary} onClick={onConfirm}>
+              CONFIRMAR
+            </Button>
+          </S.Action>
+        )}
       </S.Content>
     </S.Wrapper>
   )
