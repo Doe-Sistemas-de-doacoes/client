@@ -10,11 +10,11 @@ import Button from 'components/Button'
 import { UserProps } from 'services/user'
 import { FormError, FormLoading } from 'components/Form'
 import { editUserValidate, FieldErrors } from 'utils/validations'
+import TextField from 'components/TextField'
 import { useSession } from 'hooks/use-session'
 import { useToast } from 'hooks/use-toast'
 
 import * as S from './styles'
-import TextField from 'components/TextField'
 
 const FormProfile = (user: UserProps) => {
   const { session, setSession } = useSession()
@@ -87,8 +87,6 @@ const FormProfile = (user: UserProps) => {
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      <h4>Meus Dados</h4>
-
       <S.Section>
         <HeadingSection>Dados pessoais</HeadingSection>
         <TextField
