@@ -1,13 +1,13 @@
 import { GetServerSidePropsContext } from 'next'
 import { AxiosError } from 'axios'
 
-import { apiSSR } from 'services/api'
-import { UserProps } from 'services/user'
 import Profile from 'templates/Profile'
 import FormProfile from 'components/FormProfile'
-import { ErrorProps } from 'components/Error'
 import protectedRoutes from 'utils/protected-routes'
 import handlerError from 'utils/handle-error'
+import { ErrorProps } from 'components/Error'
+import { UserProps } from 'services/user'
+import { apiSSR } from 'services/api'
 
 type MeProps = {
   user?: UserProps
@@ -16,7 +16,7 @@ type MeProps = {
 
 export default function Me({ user, error }: MeProps) {
   return (
-    <Profile error={error}>
+    <Profile title="Meus dados" error={error}>
       <FormProfile {...user!} />
     </Profile>
   )
@@ -35,8 +35,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       message: handlerError(error as AxiosError)
     }
   }
-
-  console.log('Me SSR', props)
 
   return {
     props: {
