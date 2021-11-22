@@ -1,14 +1,16 @@
-import Donation, { DonationItemProps } from 'components/DonationItem'
+import DonationItem, { DonationItemProps } from 'components/DonationItem'
+
 import * as S from './styles'
 
 export type DonationListProps = {
-  donations: DonationItemProps[]
+  donations?: DonationItemProps[]
+  currentUser?: number
 }
 
 const DonationList = ({ donations }: DonationListProps) => (
   <S.Wrapper>
     {donations?.map((donation, key) => (
-      <Donation key={key} {...donation} />
+      <DonationItem key={key} {...donation} />
     ))}
   </S.Wrapper>
 )
