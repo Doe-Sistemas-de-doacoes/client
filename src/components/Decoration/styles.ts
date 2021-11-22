@@ -29,7 +29,7 @@ export const BottomLeftCorner = styled.img.attrs(() => ({
   width: min(36rem, 35vw);
   height: min(36rem, 35vw);
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   bottom: 0;
   left: 0;
