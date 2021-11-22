@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import { AxiosError } from 'axios'
 import { Plus } from 'react-feather'
+import { AxiosError } from 'axios'
 
 import api from 'services/api'
 import Modal from 'components/Modal'
+import Button from 'components/Button'
 import TextField from 'components/TextField'
 import handlerError from 'utils/handle-error'
-import Button from 'components/Button'
+import states from 'utils/states'
 import AddressItem, { AddressItemProps } from 'components/AddressItem'
-import { AddressProps } from 'services/user'
 import { addressValidate, FieldErrors } from 'utils/validations'
+import { AddressProps } from 'services/user'
 import { FormError, FormLoading } from 'components/Form'
 import { useToast } from 'hooks/use-toast'
 
@@ -247,6 +248,8 @@ const Address = ({
             name="state"
             label="Estado"
             type="state"
+            as="select"
+            options={states}
             placeholder="Estado"
             maxLength={2}
             value={values.state}
