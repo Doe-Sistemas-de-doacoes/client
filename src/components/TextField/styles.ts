@@ -18,6 +18,10 @@ export const InputWrapper = styled.div`
     &:focus-within {
       box-shadow: 0 0 0.5rem ${theme.colors.primary};
     }
+
+    textarea {
+      min-height: 8rem;
+    }
   `}
 `
 
