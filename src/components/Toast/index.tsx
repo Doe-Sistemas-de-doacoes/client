@@ -13,7 +13,7 @@ export type ToastProps = {
   message: string
   hiding?: boolean
   action?: {
-    type: ToastAction
+    type?: ToastAction
     primary?: ButtonProps
     cancel?: ButtonProps
   }
@@ -53,8 +53,8 @@ const Toast = ({
         {title && <S.Title>{title}</S.Title>}
         <S.Message>{message}</S.Message>
 
-        {action?.type === 'confirm' && (
-          <S.Action>
+        <S.Action>
+          {(action?.cancel || action?.type === 'confirm') && (
             <Button
               size="small"
               color="gray"
@@ -63,11 +63,14 @@ const Toast = ({
             >
               CANCELAR
             </Button>
+          )}
+
+          {(action?.primary || action?.type === 'confirm') && (
             <Button size="small" {...action?.primary} onClick={onConfirm}>
               CONFIRMAR
             </Button>
-          </S.Action>
-        )}
+          )}
+        </S.Action>
       </S.Content>
     </S.Wrapper>
   )
