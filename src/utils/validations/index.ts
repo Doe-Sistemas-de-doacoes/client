@@ -43,6 +43,15 @@ const addressFieldsValidations = {
   })
 }
 
+const donatinsFieldsValidations = {
+  type: Joi.string().required().messages({
+    'string.empty': 'Digite o tipo da doação.'
+  }),
+  description: Joi.string().required().messages({
+    'string.empty': 'Digite a descrição da doação.'
+  })
+}
+
 export type FieldErrors = {
   [key: string]: string
 }
@@ -125,6 +134,17 @@ type AddressProps = {
 
 export function addressValidate(values: AddressProps) {
   const schema = Joi.object(addressFieldsValidations)
+
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}
+
+type DonationValidationProps = {
+  type: string
+  description: string
+}
+
+export function donationValidate(values: DonationValidationProps) {
+  const schema = Joi.object(donatinsFieldsValidations)
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
