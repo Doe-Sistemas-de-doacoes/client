@@ -2,6 +2,11 @@ import { useState, InputHTMLAttributes } from 'react'
 
 import * as S from './styles'
 
+export type TextFieldOptions = {
+  label: string
+  value: string | number
+}
+
 export type TextFieldProps = {
   onInputChange?: (value: string) => void
   label?: string
@@ -10,6 +15,7 @@ export type TextFieldProps = {
   iconPosition?: 'left' | 'right'
   as?: React.ElementType
   disabled?: boolean
+  options?: TextFieldOptions[]
   error?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
@@ -20,6 +26,7 @@ const TextField = ({
   name,
   initialValue = '',
   error,
+  options,
   disabled = false,
   onInputChange,
   as = 'input',
@@ -49,7 +56,13 @@ const TextField = ({
           name={name}
           {...(label ? { id: name } : {})}
           {...props}
-        />
+        >
+          {options?.map(({ value, label }) => (
+            <S.Option value={value} key={value}>
+              {label}
+            </S.Option>
+          ))}
+        </S.Input>
       </S.InputWrapper>
       {!!error && <S.Error>{error}</S.Error>}
     </S.Wrapper>

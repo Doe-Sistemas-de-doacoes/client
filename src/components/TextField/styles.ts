@@ -108,3 +108,9 @@ export const Wrapper = styled.div<WrapperProps>`
     ${disabled && wrapperModifiers.disabled(theme)}
   `}
 `
+
+export const Option = styled.option`
+  ${({ theme }) => css`
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
+  `}
+`
