@@ -1,3 +1,4 @@
+import React from 'react'
 import { Edit2, Trash2 } from 'react-feather'
 
 import Loader from 'components/Loader'
@@ -7,9 +8,13 @@ import { AddressProps } from 'services/user'
 import * as S from './styles'
 
 export type AddressItemProps = {
+  pickable?: boolean
   editable?: boolean
   onDelete?: () => void
   onEdit?: () => void
+  isChecked?: boolean
+  disabled?: boolean
+  onChecked?: (checked: boolean) => void
   isDeleting?: boolean
 } & AddressProps
 
@@ -17,6 +22,10 @@ const AddressItem = ({
   editable = true,
   isDeleting = false,
   onDelete,
+  isChecked,
+  disabled = false,
+  onChecked,
+  pickable,
   onEdit,
   ...address
 }: AddressItemProps) => {
@@ -40,8 +49,22 @@ const AddressItem = ({
     }
   }
 
+  function handleCheck(checked: boolean) {
+    if (pickable && onChecked) onChecked(checked)
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper
+      pickable={pickable}
+      {...(pickable
+        ? {
+            role: 'checkbox',
+            'aria-checked': isChecked
+          }
+        : {})}
+      disabled={disabled}
+      onClick={() => handleCheck(!isChecked)}
+    >
       <S.Content>
         <p>
           {address.street}, Nº {address.number}
@@ -54,12 +77,12 @@ const AddressItem = ({
       {editable && (
         <S.Actions>
           {!!onDelete && (
-            <S.Delete onClick={handleDelete}>
+            <S.Delete onClick={handleDelete} disabled={disabled}>
               <Trash2 size={18} />
             </S.Delete>
           )}
           {!!onEdit && (
-            <S.Icon onClick={onEdit}>
+            <S.Icon onClick={onEdit} disabled={disabled}>
               <Edit2 size={18} />
             </S.Icon>
           )}

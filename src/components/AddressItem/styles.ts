@@ -1,7 +1,16 @@
 import styled, { css } from 'styled-components'
+import { AddressItemProps } from '.'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
+export type WrapperProps = Pick<AddressItemProps, 'pickable'>
+
+const wrapperModifiers = {
+  pickable: () => css`
+    cursor: pointer;
+  `
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ theme, pickable }) => css`
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -11,6 +20,13 @@ export const Wrapper = styled.div`
     border-radius: ${theme.border.radius.medium};
     box-shadow: ${theme.boxShadow.medium};
     background: ${theme.colors.white};
+
+    &[aria-checked='true'] {
+      box-shadow: ${theme.boxShadow.medium},
+        0px 0px 2px 2px ${theme.colors.primary};
+    }
+
+    ${!!pickable && wrapperModifiers.pickable()}
   `}
 `
 
