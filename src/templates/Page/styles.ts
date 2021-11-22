@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: ${theme.spacings.small} ${theme.spacings.xsmall};
+    padding: ${theme.spacings.small};
     max-width: ${theme.grid.container.medium};
     gap: ${theme.spacings.small};
     margin: 0 auto;
