@@ -31,6 +31,10 @@ const wrapperModifiers = {
       border-radius: ${theme.border.radius.medium};
       box-shadow: ${theme.boxShadow.small};
     }
+
+    & > button {
+      margin-top: ${theme.spacings.xsmall};
+    }
   `
 }
 

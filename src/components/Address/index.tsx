@@ -16,8 +16,11 @@ import { useToast } from 'hooks/use-toast'
 import * as S from './styles'
 
 export type AddressComponentProps = {
+  pickable?: boolean
   appearance?: 'full' | 'compact'
-  items?: AddressProps[]
+  onChecked?: (address: AddressProps) => void
+  disabled?: boolean
+  items?: AddressItemProps[]
 }
 
 type ValuesProps = {
@@ -32,11 +35,15 @@ type ValuesProps = {
 type Status = 'editing' | 'searching' | 'inserting'
 
 const Address = ({
+  onChecked,
+  pickable,
+  disabled = false,
   appearance = 'compact',
   items = []
 }: AddressComponentProps) => {
   const [status, setStatus] = useState<Status>('searching')
   const [addresses, setAddresses] = useState<AddressItemProps[]>(items)
+  const [checked, setChecked] = useState(0)
 
   const [loading, setLoading] = useState(false)
   const [formError, setFormError] = useState('')
@@ -145,6 +152,13 @@ const Address = ({
     }
   }
 
+  function handleCheck(address: AddressProps, checked: boolean) {
+    if (!checked) return
+
+    setChecked(address.id)
+    if (onChecked) onChecked(address)
+  }
+
   function onClose() {
     setStatus('searching')
     setValues({
@@ -157,8 +171,6 @@ const Address = ({
     })
   }
 
-  console.log(status)
-
   return (
     <S.Wrapper appearance={appearance}>
       <S.ItemsWrapper>
@@ -167,6 +179,10 @@ const Address = ({
             <AddressItem
               key={address.id}
               {...address}
+              pickable={pickable}
+              disabled={disabled}
+              onChecked={(checked) => handleCheck(address, checked)}
+              isChecked={checked === address.id}
               onDelete={() => handleDelete(address)}
               onEdit={() => handleEdit(address)}
             />
@@ -180,6 +196,8 @@ const Address = ({
 
       <Button
         icon={<Plus />}
+        appearance={appearance === 'full' ? 'solid' : 'outline'}
+        disabled={disabled}
         onClick={() => {
           setStatus('inserting')
         }}
