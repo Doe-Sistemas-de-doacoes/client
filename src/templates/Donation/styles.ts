@@ -1,14 +1,5 @@
 import styled, { css } from 'styled-components'
-
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    gap: ${theme.spacings.small};
-    margin-bottom: ${theme.spacings.small};
-    width: 100%;
-  `}
-`
+import { Wrapper as CardButton } from 'components/CardButton/styles'
 
 export const Section = styled.section`
   ${({ theme }) => css`
@@ -18,28 +9,54 @@ export const Section = styled.section`
   `}
 `
 
-export const Heading = styled.h5``
-
-export const Main = styled.main`
+export const Wrapper = styled.div`
   ${({ theme }) => css`
-    display: grid;
-    gap: ${theme.spacings.medium};
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: ${theme.spacings.large};
+    width: 100%;
+
+    & > button {
+      box-shadow: ${theme.boxShadow.medium};
+      margin: ${theme.spacings.small} auto;
+      width: min(40rem, 100%);
+    }
   `}
 `
 
-export const Action = styled.section`
+export const Main = styled.main`
   ${({ theme }) => css`
-    display: grid;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     gap: ${theme.spacings.medium};
-    grid-column: 1 / 3;
-    grid-row: 3 / 4;
+    margin-bottom: ${theme.spacings.small};
+    width: 100%;
 
-    button {
-      min-width: 40rem;
-      max-width: 40rem;
+    h6::after {
+      display: none;
+    }
+
+    & > img {
+      height: 100%;
+    }
+
+    ${CardButton} {
+      background: ${theme.colors.white};
+
+      h3 {
+        font-size: ${theme.font.sizes.medium};
+      }
+
+      p {
+        font-size: ${theme.font.sizes.small};
+        text-align: left;
+      }
+    }
+
+    @media screen and (min-width: 1000px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: minmax(20rem, 26rem) 1fr;
     }
   `}
 `
