@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { signIn } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Lock, Mail } from 'react-feather'
@@ -21,12 +21,14 @@ const FormSignIn = () => {
 
   const showToast = useToast()
 
-  if (query?.callbackUrl) {
-    showToast({
-      type: 'informative',
-      message: 'Para acessar essa página é necessario estar conectado!'
-    })
-  }
+  useEffect(() => {
+    if (query?.callbackUrl) {
+      showToast({
+        type: 'informative',
+        message: 'Para acessar essa página é necessario estar conectado!'
+      })
+    }
+  }, [query, showToast])
 
   const handleInput = (field: string, value: string) => {
     setValues((s) => ({ ...s, [field]: value }))
