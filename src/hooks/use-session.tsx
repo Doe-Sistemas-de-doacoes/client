@@ -31,7 +31,7 @@ function SessionProvider({ children }: ProviderProps) {
     setSession({
       ..._session,
       ...(defined ?? {})
-    })
+    } as Session)
     setLoading(_loading)
   }, [_session, _loading, defined])
 
@@ -41,7 +41,8 @@ function SessionProvider({ children }: ProviderProps) {
     _session = {
       ...session,
       ...props
-    }
+    } as NextSession
+
     setSession(_session)
   }
 

@@ -23,7 +23,6 @@ const AddressItem = ({
   isDeleting = false,
   onDelete,
   isChecked,
-  disabled = false,
   onChecked,
   pickable,
   onEdit,
@@ -62,7 +61,6 @@ const AddressItem = ({
             'aria-checked': isChecked
           }
         : {})}
-      disabled={disabled}
       onClick={() => handleCheck(!isChecked)}
     >
       <S.Content>
@@ -77,12 +75,12 @@ const AddressItem = ({
       {editable && (
         <S.Actions>
           {!!onDelete && (
-            <S.Delete onClick={handleDelete} disabled={disabled}>
+            <S.Delete onClick={handleDelete}>
               <Trash2 size={18} />
             </S.Delete>
           )}
           {!!onEdit && (
-            <S.Icon onClick={onEdit} disabled={disabled}>
+            <S.Icon onClick={onEdit}>
               <Edit2 size={18} />
             </S.Icon>
           )}
