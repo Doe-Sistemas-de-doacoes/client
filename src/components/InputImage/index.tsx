@@ -6,8 +6,8 @@ import * as S from './styles'
 export type InputImageProps = {
   name: string
   message: string
-  accept: string
-  onChange: (value: unknown) => void
+  accept?: string
+  onChange?: (value: unknown) => void
   disabled?: boolean
 } & InputHTMLAttributes<HTMLInputElement>
 
@@ -28,11 +28,11 @@ const InputImage = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event?.currentTarget?.files?.length) {
-      onChange(event?.currentTarget?.files[0])
+      if (onChange) onChange(event?.currentTarget?.files[0])
       setImage(URL.createObjectURL(event?.currentTarget?.files[0]))
     } else {
       setImage('')
-      onChange('')
+      if (onChange) onChange('')
     }
   }
 

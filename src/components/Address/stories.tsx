@@ -13,5 +13,5 @@ export const Default: Story<AddressComponentProps> = (args) => (
 )
 
 Default.args = {
-  addresses: mock
+  items: mock
 }

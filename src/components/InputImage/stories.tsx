@@ -1,9 +1,16 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import InputFile from '.'
+import InputImage, { InputImageProps } from '.'
 
 export default {
-  title: 'InputFile',
-  component: InputFile
+  title: 'InputImage',
+  component: InputImage
 } as Meta
 
-export const Default: Story = () => <InputFile />
+export const Default: Story<InputImageProps> = (args) => (
+  <InputImage {...args} />
+)
+
+Default.args = {
+  name: 'teste',
+  message: 'Message'
+}
