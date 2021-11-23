@@ -14,6 +14,7 @@ export type DonationItemProps = {
   description: string
   donor: User
   receiver: User
+  imageSrc: string
   isDelivery: boolean
   status: 'FINALIZADO' | 'PENDENTE'
   type: string
@@ -22,11 +23,12 @@ export type DonationItemProps = {
 const DonationItem = ({
   description,
   date,
+  imageSrc,
   donor,
   type
 }: DonationItemProps) => (
   <S.Wrapper>
-    <S.Image />
+    <S.Image src={imageSrc} />
 
     <S.Content>
       <S.Section>

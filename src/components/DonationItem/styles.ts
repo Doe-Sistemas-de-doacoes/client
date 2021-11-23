@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Image = styled.div`
+export const Image = styled.img`
   ${({ theme }) => css`
     width: 100%;
     height: 24rem;

@@ -49,7 +49,17 @@ const donatinsFieldsValidations = {
   }),
   description: Joi.string().required().messages({
     'string.empty': 'Digite a descrição da doação.'
-  })
+  }),
+  phone: Joi.string().required().messages({
+    'string.empty': 'Digite um celular para contato.'
+  }),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required()
+    .messages({
+      'string.empty': 'Digite um email para contato.',
+      'string.email': 'Email inválido.'
+    })
 }
 
 export type FieldErrors = {
@@ -141,6 +151,8 @@ export function addressValidate(values: AddressProps) {
 type DonationValidationProps = {
   type: string
   description: string
+  phone: string
+  email: string
 }
 
 export function donationValidate(values: DonationValidationProps) {

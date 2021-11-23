@@ -1,8 +1,6 @@
 import { AxiosError } from 'axios'
 
 const handlerError = (error: string | AxiosError): string => {
-  console.log('handlerError:', error)
-
   if (error) {
     if (typeof error === 'string') return error
 
@@ -24,6 +22,7 @@ const handlerError = (error: string | AxiosError): string => {
     }
   }
 
+  console.log('handlerError:', error)
   return 'Erro desconhecido'
 }
 

@@ -9,6 +9,22 @@ export const Section = styled.section`
   `}
 `
 
+export const Infos = styled(Section)`
+  grid-area: infos;
+`
+
+export const Contact = styled(Section)`
+  grid-area: contac;
+`
+
+export const Delivery = styled(Section)`
+  grid-area: delivery;
+`
+
+export const Address = styled(Section)`
+  grid-area: address;
+`
+
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
@@ -24,10 +40,20 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Main = styled.main`
+export const Column = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
+    gap: ${theme.spacings.medium};
+    min-width: min(100%, 46rem);
+    flex: 1;
+  `}
+`
+
+export const Main = styled.main`
+  ${({ theme }) => css`
+    display: flex;
+    flex-wrap: wrap;
     gap: ${theme.spacings.medium};
     margin-bottom: ${theme.spacings.small};
     width: 100%;
@@ -52,11 +78,13 @@ export const Main = styled.main`
         text-align: left;
       }
     }
-
+    /* 
     @media screen and (min-width: 1000px) {
       display: grid;
+      grid-template-areas: 'infos delivery' 
+                  'infos delivery' 
       grid-template-columns: 1fr 1fr;
       grid-template-rows: minmax(20rem, 26rem) 1fr;
-    }
+    } */
   `}
 `
