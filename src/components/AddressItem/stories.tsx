@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
 
-import AddressItem, { AddressItemProps } from '.'
 import mock from '../Address/mock'
+import AddressItem, { AddressItemProps } from '.'
 
 export default {
   title: 'AddressItem',

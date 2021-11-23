@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { signOut } from 'next-auth/client'
 import { LogOut, Menu as MenuIcon, User, X as CloseIcon } from 'react-feather'
+import { signOut } from 'next-auth/client'
+import { useRouter } from 'next/router'
 
 import Button from 'components/Button'
 import Logo from 'components/Logo'
@@ -17,13 +18,21 @@ export type MenuProps = {
 const Menu = ({ username, loading }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const { push } = useRouter()
+
+  async function handleLogOut() {
+    const data = await signOut({
+      redirect: false,
+      callbackUrl: '/'
+    })
+    push(data.url)
+  }
+
   return (
     <S.Wrapper>
-      <MediaMatch lessThan="medium">
-        <S.IconWrapper onClick={() => setIsOpen(true)}>
-          <MenuIcon aria-label="Abrir Menu" />
-        </S.IconWrapper>
-      </MediaMatch>
+      <S.IconWrapper onClick={() => setIsOpen(true)}>
+        <MenuIcon aria-label="Abrir Menu" />
+      </S.IconWrapper>
 
       <S.LogoWrapper>
         <Link href="/" passHref>
@@ -52,14 +61,14 @@ const Menu = ({ username, loading }: MenuProps) => {
           <S.MenuGroup>
             {username ? (
               <>
-                <Link href="/myaccount" passHref>
+                <Link href="/profile/me" passHref>
                   <S.MyAccount>
                     <User size={20} /> {username}
                   </S.MyAccount>
                 </Link>
 
-                <S.IconWrapper>
-                  <LogOut size={20} role="button" onClick={() => signOut()} />
+                <S.IconWrapper role="button" onClick={handleLogOut}>
+                  <LogOut size={20} aria-label="Deconectar" />
                 </S.IconWrapper>
               </>
             ) : (
@@ -87,10 +96,10 @@ const Menu = ({ username, loading }: MenuProps) => {
 
               {username && (
                 <>
-                  <Link href="/myaccount" passHref>
+                  <Link href="/profile/me" passHref>
                     <S.MenuLink>Minha Conta</S.MenuLink>
                   </Link>
-                  <S.MenuLink role="button" onClick={() => signOut()}>
+                  <S.MenuLink role="button" onClick={handleLogOut}>
                     Sair
                   </S.MenuLink>
                 </>

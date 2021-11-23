@@ -30,6 +30,7 @@ const wrapperModifiers = {
     font-size: ${theme.font.sizes.xsmall};
     font-weight: ${theme.font.bold};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
+    border-radius: ${theme.border.radius.small};
 
     svg {
       height: ${theme.font.sizes.small};

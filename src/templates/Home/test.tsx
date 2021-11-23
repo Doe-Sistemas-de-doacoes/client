@@ -2,9 +2,16 @@ import { render, screen } from 'utils/test-utils'
 
 import Home from '.'
 
-jest.mock('next-auth/client', () => ({
+jest.mock('hooks/use-session', () => ({
   useSession: jest.fn(() => {
-    return [{ user: { name: 'Allan' } }]
+    return {
+      session: {
+        user: {
+          name: 'Allan'
+        }
+      },
+      loading: false
+    }
   })
 }))
 

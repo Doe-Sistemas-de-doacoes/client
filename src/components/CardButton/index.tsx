@@ -11,8 +11,10 @@ export type CardButtonProps = {
   alt?: string
   title?: string
   message?: string
-  children?: React.ReactNode
   size?: 'small' | 'medium'
+  children?: React.ReactNode
+  asCheckbox?: boolean
+  isChecked?: boolean
   as?: React.ElementType
 } & CardButtonTypes
 
@@ -20,17 +22,38 @@ const CardButton: React.ForwardRefRenderFunction<
   CardButtonProps,
   CardButtonProps
 > = (
-  { src, alt, title, message, size = 'medium', children, ...props },
+  {
+    src,
+    alt,
+    title,
+    asCheckbox,
+    isChecked,
+    message,
+    size = 'medium',
+    children,
+    ...props
+  },
   ref
-) => (
-  <S.Wrapper {...props} ref={ref}>
-    {src && <S.Image src={src} alt={alt} size={size} />}
-    <S.Content>
-      {title && (size === 'medium' ? <h3>{title}</h3> : <h4>{title}</h4>)}
-      {message && <S.Message>{message}</S.Message>}
-    </S.Content>
-    {children}
-  </S.Wrapper>
-)
+) => {
+  return (
+    <S.Wrapper
+      {...props}
+      {...(asCheckbox
+        ? {
+            role: 'checkbox',
+            'aria-checked': isChecked
+          }
+        : {})}
+      ref={ref}
+    >
+      {src && <S.Image src={src} alt={alt} size={size} />}
+      <S.Content>
+        {title && (size === 'medium' ? <h3>{title}</h3> : <h4>{title}</h4>)}
+        {message && <S.Message>{message}</S.Message>}
+      </S.Content>
+      {children}
+    </S.Wrapper>
+  )
+}
 
 export default forwardRef(CardButton)

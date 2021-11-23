@@ -12,8 +12,8 @@ const wrapperModifiersWithTitle = {
     height: 4.9rem;
   `,
   normal: () => css`
-    width: 10rem;
-    height: 4rem;
+    width: 12rem;
+    height: 5.2rem;
   `,
   large: () => css`
     width: 14rem;
@@ -41,9 +41,9 @@ const wrapperModifiersWithoutTitle = {
 }
 
 export const Wrapper = styled.div<LogoProps>`
-  ${({ size = 'normal', withTitle }) => css`
+  ${({ size, withTitle }) => css`
     ${(withTitle
-      ? wrapperModifiersWithTitle[size]
-      : wrapperModifiersWithoutTitle[size])()}
+      ? wrapperModifiersWithTitle[size!]
+      : wrapperModifiersWithoutTitle[size!])()}
   `}
 `

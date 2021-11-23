@@ -1,76 +1,111 @@
 import { useState } from 'react'
-import { useSession } from 'next-auth/client'
+import { Plus } from 'react-feather'
 import { AxiosError } from 'axios'
 
 import api from 'services/api'
-import { useToast } from 'hooks/use-toast'
-import { AddressProps } from 'services/user'
-import handlerError from 'utils/handle-error'
-import { addressValidate, FieldErrors } from 'utils/validations'
-import AddressItem, { AddressItemProps } from 'components/AddressItem'
-import { FormError, FormLoading } from 'components/Form'
+import Modal from 'components/Modal'
 import Button from 'components/Button'
-import Input from 'components/Input'
+import TextField from 'components/TextField'
+import handlerError from 'utils/handle-error'
+import states from 'utils/states'
+import AddressItem, { AddressItemProps } from 'components/AddressItem'
+import { addressValidate, FieldErrors } from 'utils/validations'
+import { AddressProps } from 'services/user'
+import { FormError, FormLoading } from 'components/Form'
+import { useToast } from 'hooks/use-toast'
 
 import * as S from './styles'
 
 export type AddressComponentProps = {
-  addresses?: AddressProps[]
+  pickable?: boolean
+  appearance?: 'full' | 'compact'
+  onChecked?: (address: AddressProps) => void
+  disabled?: boolean
+  items?: AddressItemProps[]
 }
 
 type ValuesProps = {
+  id: number
   city: string
   neighborhood: string
-  number: number
+  number: string
   state: string
   street: string
 }
 
+type Status = 'editing' | 'searching' | 'inserting'
+
 const Address = ({
-  addresses: initialAdresses = []
+  onChecked,
+  pickable,
+  disabled = false,
+  appearance = 'compact',
+  items = []
 }: AddressComponentProps) => {
-  const [session] = useSession()
-  const [inserting, setInserting] = useState(false)
-  const [addresses, setAddresses] =
-    useState<AddressItemProps[]>(initialAdresses)
+  const [status, setStatus] = useState<Status>('searching')
+  const [addresses, setAddresses] = useState<AddressItemProps[]>(items)
+  const [checked, setChecked] = useState(0)
 
   const [loading, setLoading] = useState(false)
   const [formError, setFormError] = useState('')
   const [fieldError, setFieldError] = useState<FieldErrors>({})
   const [values, setValues] = useState<ValuesProps>({
+    id: 0,
     city: '',
     neighborhood: '',
-    number: 0,
+    number: '',
     state: '',
     street: ''
   })
 
   const showToast = useToast()
 
-  const handleInput = (field: string, value: string) => {
+  function handleInput(field: string, value: string) {
     setValues((s) => ({ ...s, [field]: value }))
   }
 
-  const close = () => {
-    setInserting(false)
+  async function handleDelete(address: AddressProps) {
+    setLoading(true)
+    const current = addresses.find((item) => item.id === address.id)
+    current!.isDeleting = true
+
+    try {
+      await api.delete(`/address/${address.id}`)
+      showToast({
+        type: 'success',
+        message: `Endereço removido com sucesso!`
+      })
+
+      setAddresses(addresses.filter((item) => item.id !== address.id))
+    } catch (error) {
+      showToast({
+        type: 'error',
+        message: handlerError(error as AxiosError)
+      })
+    } finally {
+      current!.isDeleting = false
+      setLoading(false)
+    }
+  }
+
+  function handleEdit(address: AddressProps) {
     setValues({
-      city: '',
-      neighborhood: '',
-      number: 0,
-      state: '',
-      street: ''
+      id: address.id,
+      city: address.city,
+      neighborhood: address.neighborhood,
+      number: address.number,
+      state: address.state,
+      street: address.street
     })
+    setStatus('editing')
   }
 
-  const handleDeleted = (id: number) => {
-    setAddresses(addresses.filter((address) => address.id !== id))
-  }
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const handleSubmit = async () => {
     setFormError('')
 
-    const errors = addressValidate(values)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id, ...fields } = values
+    const errors = addressValidate(fields)
 
     if (Object.keys(errors).length) {
       setFieldError(errors)
@@ -79,19 +114,38 @@ const Address = ({
 
     setFieldError({})
     setLoading(true)
-    try {
-      const response = await api.post('/address', {
-        ...values,
-        region: 'LESTE',
-        userId: session?.user?.id
-      })
 
-      setInserting(false)
-      setAddresses([...addresses, response.data])
-      showToast({
-        type: 'success',
-        message: 'Endereço adicionado com sucesso!'
-      })
+    try {
+      const { id, ...params } = values
+
+      if (status === 'inserting') {
+        const response = await api.post('/address', {
+          ...params,
+          region: 'LESTE'
+        })
+
+        setAddresses([...addresses, response.data])
+        showToast({
+          type: 'success',
+          message: 'Endereço adicionado com sucesso!'
+        })
+      } else {
+        const response = await api.put(`/address/${id}`, {
+          ...params,
+          region: 'LESTE'
+        })
+
+        setAddresses([
+          ...addresses.filter((address) => address.id !== id),
+          response.data
+        ])
+        showToast({
+          type: 'success',
+          message: 'Endereço salvo com sucesso!'
+        })
+      }
+
+      setStatus('searching')
     } catch (error) {
       setFormError(handlerError(error as AxiosError))
     } finally {
@@ -99,103 +153,146 @@ const Address = ({
     }
   }
 
+  function handleCheck(address: AddressProps, checked: boolean) {
+    if (!checked) return
+
+    setChecked(address.id)
+    if (onChecked) onChecked(address)
+  }
+
+  function onClose() {
+    setStatus('searching')
+    setValues({
+      id: 0,
+      city: '',
+      neighborhood: '',
+      number: '',
+      state: '',
+      street: ''
+    })
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper appearance={appearance}>
       <S.ItemsWrapper>
-        {addresses?.length
-          ? addresses.map(({ id, ...address }) => (
-              <AddressItem
-                key={id}
-                id={id}
-                {...address}
-                onDeleted={() => handleDeleted(id)}
-              />
-            ))
-          : !inserting && (
-              <S.NotFound>
-                <p>Nenhum endereço cadastrado!</p>
-              </S.NotFound>
-            )}
+        {addresses?.length ? (
+          addresses.map((address) => (
+            <AddressItem
+              key={address.id}
+              {...address}
+              pickable={pickable}
+              disabled={disabled}
+              onChecked={(checked) => handleCheck(address, checked)}
+              isChecked={checked === address.id}
+              onDelete={() => handleDelete(address)}
+              onEdit={() => handleEdit(address)}
+            />
+          ))
+        ) : (
+          <S.NotFound>
+            <p>Nenhum endereço cadastrado!</p>
+          </S.NotFound>
+        )}
       </S.ItemsWrapper>
-      {inserting ? (
-        <S.Form onSubmit={handleSubmit}>
-          <S.Heading>Novo endereço</S.Heading>
 
-          <S.FormBody>
-            <Input
-              name="city"
-              label="Cidade"
-              type="text"
-              placeholder=""
-              error={fieldError?.city}
-              onInputChange={(v) => handleInput('city', v)}
-              disabled={loading}
-            />
+      <Button
+        icon={<Plus />}
+        appearance={appearance === 'full' ? 'solid' : 'outline'}
+        disabled={disabled}
+        onClick={() => {
+          setStatus('inserting')
+        }}
+      >
+        ADICIONAR
+      </Button>
 
-            <Input
-              name="state"
-              label="Estado"
-              type="state"
-              placeholder=""
-              error={fieldError?.state}
-              onInputChange={(v) => handleInput('state', v)}
-              disabled={loading}
-            />
-
-            <Input
-              name="neighborhood"
-              label="Bairro"
-              type="text"
-              placeholder=""
-              error={fieldError?.neighborhood}
-              onInputChange={(v) => handleInput('neighborhood', v)}
-              disabled={loading}
-            />
-
-            <Input
-              name="street"
-              label="Rua"
-              type="street"
-              placeholder=""
-              error={fieldError?.street}
-              onInputChange={(v) => handleInput('street', v)}
-              disabled={loading}
-            />
-
-            <Input
-              name="number"
-              label="Número"
-              type="text"
-              placeholder=""
-              error={fieldError?.number}
-              onInputChange={(v) => handleInput('number', v)}
-              disabled={loading}
-            />
-          </S.FormBody>
-
-          {!!formError && <FormError>{formError}</FormError>}
-
-          <S.Footer>
+      <Modal
+        title={status === 'editing' ? 'Endereço' : 'Novo endereço'}
+        isOpen={status !== 'searching'}
+        onClose={onClose}
+        footer={
+          <>
             <Button
               type="submit"
-              size="small"
               color="gray"
               appearance="outline"
-              onClick={close}
+              disabled={loading}
+              onClick={onClose}
             >
               CANCELAR
             </Button>
 
-            <Button type="submit" size="small">
-              {loading ? <FormLoading /> : <span>ADICIONAR</span>}
+            <Button type="submit" disabled={loading} onClick={handleSubmit}>
+              {loading ? (
+                <FormLoading />
+              ) : (
+                <span>{status === 'inserting' ? 'ADICIONAR' : 'SALVAR'}</span>
+              )}
             </Button>
-          </S.Footer>
+          </>
+        }
+      >
+        <S.Form>
+          <TextField
+            type="text"
+            name="city"
+            label="Cidade"
+            placeholder="Cidade"
+            value={values.city}
+            error={fieldError?.city}
+            onInputChange={(v) => handleInput('city', v)}
+            disabled={loading}
+          />
+
+          <TextField
+            name="state"
+            label="Estado"
+            type="state"
+            as="select"
+            options={states}
+            placeholder="Estado"
+            maxLength={2}
+            value={values.state}
+            error={fieldError?.state}
+            onInputChange={(v) => handleInput('state', v)}
+            disabled={loading}
+          />
+
+          <TextField
+            type="text"
+            label="Bairro"
+            name="neighborhood"
+            placeholder="Bairro"
+            value={values.neighborhood}
+            error={fieldError?.neighborhood}
+            onInputChange={(v) => handleInput('neighborhood', v)}
+            disabled={loading}
+          />
+
+          <TextField
+            name="street"
+            label="Rua"
+            type="street"
+            placeholder="Rua"
+            value={values.street}
+            error={fieldError?.street}
+            onInputChange={(v) => handleInput('street', v)}
+            disabled={loading}
+          />
+
+          <TextField
+            name="number"
+            type="number"
+            label="Número"
+            placeholder="Número"
+            value={values.number}
+            error={fieldError?.number}
+            onInputChange={(v) => handleInput('number', v)}
+            disabled={loading}
+          />
+          {!!formError && <FormError>{formError}</FormError>}
         </S.Form>
-      ) : (
-        <Button size="small" onClick={() => setInserting(true)}>
-          NOVO
-        </Button>
-      )}
+      </Modal>
     </S.Wrapper>
   )
 }

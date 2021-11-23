@@ -1,22 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import { ToastTypes } from '.'
 
-const iconWrapperModifiers = {
-  success: (theme: DefaultTheme) => css`
-    svg {
-      color: ${theme.colors.primary};
-    }
-  `,
-  error: (theme: DefaultTheme) => css`
-    svg {
-      color: ${theme.colors.red};
-    }
-  `,
-  hiding: () => css`
-    animation: leftToRight 0.25s linear forwards ! !important;
-  `
-}
-
 export const ToastWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
@@ -27,7 +11,7 @@ export const ToastWrapper = styled.div`
     gap: ${theme.spacings.xsmall};
     position: absolute;
     overflow: hidden;
-    max-width: min(30rem, 100vw);
+    max-width: min(36rem, 90vw);
     height: 100vh;
     width: 100vw;
     bottom: 0;
@@ -54,22 +38,67 @@ export const ToastWrapper = styled.div`
   `}
 `
 
-export const Wrapper = styled.div`
-  display: flex;
-  min-height: 6.4rem;
-  width: 100%;
-  min-width: min(30rem, 100vw);
-  animation: leftToRight 0.25s linear forwards;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.15);
+export type WrapperProps = {
+  hiding?: boolean
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ hiding }) => css`
+    display: flex;
+    min-height: 8.6rem;
+    width: 100%;
+    min-width: min(36rem, 100%);
+    animation: leftToRight 0.25s linear forwards;
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.15);
+
+    ${!!hiding &&
+    css`
+      animation: leftToRight 0.25s linear forwards !important;
+    `}
+  `}
 `
 
 export type IconWrapperProps = {
   type: ToastTypes
-  hiding?: boolean
+  size: 'normal' | 'large'
+}
+
+const iconWrapperModifiers = {
+  success: (theme: DefaultTheme) => css`
+    svg {
+      color: ${theme.colors.primary};
+    }
+  `,
+  error: (theme: DefaultTheme) => css`
+    svg {
+      color: ${theme.colors.red};
+    }
+  `,
+  informative: (theme: DefaultTheme) => css`
+    svg {
+      color: ${theme.colors.lightGray};
+    }
+  `,
+  normal: (theme: DefaultTheme) => css`
+    width: calc(${theme.spacings.large} * 2);
+
+    svg {
+      width: ${theme.spacings.large};
+      height: ${theme.spacings.large};
+    }
+  `,
+  large: (theme: DefaultTheme) => css`
+    width: calc(${theme.spacings.xxlarge} * 2);
+
+    svg {
+      width: ${theme.spacings.xxlarge};
+      height: ${theme.spacings.xxlarge};
+    }
+  `
 }
 
 export const IconWrapper = styled.div<IconWrapperProps>`
-  ${({ theme, type, hiding }) => css`
+  ${({ theme, type, size }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,8 +112,8 @@ export const IconWrapper = styled.div<IconWrapperProps>`
       height: ${theme.spacings.medium};
     }
 
-    ${iconWrapperModifiers[type!](theme)}
-    ${!!hiding && iconWrapperModifiers.hiding()}
+    ${iconWrapperModifiers[type](theme)}
+    ${iconWrapperModifiers[size](theme)}
   `}
 `
 
@@ -92,15 +121,30 @@ export const Content = styled.div`
   ${({ theme }) => css`
     flex: 1;
     display: flex;
-    align-items: center;
-    padding: ${theme.spacings.small} ${theme.spacings.xsmall};
+    flex-direction: column;
+    justify-content: center;
+    padding: ${theme.spacings.small};
     background: ${theme.colors.lightGray};
+    gap: ${theme.spacings.small};
+  `}
+`
+
+export const Title = styled.h4`
+  ${({ theme }) => css`
+    color: ${theme.colors.textEmphasis};
   `}
 `
 
 export const Message = styled.p`
   ${({ theme }) => css`
     color: ${theme.colors.text};
-    font-size: ${theme.font.sizes.small};
+    font-size: ${theme.font.sizes.medium};
+  `}
+`
+export const Action = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: flex-end;
+    gap: ${theme.spacings.xxsmall};
   `}
 `

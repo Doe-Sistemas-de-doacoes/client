@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { signOut, useSession } from 'next-auth/client'
+import { signOut } from 'next-auth/client'
 import { LogOut } from 'react-feather'
 
+import { useSession } from 'hooks/use-session'
 import CardButton from 'components/CardButton'
 import Footer from 'components/Footer'
 import Logo from 'components/Logo'
@@ -14,7 +15,7 @@ export type HomeProps = {
 }
 
 const Home = ({ connections = 0 }: HomeProps) => {
-  const [session, loading] = useSession()
+  const { session, loading } = useSession()
 
   return (
     <Page>
@@ -33,7 +34,7 @@ const Home = ({ connections = 0 }: HomeProps) => {
 
         <S.Main>
           {session?.user?.name ? (
-            <Link href="/myaccount">
+            <Link href="/profile/me">
               <CardButton
                 src="/img/avatar.svg"
                 alt="Avatar do usuário"
@@ -41,7 +42,13 @@ const Home = ({ connections = 0 }: HomeProps) => {
                 size="small"
                 as="a"
               >
-                <S.SignOut role="button" onClick={() => signOut()}>
+                <S.SignOut
+                  role="button"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    signOut()
+                  }}
+                >
                   <LogOut size={20} />
                 </S.SignOut>
               </CardButton>

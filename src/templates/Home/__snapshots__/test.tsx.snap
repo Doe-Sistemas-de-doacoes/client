@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Home /> should render correctly 1`] = `
-.c10 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -19,17 +19,17 @@ exports[`<Home /> should render correctly 1`] = `
   background: #fff;
 }
 
-.c11 {
+.c10 {
   width: 4rem;
   height: 4rem;
 }
 
-.c14 {
+.c13 {
   width: 10rem;
   height: 8rem;
 }
 
-.c12 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -40,34 +40,37 @@ exports[`<Home /> should render correctly 1`] = `
   gap: 0.8rem;
 }
 
-.c12 h3,
-.c12 h4 {
+.c11 h3,
+.c11 h4 {
   text-align: left;
   color: #212D22;
 }
 
-.c15 {
+.c14 {
   color: #394338;
   font-size: 1.4rem;
 }
 
-.c18 {
+.c17 {
   color: #394338;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.c19 {
+.c18 {
   font-size: 1.2rem;
 }
 
-.c6 {
+.c5 {
   width: 4.6rem;
   height: 3.9rem;
 }
 
 .c0 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -75,23 +78,18 @@ exports[`<Home /> should render correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  gap: 4.0rem;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 2.4rem;
-  overflow-y: auto;
-  height: 100vh;
-}
-
-.c0 .c17 {
-  margin-top: min(2vh,3.2rem);
+  width: 100%;
 }
 
 .c2 {
-  -webkit-flex: 2;
-  -ms-flex: 2;
-  flex: 2;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -112,7 +110,7 @@ exports[`<Home /> should render correctly 1`] = `
   line-height: 1.4;
 }
 
-.c5 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -126,7 +124,7 @@ exports[`<Home /> should render correctly 1`] = `
   width: 100%;
 }
 
-.c8 {
+.c7 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.6rem;
@@ -134,15 +132,15 @@ exports[`<Home /> should render correctly 1`] = `
   grid-template-areas: 'account account' 'donation receive' 'connections connections';
 }
 
-.c8 > *:first-child {
+.c7 > *:first-child {
   grid-area: account;
 }
 
-.c8 > *:nth-child(2) {
+.c7 > *:nth-child(2) {
   grid-area: donation;
 }
 
-.c8 > *:nth-child(3) {
+.c7 > *:nth-child(3) {
   grid-area: receive;
 }
 
@@ -150,14 +148,14 @@ exports[`<Home /> should render correctly 1`] = `
   font-size: 8.0rem;
 }
 
-.c16 {
+.c15 {
   color: #394338;
   font-size: 1.2rem;
   font-weight: 300;
   grid-area: connections;
 }
 
-.c13 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -173,22 +171,21 @@ exports[`<Home /> should render correctly 1`] = `
 }
 
 @media (max-width:767px) {
-  .c0 .c9:not(:first-child) {
+  .c0 .c8:not(:first-child) {
     text-align: center;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
   }
+
+  .c0 .c8:not(:first-child) h3 {
+    text-align: center;
+  }
 }
 
-@media (min-width:450px) {
+@media (min-height:768px) {
   .c0 {
-    gap: 2.4rem;
-    padding: 2.4rem;
-  }
-
-  .c0 .c17 {
-    margin-top: min(6vh,4.0rem);
+    gap: 6.2rem;
   }
 }
 
@@ -199,7 +196,6 @@ exports[`<Home /> should render correctly 1`] = `
     -ms-flex-align: flex-start;
     align-items: flex-start;
     gap: 4.0rem;
-    padding: 1.6rem 4.8rem;
     -webkit-box-pack: end;
     -webkit-justify-content: flex-end;
     -ms-flex-pack: end;
@@ -207,20 +203,17 @@ exports[`<Home /> should render correctly 1`] = `
   }
 
   .c0 .c1 {
-    -webkit-flex: initial;
-    -ms-flex: initial;
-    flex: initial;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
   }
 
-  .c0 .c4 {
-    margin-top: 2.4rem;
-  }
-
-  .c0 .c7 {
+  .c0 .c6 {
     max-width: unset;
     grid-template-areas: 'account .' 'donation receive' 'connections .';
   }
@@ -230,6 +223,19 @@ exports[`<Home /> should render correctly 1`] = `
   .c0 {
     max-width: 88rem;
     margin: 0 auto;
+  }
+
+  .c0 .c16 {
+    margin-top: 3.2rem;
+  }
+}
+
+@media (min-height:900px) {
+  .c2 {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
   }
 }
 
@@ -252,64 +258,69 @@ exports[`<Home /> should render correctly 1`] = `
       </h2>
     </header>
     <section
-      class="c4 c5"
+      class="c4"
     >
       <div
-        class="c6"
+        class="c5"
       >
         <svg
           aria-label="Doe"
           fill="none"
           height="100%"
           role="img"
-          viewBox="0 0 107 107"
+          viewBox="0 0 100 90"
           width="100%"
           xmlns="http://www.w3.org/2000/svg"
         >
           <g
-            filter="url(#logo1)"
+            clip-path="url(#a)"
+            filter="url(#b)"
           >
-            <g
-              filter="url(#logo2)"
-            >
-              <path
-                d="M109.972 35.685c-1.875-27.12-31.403-37.407-50.619-21.509L70.602 24.93c9.373 13.56-2.813 24.314-16.873 16.833L30.763 65.142c-4.218 5.143.469 12.624 7.499 8.884l26.247-25.25 2.812 2.339-25.778 26.651c-3.281 5.611 2.343 11.222 8.905 7.482l25.31-25.25 3.28 2.338L53.26 88.521c-4.218 5.61 2.812 12.624 8.437 7.948l40.307-39.743c8.905-11.69 7.968-21.041 7.968-21.041Z"
-                fill="#04D361"
-              />
-              <path
-                d="m50.917 38.958-7.968-8.884-23.435 23.378c-5.624 5.144 1.875 15.43 8.905 8.417l22.498-22.911Z"
-                fill="#04D361"
-              />
-              <path
-                d="M54.666 13.709C49.511 9.5 34.981-.786 16.234 12.773-3.576 27.1 7.327 52.985 14.826 58.596c-.937-2.806 1.875-7.014 3.281-8.417l22.497-22.91-7.499-7.014 2.344-1.87 19.685 19.637C65.446 48.31 75.757 34.75 67.32 26.334c0 0-7.345-8.29-12.655-12.624Z"
-                fill="#04D361"
-              />
-              <path
-                d="M109.972 35.685c-1.875-27.12-31.403-37.407-50.619-21.509L70.602 24.93c9.373 13.56-2.813 24.314-16.873 16.833L30.763 65.142c-4.218 5.143.469 12.624 7.499 8.884l26.247-25.25 2.812 2.339-25.778 26.651c-3.281 5.611 2.343 11.222 8.905 7.482l25.31-25.25 3.28 2.338L53.26 88.521c-4.218 5.61 2.812 12.624 8.437 7.948l40.307-39.743c8.905-11.69 7.968-21.041 7.968-21.041Z"
-                stroke="#000"
-                stroke-width=".5"
-              />
-              <path
-                d="m50.917 38.958-7.968-8.884-23.435 23.378c-5.624 5.144 1.875 15.43 8.905 8.417l22.498-22.911Z"
-                stroke="#000"
-                stroke-width=".5"
-              />
-              <path
-                d="M54.666 13.709C49.511 9.5 34.981-.786 16.234 12.773-3.576 27.1 7.327 52.985 14.826 58.596c-.937-2.806 1.875-7.014 3.281-8.417l22.497-22.91-7.499-7.014 2.344-1.87 19.685 19.637C65.446 48.31 75.757 34.75 67.32 26.334c0 0-7.345-8.29-12.655-12.624Z"
-                stroke="#000"
-                stroke-width=".5"
-              />
-            </g>
+            <path
+              d="M91.977 31.877c-1.5-21.814-25.121-30.088-40.495-17.3l9 8.65c7.498 10.906-2.25 19.556-13.499 13.539L28.61 55.571c-3.374 4.137.375 10.154 6 7.146l20.997-20.31 2.25 1.88-20.623 21.438c-2.624 4.513 1.875 9.026 7.124 6.018l20.248-20.31 2.624 1.881-20.622 21.061c-3.374 4.513 2.25 10.155 6.75 6.394l32.245-31.968c7.124-9.402 6.374-16.924 6.374-16.924Z"
+              fill="#04D361"
+            />
+            <path
+              d="m44.733 34.51-6.374-7.146-18.748 18.804c-4.499 4.137 1.5 12.411 7.125 6.77l17.997-18.429Z"
+              fill="#04D361"
+            />
+            <path
+              d="M47.733 14.2c-4.124-3.384-15.748-11.659-30.746-.752C1.14 24.972 9.863 45.792 15.862 50.305c-.75-2.256 1.5-5.641 2.625-6.77l17.997-18.428-5.999-5.641 1.875-1.505 15.748 15.796c8.249 8.274 16.498-2.632 9.749-9.402 0 0-5.876-6.669-10.124-10.155Z"
+              fill="#04D361"
+            />
+            <path
+              d="M91.977 31.877c-1.5-21.814-25.121-30.088-40.495-17.3l9 8.65c7.498 10.906-2.25 19.556-13.499 13.539L28.61 55.571c-3.374 4.137.375 10.154 6 7.146l20.997-20.31 2.25 1.88-20.623 21.438c-2.624 4.513 1.875 9.026 7.124 6.018l20.248-20.31 2.624 1.881-20.622 21.061c-3.374 4.513 2.25 10.155 6.75 6.394l32.245-31.968c7.124-9.402 6.374-16.924 6.374-16.924Z"
+              stroke="#000"
+              stroke-width=".5"
+            />
+            <path
+              d="m44.733 34.51-6.374-7.146-18.748 18.804c-4.499 4.137 1.5 12.411 7.125 6.77l17.997-18.429Z"
+              stroke="#000"
+              stroke-width=".5"
+            />
+            <path
+              d="M47.733 14.2c-4.124-3.384-15.748-11.659-30.746-.752C1.14 24.972 9.863 45.792 15.862 50.305c-.75-2.256 1.5-5.641 2.625-6.77l17.997-18.428-5.999-5.641 1.875-1.505 15.748 15.796c8.249 8.274 16.498-2.632 9.749-9.402 0 0-5.876-6.669-10.124-10.155Z"
+              stroke="#000"
+              stroke-width=".5"
+            />
           </g>
           <defs>
+            <clippath
+              id="a"
+            >
+              <path
+                d="M0 0h100v89H0z"
+                fill="#fff"
+              />
+            </clippath>
             <filter
               color-interpolation-filters="sRGB"
               filterUnits="userSpaceOnUse"
-              height="100.5"
-              id="logo1"
-              width="254.17"
-              x=".75"
-              y="5.75"
+              height="82.5"
+              id="b"
+              width="92.5"
+              x="3.75"
+              y="7.75"
             >
               <feflood
                 flood-opacity="0"
@@ -331,55 +342,12 @@ exports[`<Home /> should render correctly 1`] = `
               />
               <feblend
                 in2="BackgroundImageFix"
-                result="effect1_dropShadow"
+                result="effect1_dropShadow_333:569"
               />
               <feblend
                 in="SourceGraphic"
-                in2="effect1_dropShadow"
+                in2="effect1_dropShadow_333:569"
                 result="shape"
-              />
-            </filter>
-            <filter
-              color-interpolation-filters="sRGB"
-              filterUnits="userSpaceOnUse"
-              height="96.5"
-              id="logo2"
-              width="105.5"
-              x="4.75"
-              y="5.75"
-            >
-              <feflood
-                flood-opacity="0"
-                result="BackgroundImageFix"
-              />
-              <feblend
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <fecolormatrix
-                in="SourceAlpha"
-                result="hardAlpha"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              />
-              <feoffset
-                dy="4"
-              />
-              <fegaussianblur
-                stdDeviation="2"
-              />
-              <fecomposite
-                in2="hardAlpha"
-                k2="-1"
-                k3="1"
-                operator="arithmetic"
-              />
-              <fecolormatrix
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-              />
-              <feblend
-                in2="shape"
-                result="effect1_innerShadow"
               />
               <fecolormatrix
                 in="SourceAlpha"
@@ -400,8 +368,8 @@ exports[`<Home /> should render correctly 1`] = `
                 values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
               />
               <feblend
-                in2="effect1_innerShadow"
-                result="effect2_innerShadow"
+                in2="shape"
+                result="effect2_innerShadow_333:569"
               />
             </filter>
           </defs>
@@ -413,25 +381,25 @@ exports[`<Home /> should render correctly 1`] = `
       </h3>
     </section>
     <main
-      class="c7 c8"
+      class="c6 c7"
     >
       <a
-        class="c9 c10"
+        class="c8 c9"
       >
         <img
           alt="Avatar do usuário"
-          class="c11"
+          class="c10"
           src="/img/avatar.svg"
         />
         <div
-          class="c12"
+          class="c11"
         >
           <h4>
             Minha conta
           </h4>
         </div>
         <div
-          class="c13"
+          class="c12"
           role="button"
         >
           <svg
@@ -461,59 +429,59 @@ exports[`<Home /> should render correctly 1`] = `
         </div>
       </a>
       <a
-        class="c9 c10"
+        class="c8 c9"
       >
         <img
           alt="Duas mãos enviando um coração vende para cima"
-          class="c14"
+          class="c13"
           src="/img/donation.svg"
         />
         <div
-          class="c12"
+          class="c11"
         >
           <h3>
             Doar
           </h3>
           <p
-            class="c15"
+            class="c14"
           >
             Ajude pessoas ou causas
           </p>
         </div>
       </a>
       <a
-        class="c9 c10"
+        class="c8 c9"
       >
         <img
           alt="Duas mãos segurando um coração vende"
-          class="c14"
+          class="c13"
           src="/img/receive.svg"
         />
         <div
-          class="c12"
+          class="c11"
         >
           <h3>
             Encontrar
           </h3>
           <p
-            class="c15"
+            class="c14"
           >
             Procure algo que você precisa
           </p>
         </div>
       </a>
       <p
-        class="c16"
+        class="c15"
       >
         200
          pessoas conectadas
       </p>
     </main>
     <footer
-      class="c17 c18"
+      class="c16 c17"
     >
       <p
-        class="c19"
+        class="c18"
       >
         Doe © 2021, Nenhum direito reservado.
       </p>

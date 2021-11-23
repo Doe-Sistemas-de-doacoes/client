@@ -1,11 +1,4 @@
-export type Colors =
-  | 'primary'
-  | 'primaryDark'
-  | 'darkGray'
-  | 'secondary'
-  | 'gray'
-
-export default {
+const theme = {
   grid: {
     container: {
       small: '88rem',
@@ -47,9 +40,11 @@ export default {
     textEmphasis: '#212D22',
     text: '#394338',
     white: '#FAFAFA',
+    extraLightGray: '#f7f7f7',
     lightGray: '#F2F3F5',
     gray: '#8F8F8F',
     darkGray: '#2E2F42',
+    divider: '#e9e9e9',
     red: '#E33D3D'
     // background: ''
     // mainBg: '#06092B',
@@ -80,6 +75,12 @@ export default {
   },
   boxShadow: {
     small: '0px 0px 4px rgba(0, 0, 0, 0.08)',
-    medium: 'box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15)'
+    medium: '0px 0px 8px rgba(0, 0, 0, 0.15)'
   }
-} as const
+}
+
+export type Spacings = keyof typeof theme.spacings
+
+export type Colors = keyof typeof theme.colors
+
+export default theme

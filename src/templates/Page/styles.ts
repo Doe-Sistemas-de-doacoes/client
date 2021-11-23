@@ -1,42 +1,35 @@
-import { Footer } from 'components/Footer/styles'
-import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
+import styled, { css } from 'styled-components'
+
+import { Footer } from 'components/Footer/styles'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 0 ${theme.spacings.small} ${theme.spacings.small};
+    flex-direction: column;
+    padding: ${theme.spacings.small};
     max-width: ${theme.grid.container.medium};
     gap: ${theme.spacings.small};
     margin: 0 auto;
-    overflow-x: hidden;
-    min-height: 100vh;
     width: 100%;
-  `}
 
-  ${Footer} {
-    margin-top: auto;
-  }
+    ${media.greaterThan('medium')`
+      padding: ${theme.spacings.medium} ${theme.spacings.xlarge};
+      gap: ${theme.spacings.medium};
+    `}
+
+    ${Footer} {
+      margin-top: auto;
+    }
+  `}
 `
 
-export const Decoration = styled.div`
-  display: none;
-  position: absolute;
-  max-height: min(90vh, 56vw);
-  pointer-events: none;
+export const Title = styled.h3`
+  margin-right: auto;
+`
+
+export const Image = styled.img`
   height: 100%;
-  z-index: -1;
-  right: 0;
-  top: 0;
-
-  & > svg {
-    height: 100%;
-    margin-left: auto;
-  }
-
-  ${media.greaterThan('medium')`
-    display: block;
-  `}
+  width: 100%;
 `

@@ -1,3 +1,4 @@
+import { FormLoading } from 'components/Form'
 import { forwardRef, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import { Colors } from 'styles/theme'
 
@@ -13,14 +14,17 @@ export type ButtonProps = {
   fullWidth?: boolean
   color?: Colors
   minimal?: boolean
+  disabled?: boolean | undefined
+  loading?: boolean
   icon?: JSX.Element
   as?: React.ElementType
 } & ButtonTypes
 
 const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
   {
-    children,
     icon,
+    loading,
+    children,
     color = 'primary',
     size = 'medium',
     appearance = 'solid',
@@ -38,8 +42,14 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     ref={ref}
     {...props}
   >
-    {icon}
-    {!!children && <span>{children}</span>}
+    {loading ? (
+      <FormLoading />
+    ) : (
+      <>
+        {icon}
+        {!!children && <span>{children}</span>}
+      </>
+    )}
   </S.Wrapper>
 )
 

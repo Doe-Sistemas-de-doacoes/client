@@ -1,9 +1,13 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: grid;
     gap: ${theme.spacings.xsmall};
-    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+
+    ${media.greaterThan('small')`
+      grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    `}
   `}
 `

@@ -9,9 +9,14 @@ export const Wrapper = styled.button`
     border: none;
     gap: ${theme.spacings.xsmall};
     border-radius: 0.5rem;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: ${theme.boxShadow.medium};
     align-items: center;
     background: #fff;
+
+    &[aria-checked='true'] {
+      box-shadow: ${theme.boxShadow.medium},
+        0px 0px 2px 2px ${theme.colors.primary};
+    }
   `}
 `
 

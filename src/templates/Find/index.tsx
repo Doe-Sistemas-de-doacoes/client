@@ -1,11 +1,15 @@
 import DonationList, { DonationListProps } from 'components/DonationList'
+import { ErrorProps } from 'components/Error'
 import Page from 'templates/Page'
 import * as S from './styles'
 
+export type FindTemplateProps = {
+  error?: ErrorProps
+} & DonationListProps
+
 const FindTemplate = ({ donations }: DonationListProps) => (
-  <Page header footer>
+  <Page title="Encontrar" header footer decoration="topRightCorner">
     <S.Wrapper>
-      <h3>Encontrar</h3>
       <DonationList donations={donations} />
     </S.Wrapper>
   </Page>

@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Lock, Mail } from 'react-feather'
 
+import { useToast } from 'hooks/use-toast'
 import { FieldErrors, signInValidate } from 'utils/validations'
 import { FormError, FormLoading } from 'components/Form'
 import Button from 'components/Button'
@@ -17,6 +18,15 @@ const FormSignIn = () => {
   const [loading, setLoading] = useState(false)
   const routes = useRouter()
   const { push, query } = routes
+
+  const showToast = useToast()
+
+  if (query?.callbackUrl) {
+    showToast({
+      type: 'informative',
+      message: 'Para acessar essa página é necessario estar conectado!'
+    })
+  }
 
   const handleInput = (field: string, value: string) => {
     setValues((s) => ({ ...s, [field]: value }))
@@ -48,12 +58,13 @@ const FormSignIn = () => {
 
     if (result?.error) {
       setLoading(false)
-      setFormError(result?.error)
+      setFormError(result.error)
       return
     }
 
     if (result?.url) {
-      return push(result?.url)
+      push(result?.url)
+      return
     }
 
     setLoading(false)
