@@ -29,7 +29,7 @@ const InputImage = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event?.currentTarget?.files?.length) {
       if (onChange) onChange(event?.currentTarget?.files[0])
-      setImage(URL.createObjectURL(event?.currentTarget?.files[0]))
+      setImage(value ? URL.createObjectURL(value) : '')
     } else {
       setImage('')
       if (onChange) onChange('')
