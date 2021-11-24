@@ -3,14 +3,14 @@ import { AxiosError } from 'axios'
 
 import { apiSSR } from 'services/api'
 import Profile from 'templates/Profile'
-import { ErrorProps } from 'components/Error'
-import protectedRoutes from 'utils/protected-routes'
 import handlerError from 'utils/handle-error'
+import protectedRoutes from 'utils/protected-routes'
 import DonationList from 'components/DonationList'
-import { DonationItemProps } from 'components/DonationItem'
+import { DonationProps } from 'components/DonationItem'
+import { ErrorProps } from 'components/Error'
 
 type ProfileDonationProps = {
-  donations?: DonationItemProps[]
+  donations?: DonationProps[]
   user?: number
   error?: ErrorProps
 }
@@ -21,7 +21,7 @@ export default function ProfileDonation({
 }: ProfileDonationProps) {
   return (
     <Profile title="Minhas doações" error={error}>
-      <DonationList donations={donations} />
+      <DonationList byUser editable items={donations} />
     </Profile>
   )
 }
@@ -34,8 +34,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   try {
-    const response = await apiSSR(context).get<DonationItemProps[]>(
-      '/donations'
+    const response = await apiSSR(context).get<DonationProps[]>(
+      '/users/donations'
     )
     props.donations = response.data
   } catch (error) {
