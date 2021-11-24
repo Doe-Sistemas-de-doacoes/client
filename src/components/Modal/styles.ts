@@ -41,7 +41,7 @@ export const Content = styled.div`
     transform: translate(-50%, -50%);
     color: ${theme.colors.text};
     width: min(100%, 60rem);
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
   `}
@@ -86,7 +86,7 @@ export const Wrapper = styled.div<WrapperProps>`
       z-index: ${theme.layers.alwaysOnTop};
       width: min(60rem, 90rem);
       transform: translate(-50%, -50%);
-      position: absolute;
+      position: fixed;
       left: 50%;
       top: 50%;
     }
