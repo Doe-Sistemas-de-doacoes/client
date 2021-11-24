@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Plus } from 'react-feather'
 import { AxiosError } from 'axios'
 
@@ -21,6 +21,7 @@ export type AddressComponentProps = {
   appearance?: 'full' | 'compact'
   onChecked?: (address: AddressProps) => void
   disabled?: boolean
+  value?: number
   items?: AddressItemProps[]
 }
 
@@ -40,11 +41,12 @@ const Address = ({
   pickable,
   disabled = false,
   appearance = 'compact',
+  value,
   items = []
 }: AddressComponentProps) => {
   const [status, setStatus] = useState<Status>('searching')
   const [addresses, setAddresses] = useState<AddressItemProps[]>(items)
-  const [checked, setChecked] = useState(0)
+  const [checked, setChecked] = useState(value)
 
   const [loading, setLoading] = useState(false)
   const [formError, setFormError] = useState('')
@@ -57,6 +59,10 @@ const Address = ({
     state: '',
     street: ''
   })
+
+  useEffect(() => {
+    setChecked(value)
+  }, [value])
 
   const showToast = useToast()
 
