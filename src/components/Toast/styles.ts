@@ -9,7 +9,7 @@ export const ToastWrapper = styled.div`
     z-index: ${theme.layers.alwaysOnTop};
     padding-top: ${theme.spacings.medium};
     gap: ${theme.spacings.xsmall};
-    position: absolute;
+    position: fixed;
     overflow: hidden;
     max-width: min(36rem, 90vw);
     height: 100vh;
@@ -45,7 +45,7 @@ export type WrapperProps = {
 export const Wrapper = styled.div<WrapperProps>`
   ${({ hiding }) => css`
     display: flex;
-    min-height: 8.6rem;
+    min-height: 8rem;
     width: 100%;
     min-width: min(36rem, 100%);
     animation: leftToRight 0.25s linear forwards;
