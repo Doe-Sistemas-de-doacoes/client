@@ -45,7 +45,8 @@ const Donation = ({ address, error }: DonationPageProps) => {
   const [fieldError, setFieldError] = useState<FieldErrors>({})
   const [formError, setFormError] = useState({
     delivery: '',
-    address: ''
+    address: '',
+    image: ''
   })
   const [values, setValues] = useState<DonationInsert>({
     type: 'ACESSORIO',
@@ -75,13 +76,14 @@ const Donation = ({ address, error }: DonationPageProps) => {
 
     setFormError({
       address:
-        values.addressId === 0
+        !values.isDelivery && values.addressId === 0
           ? 'Defina o endereço aonde será feito o recolhimento'
           : '',
       delivery:
         values.isDelivery === undefined
           ? 'Defina como será feito o recolhimento'
-          : ''
+          : '',
+      image: values.image ? '' : 'Adicione uma imagem da doação'
     })
 
     if (Object.keys(errors).length) {
@@ -91,7 +93,7 @@ const Donation = ({ address, error }: DonationPageProps) => {
 
     setFieldError({})
 
-    if (!!formError.address || !!formError.delivery) return
+    if (!!formError.image || !!formError.address || !!formError.delivery) return
 
     setLoading(true)
 
@@ -145,8 +147,13 @@ const Donation = ({ address, error }: DonationPageProps) => {
                 name="image"
                 value={values.image}
                 message="Adicionar imagem da doação"
-                accept=".png,.jpg"
-                onChange={(v) => handleInput('image', v)}
+                onChange={(v) => {
+                  handleInput('image', v)
+                  setFormError({
+                    ...formError,
+                    image: ''
+                  })
+                }}
                 disabled={loading}
               />
               <TextField
@@ -202,7 +209,13 @@ const Donation = ({ address, error }: DonationPageProps) => {
               <CardButton
                 asCheckbox
                 title="Prefiro que venham até min"
-                onClick={() => handleInput('isDelivery', false)}
+                onClick={() => {
+                  handleInput('isDelivery', false)
+                  setFormError({
+                    ...formError,
+                    delivery: ''
+                  })
+                }}
                 isChecked={values.isDelivery === false}
                 message="A pessoa que receberá, deverá se responsabilizar do recolhimento"
                 src="/img/my-location.svg"
@@ -216,6 +229,10 @@ const Donation = ({ address, error }: DonationPageProps) => {
                 onClick={() => {
                   handleInput('isDelivery', true)
                   handleInput('addressId', 0)
+                  setFormError({
+                    ...formError,
+                    delivery: ''
+                  })
                 }}
                 message="Você se disponibiliza para realizar a entrega"
                 src="/img/delivery.svg"
@@ -231,6 +248,7 @@ const Donation = ({ address, error }: DonationPageProps) => {
                   pickable={true}
                   disabled={loading}
                   items={address}
+                  value={values.addressId}
                   onChecked={({ id }) => handleInput('addressId', id)}
                 />
               </S.Address>
@@ -238,8 +256,10 @@ const Donation = ({ address, error }: DonationPageProps) => {
           </S.Column>
         </S.Main>
 
-        {(!!formError.address || !!formError.delivery) && (
-          <FormError>{formError.delivery || formError.address}</FormError>
+        {(!!formError.image || !!formError.delivery || !!formError.address) && (
+          <FormError>
+            {formError.image || formError.delivery || formError.address}
+          </FormError>
         )}
         <Button onClick={handleSubmit} disabled={loading}>
           {loading ? <FormLoading /> : <span>DOAR</span>}
