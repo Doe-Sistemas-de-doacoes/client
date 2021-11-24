@@ -53,24 +53,26 @@ const Toast = ({
         {title && <S.Title>{title}</S.Title>}
         <S.Message>{message}</S.Message>
 
-        <S.Action>
-          {(action?.cancel || action?.type === 'confirm') && (
-            <Button
-              size="small"
-              color="gray"
-              {...action?.cancel}
-              onClick={onCancel}
-            >
-              CANCELAR
-            </Button>
-          )}
+        {!!action && (
+          <S.Action>
+            {(action?.cancel || action?.type === 'confirm') && (
+              <Button
+                size="small"
+                color="gray"
+                {...action?.cancel}
+                onClick={onCancel}
+              >
+                CANCELAR
+              </Button>
+            )}
 
-          {(action?.primary || action?.type === 'confirm') && (
-            <Button size="small" {...action?.primary} onClick={onConfirm}>
-              CONFIRMAR
-            </Button>
-          )}
-        </S.Action>
+            {(action?.primary || action?.type === 'confirm') && (
+              <Button size="small" {...action?.primary} onClick={onConfirm}>
+                CONFIRMAR
+              </Button>
+            )}
+          </S.Action>
+        )}
       </S.Content>
     </S.Wrapper>
   )
