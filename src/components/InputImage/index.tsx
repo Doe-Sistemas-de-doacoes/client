@@ -6,7 +6,6 @@ import * as S from './styles'
 export type InputImageProps = {
   name: string
   message: string
-  accept?: string
   onChange?: (value: unknown) => void
   disabled?: boolean
 } & InputHTMLAttributes<HTMLInputElement>
@@ -14,7 +13,6 @@ export type InputImageProps = {
 const InputImage = ({
   message,
   name,
-  accept,
   disabled,
   onChange,
   value,
@@ -56,7 +54,7 @@ const InputImage = ({
         name={name}
         onChange={handleChange}
         disabled={disabled}
-        accept={accept}
+        accept="image/*"
         {...props}
       />
     </div>

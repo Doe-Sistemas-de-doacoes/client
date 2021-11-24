@@ -12,7 +12,7 @@ describe('<Container />', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'max-width',
-      theme.grid.container
+      theme.grid.container.medium
     )
 
     expect(container.firstChild).toMatchInlineSnapshot(`
