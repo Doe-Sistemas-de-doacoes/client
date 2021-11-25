@@ -68,7 +68,9 @@ const theme = {
     overlay: 30,
     dropdown: 40,
     modal: 50,
-    alwaysOnTop: 60
+    toastOverlay: 60,
+    toast: 70,
+    alwaysOnTop: 80
   },
   transition: {
     default: '0.3s ease-in-out',

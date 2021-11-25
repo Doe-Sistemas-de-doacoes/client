@@ -6,7 +6,7 @@ export const ToastWrapper = styled.div`
     display: flex;
     flex-direction: column;
     pointer-events: none;
-    z-index: ${theme.layers.alwaysOnTop};
+    z-index: ${theme.layers.toast};
     padding-top: ${theme.spacings.medium};
     gap: ${theme.spacings.xsmall};
     position: fixed;
@@ -43,10 +43,11 @@ export type WrapperProps = {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({ hiding }) => css`
+  ${({ theme, hiding }) => css`
+    width: 100%;
     display: flex;
     min-height: 8rem;
-    width: 100%;
+    z-index: ${theme.layers.toast};
     min-width: min(36rem, 100%);
     animation: leftToRight 0.25s linear forwards;
     box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.15);
