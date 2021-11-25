@@ -74,7 +74,7 @@ const DonationList = ({
 
   async function receiveDonation() {
     if (!selectAddress && donation?.isDelivery) {
-      setError('Defina uma endereço para entrega!')
+      setError('Defina um endereço para entrega!')
       return
     }
 
