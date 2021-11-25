@@ -24,11 +24,13 @@ export type DonationListProps = {
   byUser?: boolean
   items?: DonationProps[]
   address?: AddressItemProps[]
+  emptyMessage: string
 }
 
 const DonationList = ({
   editable = false,
   items,
+  emptyMessage,
   address: initialAddress,
   byUser = false
 }: DonationListProps) => {
@@ -72,7 +74,7 @@ const DonationList = ({
 
   async function receiveDonation() {
     if (!selectAddress && donation?.isDelivery) {
-      setError('Defina uma endereço para entrega!')
+      setError('Defina um endereço para entrega!')
       return
     }
 
@@ -120,11 +122,7 @@ const DonationList = ({
   if (!donations?.length) {
     return (
       <S.StateWrapper>
-        <p>
-          {byUser
-            ? 'Você ainda não criou nenhuma doação!'
-            : 'Nenhuma doação encontrada'}
-        </p>
+        <p>{emptyMessage}</p>
       </S.StateWrapper>
     )
   }

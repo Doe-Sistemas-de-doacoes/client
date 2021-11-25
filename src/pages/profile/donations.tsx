@@ -21,7 +21,12 @@ export default function ProfileDonation({
 }: ProfileDonationProps) {
   return (
     <Profile title="Minhas doações" error={error}>
-      <DonationList byUser editable items={donations} />
+      <DonationList
+        byUser
+        editable
+        items={donations}
+        emptyMessage="Você ainda não criou nenhuma doação"
+      />
     </Profile>
   )
 }

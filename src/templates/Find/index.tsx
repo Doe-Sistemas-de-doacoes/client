@@ -18,7 +18,11 @@ const FindTemplate = ({ items, address, error }: FindTemplateProps) => {
       decoration="topRightCorner"
     >
       <S.Wrapper>
-        <DonationList address={address} items={items} />
+        <DonationList
+          address={address}
+          items={items}
+          emptyMessage="Nenhuma doação encontrada"
+        />
       </S.Wrapper>
     </Page>
   )
