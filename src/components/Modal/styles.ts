@@ -17,6 +17,7 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
     padding: ${theme.spacings.small};
+    overflow: auto;
   `}
 `
 
@@ -41,6 +42,7 @@ export const Content = styled.div`
     transform: translate(-50%, -50%);
     color: ${theme.colors.text};
     width: min(100%, 60rem);
+    max-height: 90vh;
     position: fixed;
     left: 50%;
     top: 50%;
