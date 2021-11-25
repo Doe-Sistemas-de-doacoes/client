@@ -29,15 +29,14 @@ export default function ProfileDonation({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRoutes(context)
 
-  const props: ProfileDonationProps = {
-    user: session?.user?.id ?? undefined
-  }
+  const user = session?.user?.id ?? undefined
+  const props: ProfileDonationProps = { user }
 
   try {
     const response = await apiSSR(context).get<DonationProps[]>(
       '/users/donations'
     )
-    props.donations = response.data
+    props.donations = response.data.filter(({ donor }) => donor.id === user)
   } catch (error) {
     props.error = {
       message: handlerError(error as AxiosError)
