@@ -24,13 +24,13 @@ export type DonationListProps = {
   byUser?: boolean
   items?: DonationProps[]
   address?: AddressItemProps[]
-  emptyMessage: string
+  emptyMessage?: string
 }
 
 const DonationList = ({
   editable = false,
   items,
-  emptyMessage,
+  emptyMessage = 'Nenhuma doação encontrada',
   address: initialAddress,
   byUser = false
 }: DonationListProps) => {
