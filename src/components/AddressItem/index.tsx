@@ -75,12 +75,22 @@ const AddressItem = ({
       {editable && (
         <S.Actions>
           {!!onDelete && (
-            <S.Delete onClick={handleDelete}>
+            <S.Delete
+              onClick={(event) => {
+                event.stopPropagation()
+                handleDelete()
+              }}
+            >
               <Trash2 size={18} />
             </S.Delete>
           )}
           {!!onEdit && (
-            <S.Icon onClick={onEdit}>
+            <S.Icon
+              onClick={(event) => {
+                event.stopPropagation()
+                onEdit()
+              }}
+            >
               <Edit2 size={18} />
             </S.Icon>
           )}
