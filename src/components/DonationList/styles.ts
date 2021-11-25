@@ -12,6 +12,14 @@ export const Wrapper = styled.div`
   `}
 `
 
+export const ModalWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    gap: ${theme.spacings.medium};
+  `}
+`
+
 export const StateWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -19,4 +27,43 @@ export const StateWrapper = styled.div`
   justify-content: center;
   width: 100%;
   min-height: 52rem;
+`
+
+export const Image = styled.img`
+  ${({ theme }) => css`
+    width: 40rem;
+    max-height: 35rem;
+    border-radius: ${theme.border.radius.medium};
+    box-shadow: ${theme.boxShadow.medium};
+    object-fit: contain;
+    margin: 0 auto;
+  `}
+`
+
+export const Header = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    gap: ${theme.spacings.medium};
+    align-items: center;
+  `}
+`
+
+export const Title = styled.h5``
+
+export const Section = styled.section`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    gap: ${theme.spacings.xxsmall};
+
+    p {
+      display: flex;
+      gap: ${theme.spacings.xxsmall};
+    }
+
+    h6 {
+      margin-bottom: ${theme.spacings.xxxsmall};
+    }
+  `}
 `

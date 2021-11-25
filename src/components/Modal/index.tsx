@@ -11,15 +11,23 @@ export type ModalProps = {
   footer?: React.ReactNode
   onClose?: () => void
   message?: string
+  canClose?: boolean
 } & Omit<ToastProps, 'message'>
 
-const Modal = ({ title, isOpen = true, onClose, ...props }: ModalProps) => {
+const Modal = ({
+  title,
+  isOpen = true,
+  onClose,
+  canClose = true,
+  ...props
+}: ModalProps) => {
   const [open, setOpen] = useState(isOpen)
   const [hiding, setHiding] = useState(false)
 
   useEffect(() => setOpen(isOpen), [isOpen])
 
   function handleClose() {
+    if (!canClose) return
     setHiding(true)
 
     setTimeout(() => {

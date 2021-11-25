@@ -20,8 +20,8 @@ export default function ProfileDonation({
   error
 }: ProfileDonationProps) {
   return (
-    <Profile title="Minhas doações" error={error}>
-      <DonationList byUser editable items={donations} />
+    <Profile title="Minhas reservas" error={error}>
+      <DonationList byUser items={donations} />
     </Profile>
   )
 }
@@ -36,7 +36,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const response = await apiSSR(context).get<DonationProps[]>(
       '/users/donations'
     )
-    props.donations = response.data.filter(({ donor }) => donor.id === user)
+    props.donations = response.data.filter(
+      ({ receiver }) => receiver?.id === user
+    )
   } catch (error) {
     props.error = {
       message: handlerError(error as AxiosError)

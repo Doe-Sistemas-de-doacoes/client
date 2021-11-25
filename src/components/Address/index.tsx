@@ -20,6 +20,7 @@ export type AddressComponentProps = {
   pickable?: boolean
   appearance?: 'full' | 'compact'
   onChecked?: (address: AddressProps) => void
+  onItemsChange?: (address: AddressItemProps[]) => void
   disabled?: boolean
   value?: number
   items?: AddressItemProps[]
@@ -41,6 +42,7 @@ const Address = ({
   pickable,
   disabled = false,
   appearance = 'compact',
+  onItemsChange,
   value,
   items = []
 }: AddressComponentProps) => {
@@ -63,6 +65,10 @@ const Address = ({
   useEffect(() => {
     setChecked(value)
   }, [value])
+
+  useEffect(() => {
+    if (onItemsChange) onItemsChange(addresses)
+  }, [addresses, onItemsChange])
 
   const showToast = useToast()
 

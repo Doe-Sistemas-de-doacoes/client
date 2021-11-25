@@ -1,13 +1,25 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
+export type WrapperProps = {
+  clickable?: boolean
+}
+
+const wrapperModifiers = {
+  clickable: () => css`
+    cursor: pointer;
+  `
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ theme, clickable }) => css`
     display: flex;
     flex-direction: column;
     background: ${theme.colors.extraLightGray};
     border-radius: ${theme.border.radius.small};
     box-shadow: ${theme.boxShadow.medium};
+
+    ${!!clickable && wrapperModifiers.clickable()}
 
     &:hover ${Actions} {
       opacity: 1;
@@ -33,6 +45,7 @@ export const Image = styled.img`
 
 export const Content = styled.div`
   ${({ theme }) => css`
+    flex: 1;
     display: flex;
     flex-direction: column;
     padding: ${theme.spacings.small};
@@ -76,6 +89,7 @@ export const Date = styled.span`
     grid-area: date;
     color: ${theme.colors.text};
     font-size: ${theme.font.sizes.xsmall};
+    margin-top: auto;
     color: ${theme.colors.gray};
     text-align: right;
     text-transform: uppercase;
