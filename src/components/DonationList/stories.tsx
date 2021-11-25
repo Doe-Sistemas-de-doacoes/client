@@ -13,5 +13,5 @@ export const Default: Story<DonationListProps> = (args) => (
 )
 
 Default.args = {
-  donations: mock
+  items: mock
 } as DonationListProps
