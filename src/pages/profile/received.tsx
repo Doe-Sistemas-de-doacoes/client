@@ -21,7 +21,11 @@ export default function ProfileDonation({
 }: ProfileDonationProps) {
   return (
     <Profile title="Minhas reservas" error={error}>
-      <DonationList byUser items={donations} />
+      <DonationList
+        byUser
+        items={donations}
+        emptyMessage="Você ainda não reservou nenhuma doação"
+      />
     </Profile>
   )
 }
