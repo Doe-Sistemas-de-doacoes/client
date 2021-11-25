@@ -9,9 +9,9 @@ import {
   User
 } from 'react-feather'
 
-import Dropdown from 'components/Dropdown'
-import Ribbon from 'components/Ribbon'
 import { useModal } from 'hooks/use-modal'
+import Ribbon from 'components/Ribbon'
+import Dropdown from 'components/Dropdown'
 import { UserProps, AddressProps } from 'services/user'
 
 import * as S from './styles'
@@ -22,9 +22,10 @@ type UserDonationProps = {
 
 export type DonationItemProps = {
   editable?: boolean
-
   byUser: boolean
+  isDonor: boolean
   onDelete?: () => void
+  onClick?: () => void
 } & DonationProps
 
 export type DonationProps = {
@@ -52,12 +53,16 @@ const DonationItem = ({
   phone,
   isDelivery,
   onDelete,
+  onClick,
+  isDonor,
+  receiver,
   byUser = false,
   editable = false
 }: DonationItemProps) => {
   const showModal = useModal()
+  const address = isDonor ? donor?.address : receiver?.address
 
-  function handleDelete() {
+  function handlerDelete() {
     if (onDelete) {
       showModal({
         type: 'informative',
@@ -75,18 +80,30 @@ const DonationItem = ({
     }
   }
 
+  function handlerClick() {
+    if (onClick && !byUser) onClick()
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper onClick={handlerClick} clickable={!!onClick && !byUser}>
       <S.ImageWrapper>
         <S.Image src={imageSrc ?? '/img/image-not-found.png'} />
 
         {status === 'FINALIZADO' ? (
-          <Ribbon color="primary" size="normal">
-            Finalizada
-          </Ribbon>
+          <>
+            {isDonor ? (
+              <Ribbon color="primary" size="normal">
+                FINALIZADA
+              </Ribbon>
+            ) : (
+              <Ribbon color="secondary" size="normal">
+                RESERVADA
+              </Ribbon>
+            )}
+          </>
         ) : (
           editable && (
-            <S.Actions onClick={handleDelete}>
+            <S.Actions onClick={handlerDelete}>
               <Trash2 size={20} />
             </S.Actions>
           )
@@ -104,65 +121,60 @@ const DonationItem = ({
 
           <S.Description>{description}</S.Description>
         </S.Section>
+        {}
+        <S.Info>
+          {address && (
+            <Dropdown
+              title={
+                <S.DropdownTitle>
+                  <MapPin size={20} />
+                  <p>Endereço para {isDelivery ? ' coleta' : ' entrega'}</p>
+                </S.DropdownTitle>
+              }
+            >
+              <S.DropdownContent>
+                <S.DropdownHeading>Endereço para coleta</S.DropdownHeading>
+                <p>
+                  {<Map size={18} />}
+                  {address?.city ?? '------'} / {address?.state ?? '--'}
+                </p>
+                <p>
+                  {<MapPin size={18} />}
+                  {address?.neighborhood ?? '--------'}
+                </p>
+                <p>
+                  {<Home size={18} />}
+                  {address?.street ?? '------'}, Nº {address?.number ?? '--'}
+                </p>
+              </S.DropdownContent>
+            </Dropdown>
+          )}
+          <Dropdown
+            title={
+              <S.DropdownTitle>
+                <MessageCircle size={20} />
+                <p>Informações para contato</p>
+              </S.DropdownTitle>
+            }
+          >
+            <S.DropdownContent>
+              <S.DropdownHeading>Contato do doador</S.DropdownHeading>
 
-        {(!!donor?.address || !byUser) && (
-          <S.Info>
-            {!!donor?.address && (
-              <Dropdown
-                title={
-                  <S.DropdownTitle>
-                    <MapPin size={20} />
-                    <p>Endereço para coleta</p>
-                  </S.DropdownTitle>
-                }
-              >
-                <S.DropdownContent>
-                  <S.DropdownHeading>Endereço para coleta</S.DropdownHeading>
-                  <p>
-                    {<Map size={18} />}
-                    {donor.address?.city} / {donor.address?.state}
-                  </p>
-                  <p>
-                    {<MapPin size={18} />}
-                    {donor.address?.neighborhood}
-                  </p>
-                  <p>
-                    {<Home size={18} />}
-                    {donor.address?.street}, Nº {donor.address?.number}
-                  </p>
-                </S.DropdownContent>
-              </Dropdown>
-            )}
-
-            {!byUser && (
-              <Dropdown
-                title={
-                  <S.DropdownTitle>
-                    <MessageCircle size={20} />
-                    <p>Informações para contato</p>
-                  </S.DropdownTitle>
-                }
-              >
-                <S.DropdownContent>
-                  <S.DropdownHeading>Contato do doador</S.DropdownHeading>
-
-                  <p>
-                    <User size={18} />
-                    {donor.name}
-                  </p>
-                  <p>
-                    <Mail size={18} />
-                    {email}
-                  </p>
-                  <p>
-                    <Phone size={18} />
-                    {phone}
-                  </p>
-                </S.DropdownContent>
-              </Dropdown>
-            )}
-          </S.Info>
-        )}
+              <p>
+                <User size={18} />
+                {donor.name}
+              </p>
+              <p>
+                <Mail size={18} />
+                {email}
+              </p>
+              <p>
+                <Phone size={18} />
+                {phone}
+              </p>
+            </S.DropdownContent>
+          </Dropdown>
+        </S.Info>
 
         <S.Date>Criada em: {date}</S.Date>
       </S.Content>

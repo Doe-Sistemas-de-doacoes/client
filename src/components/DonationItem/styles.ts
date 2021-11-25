@@ -1,13 +1,25 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
+export type WrapperProps = {
+  clickable?: boolean
+}
+
+const wrapperModifiers = {
+  clickable: () => css`
+    cursor: pointer;
+  `
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ theme, clickable }) => css`
     display: flex;
     flex-direction: column;
     background: ${theme.colors.extraLightGray};
     border-radius: ${theme.border.radius.small};
     box-shadow: ${theme.boxShadow.medium};
+
+    ${!!clickable && wrapperModifiers.clickable()}
 
     &:hover ${Actions} {
       opacity: 1;
