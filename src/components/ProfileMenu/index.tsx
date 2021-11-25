@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Heart, LogOut, MapPin, User } from 'react-feather'
+import { Archive, Heart, LogOut, MapPin, User } from 'react-feather'
 import { signOut } from 'next-auth/client'
 import { useRouter } from 'next/router'
 
@@ -34,10 +34,20 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
       <Link href="/profile/donations" passHref>
         <S.Link
           isActive={activeLink === '/profile/donation'}
-          title="Minhas Doações"
+          title="Minhas doações"
         >
           <Heart size={24} />
-          <span>Minhas Doações</span>
+          <span>Minhas doações</span>
+        </S.Link>
+      </Link>
+
+      <Link href="/profile/received" passHref>
+        <S.Link
+          isActive={activeLink === '/profile/received'}
+          title="Minhas reservas"
+        >
+          <Archive size={24} />
+          <span>Minhas reservas</span>
         </S.Link>
       </Link>
 
