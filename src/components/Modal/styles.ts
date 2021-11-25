@@ -35,7 +35,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     background: ${theme.colors.white};
-    z-index: ${theme.layers.alwaysOnTop};
+    z-index: ${theme.layers.modal};
     box-shadow: ${theme.boxShadow.medium};
     border: ${theme.border.radius.medium};
     transform: translate(-50%, -50%);
@@ -83,12 +83,16 @@ export const Wrapper = styled.div<WrapperProps>`
     }
 
     ${Toast} {
-      z-index: ${theme.layers.alwaysOnTop};
+      z-index: ${theme.layers.toast};
       width: min(60rem, 90rem);
       transform: translate(-50%, -50%);
       position: fixed;
       left: 50%;
       top: 50%;
+
+      & ~ ${Overlay} {
+        z-index: ${theme.layers.toastOverlay};
+      }
     }
 
     @keyframes show {
