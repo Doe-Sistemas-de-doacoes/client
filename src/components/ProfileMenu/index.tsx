@@ -33,7 +33,7 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
 
       <Link href="/profile/donations" passHref>
         <S.Link
-          isActive={activeLink === '/profile/donation'}
+          isActive={activeLink === '/profile/donations'}
           title="Minhas doações"
         >
           <Heart size={24} />
