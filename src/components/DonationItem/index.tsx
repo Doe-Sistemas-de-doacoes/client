@@ -22,7 +22,7 @@ type UserDonationProps = {
 
 export type DonationItemProps = {
   editable?: boolean
-  byUser: boolean
+  expandable: boolean
   isDonor: boolean
   onDelete?: () => void
   onClick?: () => void
@@ -56,7 +56,7 @@ const DonationItem = ({
   onClick,
   isDonor,
   receiver,
-  byUser = false,
+  expandable = true,
   editable = false
 }: DonationItemProps) => {
   const showModal = useModal()
@@ -81,32 +81,31 @@ const DonationItem = ({
   }
 
   function handlerClick() {
-    if (onClick && !byUser) onClick()
+    if (onClick && expandable) onClick()
   }
 
   return (
-    <S.Wrapper onClick={handlerClick} clickable={!!onClick && !byUser}>
+    <S.Wrapper onClick={handlerClick} clickable={!!onClick && expandable}>
+      {status === 'FINALIZADO' && (
+        <>
+          {isDonor ? (
+            <Ribbon color="primary" size="normal">
+              FINALIZADA
+            </Ribbon>
+          ) : (
+            <Ribbon color="secondary" size="normal">
+              RESERVADA
+            </Ribbon>
+          )}
+        </>
+      )}
       <S.ImageWrapper>
         <S.Image src={imageSrc ?? '/img/image-not-found.png'} />
 
-        {status === 'FINALIZADO' ? (
-          <>
-            {isDonor ? (
-              <Ribbon color="primary" size="normal">
-                FINALIZADA
-              </Ribbon>
-            ) : (
-              <Ribbon color="secondary" size="normal">
-                RESERVADA
-              </Ribbon>
-            )}
-          </>
-        ) : (
-          editable && (
-            <S.Actions onClick={handlerDelete}>
-              <Trash2 size={20} />
-            </S.Actions>
-          )
+        {status !== 'FINALIZADO' && editable && (
+          <S.Actions onClick={handlerDelete}>
+            <Trash2 size={20} />
+          </S.Actions>
         )}
       </S.ImageWrapper>
 

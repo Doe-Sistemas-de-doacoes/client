@@ -1,3 +1,4 @@
+import { Wrapper as Ribbon } from 'components/Ribbon/styles'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
@@ -15,9 +16,14 @@ export const Wrapper = styled.div<WrapperProps>`
   ${({ theme, clickable }) => css`
     display: flex;
     flex-direction: column;
+    position: relative;
     background: ${theme.colors.extraLightGray};
     border-radius: ${theme.border.radius.small};
     box-shadow: ${theme.boxShadow.medium};
+
+    ${Ribbon} {
+      z-index: 1;
+    }
 
     ${!!clickable && wrapperModifiers.clickable()}
 
@@ -30,6 +36,7 @@ export const Wrapper = styled.div<WrapperProps>`
 
 export const ImageWrapper = styled.div`
   position: relative;
+  overflow: hidden;
 `
 
 export const Image = styled.img`
@@ -168,7 +175,7 @@ export const Actions = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transform: translateY(-100%);
+    transform: translate(100%, -100%);
     color: ${theme.colors.red};
     border-radius: ${theme.border.radius.small};
     background: ${theme.colors.white};
