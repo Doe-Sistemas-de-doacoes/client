@@ -2,15 +2,7 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 export const Main = styled.main`
-  ${({ theme }) => css`
-    width: 100%;
-
-    @media screen and (min-width: 960px) {
-      display: grid;
-      grid-template-columns: 32rem 1fr;
-      gap: ${theme.spacings.small};
-    }
-  `}
+  width: 100%;
 `
 
 export const Content = styled.div`

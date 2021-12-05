@@ -1,18 +1,26 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import media from 'styled-media-query'
 
 export const Nav = styled.nav`
   ${({ theme }) => css`
     display: flex;
+    flex-wrap: wrap;
     box-shadow: ${theme.boxShadow.medium};
     border-bottom: 0.1rem solid ${theme.colors.lightGray};
     height: fit-content;
 
-    @media screen and (min-width: 960px) {
-      flex-direction: column;
+    @media screen and (min-width: 1040px) {
       border: 0;
+
       a:not(:last-child) {
-        border-bottom: 0.1rem solid ${theme.colors.lightGray};
+        flex: 2;
+        border-right: 0.1rem solid ${theme.colors.lightGray};
+      }
+      a {
+        justify-content: initial;
+
+        > span {
+          display: initial;
+        }
       }
     }
   `}
@@ -55,14 +63,6 @@ export const Link = styled.a<LinkProps>`
       margin-left: ${theme.spacings.xsmall};
     }
 
-    ${media.greaterThan('medium')`
-      /* flex: unset; */
-      justify-content: initial;
-
-      > span {
-        display: initial;
-      }
-    `}
     ${!isActive && linkModifiers.default(theme)};
     ${isActive && linkModifiers.active(theme)};
   `}
