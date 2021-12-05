@@ -3,10 +3,12 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: ${theme.spacings.small};
 
     ${media.greaterThan('small')`
+      display: grid;
       grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     `}
   `}
@@ -66,4 +68,28 @@ export const Section = styled.section`
       margin-bottom: ${theme.spacings.xxxsmall};
     }
   `}
+`
+
+export const ShowMore = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  height: 10rem;
+`
+
+export const ShowMoreButton = styled.div`
+  ${({ theme }) => css`
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    color: ${theme.colors.text};
+    > svg {
+      color: ${theme.colors.primary};
+    }
+  `}
+`
+export const ShowMoreLoading = styled.img`
+  width: 4rem;
 `

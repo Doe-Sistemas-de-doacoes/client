@@ -1,47 +1,58 @@
 import { useState } from 'react'
 import { AxiosError } from 'axios'
-import { Home, Mail, Map, MapPin, Phone, User } from 'react-feather'
+import {
+  ChevronDown,
+  Home,
+  Mail,
+  Map,
+  MapPin,
+  Phone,
+  User
+} from 'react-feather'
 
 import api from 'services/api'
 import Modal from 'components/Modal'
 import Loader from 'components/Loader'
 import Button from 'components/Button'
 import Address from 'components/Address'
+import DonationItem, { DonationProps } from 'components/DonationItem'
+import donationMapper from 'utils/mappers/DonationMapper'
+import HeadingSection from 'components/HeadingSection'
+import handlerError from 'utils/handle-error'
 import { Badge } from 'components/Badge'
 import { FormError } from 'components/Form'
 import { AddressItemProps } from 'components/AddressItem'
-import DonationItem, { DonationProps } from 'components/DonationItem'
-import HeadingSection from 'components/HeadingSection'
-import handlerError from 'utils/handle-error'
-import formatDate from 'utils/format-date'
+import { Pagination } from 'services/pagination'
 import { useSession } from 'hooks/use-session'
 import { useToast } from 'hooks/use-toast'
 
 import * as S from './styles'
 
 export type DonationListProps = {
+  data?: Pagination<DonationProps[]>
   editable?: boolean
-  byUser?: boolean
-  items?: DonationProps[]
+  expandable?: boolean
+  endpoint: '/users/reservations' | '/users/donations' | '/donations'
   address?: AddressItemProps[]
-  emptyMessage?: string
+  empty?: string
 }
 
 const DonationList = ({
   editable = false,
-  items,
-  emptyMessage = 'Nenhuma doação encontrada',
+  data,
+  endpoint,
+  empty = 'Nenhuma doação encontrada',
   address: initialAddress,
-  byUser = false
+  expandable = false
 }: DonationListProps) => {
-  const [donations, setDonations] = useState(
-    items?.map((donation) => ({
-      ...donation,
-      date: formatDate(donation.date)
-    }))
+  let page = 0
+  const [donations, setDonations] = useState<DonationProps[]>(
+    data?.content ?? []
   )
   const [loading, setLoading] = useState(false)
+  const [loadingMore, setLoadingMore] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [hasMore, setHasMore] = useState(!data?.last)
 
   const [donation, setDonation] = useState<DonationProps>()
   const [address, setAddress] = useState(initialAddress)
@@ -111,6 +122,34 @@ const DonationList = ({
     setError('')
   }
 
+  async function fetchMore() {
+    setLoadingMore(true)
+
+    try {
+      const { data } = await api.get<Pagination<DonationProps[]>>(endpoint, {
+        url: endpoint,
+        params: {
+          size: 12,
+          page: page + 1
+        }
+      })
+      page++
+      setHasMore(!data.last)
+      setDonations((donations) => [
+        ...donations,
+        ...donationMapper(data).content
+      ])
+    } catch (error) {
+      showToast({
+        title: 'Erro ao buscar mais',
+        message: handlerError(error as AxiosError),
+        type: 'error'
+      })
+    } finally {
+      setLoadingMore(false)
+    }
+  }
+
   if (loading) {
     return (
       <S.StateWrapper>
@@ -122,7 +161,7 @@ const DonationList = ({
   if (!donations?.length) {
     return (
       <S.StateWrapper>
-        <p>{emptyMessage}</p>
+        <p>{empty}</p>
       </S.StateWrapper>
     )
   }
@@ -132,7 +171,7 @@ const DonationList = ({
       {donations?.map((donation) => (
         <DonationItem
           editable={editable && donation.status !== 'FINALIZADO'}
-          byUser={byUser}
+          expandable={expandable}
           isDonor={donation.donor.id === session?.user?.id}
           onClick={() => handlerClick(donation)}
           onDelete={() => deleteDonation(donation.id)}
@@ -140,6 +179,22 @@ const DonationList = ({
           {...donation}
         />
       ))}
+
+      {hasMore && (
+        <S.ShowMore>
+          {loadingMore ? (
+            <S.ShowMoreLoading
+              src="/img/dots-black.svg"
+              alt="Carregando mais doações..."
+            />
+          ) : (
+            <S.ShowMoreButton role="button" onClick={fetchMore}>
+              <p>Mostrar mais</p>
+              <ChevronDown size={35} />
+            </S.ShowMoreButton>
+          )}
+        </S.ShowMore>
+      )}
 
       <Modal
         title="Informações da doação"
