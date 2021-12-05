@@ -5,26 +5,24 @@ import { apiSSR } from 'services/api'
 import Profile from 'templates/Profile'
 import handlerError from 'utils/handle-error'
 import protectedRoutes from 'utils/protected-routes'
-import DonationList from 'components/DonationList'
+import DonationList, { DonationListProps } from 'components/DonationList'
 import { DonationProps } from 'components/DonationItem'
 import { ErrorProps } from 'components/Error'
+import { Pagination } from 'services/pagination'
+import donationMapper from 'utils/mappers/DonationMapper'
 
 type ProfileDonationProps = {
-  donations?: DonationProps[]
   user?: number
   error?: ErrorProps
-}
+} & Pick<DonationListProps, 'data'>
 
-export default function ProfileDonation({
-  donations,
-  error
-}: ProfileDonationProps) {
+export default function ProfileDonation({ data, error }: ProfileDonationProps) {
   return (
     <Profile title="Minhas reservas" error={error}>
       <DonationList
-        byUser
-        items={donations}
-        emptyMessage="Você ainda não reservou nenhuma doação"
+        data={data}
+        endpoint="/users/donations"
+        empty="Você ainda não reservou nenhuma doação"
       />
     </Profile>
   )
@@ -37,12 +35,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const props: ProfileDonationProps = { user }
 
   try {
-    const response = await apiSSR(context).get<DonationProps[]>(
-      '/users/donations'
+    const response = await apiSSR(context).get<Pagination<DonationProps[]>>(
+      '/users/reservations',
+      {
+        params: {
+          size: 12
+        }
+      }
     )
-    props.donations = response.data.filter(
-      ({ receiver }) => receiver?.id === user
-    )
+    props.data = donationMapper(response.data)
   } catch (error) {
     props.error = {
       message: handlerError(error as AxiosError)

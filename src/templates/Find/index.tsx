@@ -8,7 +8,7 @@ export type FindTemplateProps = {
   error?: ErrorProps
 } & DonationListProps
 
-const FindTemplate = ({ items, address, error }: FindTemplateProps) => {
+const FindTemplate = ({ data, address, error }: FindTemplateProps) => {
   return (
     <Page
       title="Encontrar"
@@ -18,7 +18,12 @@ const FindTemplate = ({ items, address, error }: FindTemplateProps) => {
       decoration="topRightCorner"
     >
       <S.Wrapper>
-        <DonationList address={address} items={items} />
+        <DonationList
+          expandable
+          endpoint="/donations"
+          address={address}
+          data={data}
+        />
       </S.Wrapper>
     </Page>
   )
